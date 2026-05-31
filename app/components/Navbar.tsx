@@ -1,12 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const tabs = [
-  { id: "overview",        label: "Overview",         icon: "⬡" },
-  { id: "vulnerabilities", label: "Vulnerabilities",  icon: "⚠" },
-  { id: "threats",         label: "Threat Intel",     icon: "☠" },
-  { id: "network",         label: "Network Events",   icon: "⬡" },
-  { id: "scans",           label: "Scan History",     icon: "◎" },
+  { id: "overview",        label: "Overview"        },
+  { id: "vulnerabilities", label: "Vulnerabilities" },
+  { id: "threats",         label: "Threat Intel"    },
+  { id: "network",         label: "Network Events"  },
+  { id: "scans",           label: "Scan History"    },
 ];
 
 export function Navbar({
@@ -16,6 +16,18 @@ export function Navbar({
   active: string;
   setActive: (id: string) => void;
 }) {
+  const [now, setNow] = useState<Date | null>(null);
+
+  useEffect(() => {
+    setNow(new Date());
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const timeStr = now
+    ? now.toISOString().slice(0, 19).replace("T", " ") + " UTC"
+    : "";
+
   return (
     <nav className="bg-gray-900 border-b border-gray-800 px-6 py-0 flex items-center gap-0">
       <div className="flex items-center gap-3 pr-8 border-r border-gray-800 mr-4">
@@ -40,7 +52,7 @@ export function Navbar({
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block" />
           LIVE
         </span>
-        <span className="text-gray-600 text-xs">2024-12-10 14:20 UTC</span>
+        <span className="text-gray-600 text-xs font-mono">{timeStr}</span>
       </div>
     </nav>
   );

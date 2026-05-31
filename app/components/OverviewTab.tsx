@@ -25,6 +25,15 @@ export function OverviewTab({ data }: { data: DashboardData }) {
     .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
     .slice(0, 5);
 
+  const totalScore = 100;
+  const criticalPenalty = vulnerabilities.filter((v) => v.severity === "critical" && v.status === "open").length * 8;
+  const highPenalty = vulnerabilities.filter((v) => v.severity === "high" && v.status === "open").length * 4;
+  const activeThreatPenalty = threats.filter((t) => t.status === "active").length * 6;
+  const riskScore = Math.max(0, Math.min(100, totalScore - criticalPenalty - highPenalty - activeThreatPenalty));
+  const riskLabel = riskScore >= 70 ? "GOOD" : riskScore >= 40 ? "MODERATE" : "CRITICAL";
+  const riskColor = riskScore >= 70 ? "text-green-400" : riskScore >= 40 ? "text-yellow-400" : "text-red-400";
+  const riskBorder = riskScore >= 70 ? "border-green-800" : riskScore >= 40 ? "border-yellow-800" : "border-red-800";
+
   return (
     <div className="p-6 space-y-6">
       {/* KPI row */}
@@ -33,6 +42,29 @@ export function OverviewTab({ data }: { data: DashboardData }) {
         <StatCard label="Active Threats" value={activeThreats} color="text-orange-400" icon="☠" sub="Being tracked" />
         <StatCard label="Blocked Events" value={blockedEvents} color="text-green-400" icon="🛡" sub="Last 24 hours" />
         <StatCard label="Open Vulnerabilities" value={openVulns} color="text-yellow-400" icon="⚠" sub="Across all hosts" />
+      </div>
+
+      {/* Risk Score */}
+      <div className={`bg-gray-900 border ${riskBorder} rounded-lg p-4 flex items-center gap-6`}>
+        <div className="text-center min-w-[80px]">
+          <div className={`text-5xl font-bold ${riskColor}`}>{riskScore}</div>
+          <div className="text-gray-500 text-xs mt-1">/ 100</div>
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="text-xs uppercase tracking-widest text-gray-400">Security Risk Score</span>
+            <span className={`px-2 py-0.5 rounded text-xs font-bold border ${riskColor} ${riskBorder}`}>{riskLabel}</span>
+          </div>
+          <div className="w-full bg-gray-800 rounded-full h-2.5">
+            <div
+              className={`h-2.5 rounded-full transition-all ${riskScore >= 70 ? "bg-green-500" : riskScore >= 40 ? "bg-yellow-500" : "bg-red-500"}`}
+              style={{ width: `${riskScore}%` }}
+            />
+          </div>
+          <div className="text-gray-500 text-xs mt-1.5">
+            -{criticalPenalty} critical · -{highPenalty} high vulns · -{activeThreatPenalty} active threats
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

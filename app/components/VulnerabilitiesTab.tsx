@@ -9,9 +9,26 @@ const STATUS_COLORS: Record<string, string> = {
   patched:       "text-green-400",
 };
 
+type SortKey = "cvss" | "severity" | "discovered" | "host" | "status";
+type SortDir = "asc" | "desc";
+
+const SEVERITY_RANK: Record<string, number> = { critical: 4, high: 3, medium: 2, low: 1 };
+const STATUS_RANK:   Record<string, number> = { open: 3, investigating: 2, patched: 1 };
+
 export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulnerability[] }) {
   const [filter, setFilter] = useState<string>("all");
   const [search, setSearch] = useState("");
+  const [sortKey, setSortKey] = useState<SortKey>("cvss");
+  const [sortDir, setSortDir] = useState<SortDir>("desc");
+
+  function handleSort(key: SortKey) {
+    if (key === sortKey) {
+      setSortDir((d) => (d === "desc" ? "asc" : "desc"));
+    } else {
+      setSortKey(key);
+      setSortDir("desc");
+    }
+  }
 
   const filtered = vulnerabilities
     .filter((v) => filter === "all" || v.severity === filter || v.status === filter)
@@ -22,16 +39,40 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
         v.name.toLowerCase().includes(search.toLowerCase()) ||
         v.host.toLowerCase().includes(search.toLowerCase())
     )
-    .sort((a, b) => b.cvss - a.cvss);
+    .sort((a, b) => {
+      let cmp = 0;
+      if (sortKey === "cvss")      cmp = a.cvss - b.cvss;
+      if (sortKey === "severity")  cmp = (SEVERITY_RANK[a.severity] ?? 0) - (SEVERITY_RANK[b.severity] ?? 0);
+      if (sortKey === "status")    cmp = (STATUS_RANK[a.status] ?? 0) - (STATUS_RANK[b.status] ?? 0);
+      if (sortKey === "host")      cmp = a.host.localeCompare(b.host);
+      if (sortKey === "discovered") cmp = a.discovered.localeCompare(b.discovered);
+      return sortDir === "desc" ? -cmp : cmp;
+    });
 
   const filters = [
-    { label: "All", value: "all" },
-    { label: "Critical", value: "critical" },
-    { label: "High", value: "high" },
-    { label: "Open", value: "open" },
-    { label: "Investigating", value: "investigating" },
-    { label: "Patched", value: "patched" },
+    { label: "All",          value: "all"          },
+    { label: "Critical",     value: "critical"      },
+    { label: "High",         value: "high"          },
+    { label: "Open",         value: "open"          },
+    { label: "Investigating",value: "investigating"  },
+    { label: "Patched",      value: "patched"       },
   ];
+
+  function SortIcon({ col }: { col: SortKey }) {
+    if (sortKey !== col) return <span className="text-gray-700 ml-1">⇅</span>;
+    return <span className="text-green-400 ml-1">{sortDir === "desc" ? "↓" : "↑"}</span>;
+  }
+
+  function Th({ col, label }: { col: SortKey; label: string }) {
+    return (
+      <th
+        className="text-left py-2 pr-4 cursor-pointer hover:text-gray-300 select-none"
+        onClick={() => handleSort(col)}
+      >
+        {label}<SortIcon col={col} />
+      </th>
+    );
+  }
 
   return (
     <div className="p-6 space-y-4">
@@ -43,7 +84,7 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
           onChange={(e) => setSearch(e.target.value)}
           className="bg-gray-900 border border-gray-700 rounded px-3 py-1.5 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-green-500 w-64"
         />
-        <div className="flex gap-1">
+        <div className="flex gap-1 flex-wrap">
           {filters.map((f) => (
             <button
               key={f.value}
@@ -67,12 +108,12 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
             <tr className="text-gray-500 uppercase tracking-widest border-b border-gray-800">
               <th className="text-left py-2 pr-4">CVE ID</th>
               <th className="text-left py-2 pr-4">Name</th>
-              <th className="text-left py-2 pr-4">Severity</th>
-              <th className="text-left py-2 pr-4">CVSS</th>
-              <th className="text-left py-2 pr-4">Host</th>
+              <Th col="severity" label="Severity" />
+              <Th col="cvss"     label="CVSS"     />
+              <Th col="host"     label="Host"     />
               <th className="text-left py-2 pr-4">Service / Port</th>
-              <th className="text-left py-2 pr-4">Status</th>
-              <th className="text-left py-2">Discovered</th>
+              <Th col="status"    label="Status"    />
+              <Th col="discovered" label="Discovered" />
             </tr>
           </thead>
           <tbody>
