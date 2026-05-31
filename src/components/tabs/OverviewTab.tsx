@@ -1,7 +1,7 @@
 "use client";
-import { StatCard } from "./StatCard";
-import { SeverityBadge } from "./SeverityBadge";
-import type { DashboardData } from "../types";
+import { StatCard } from "@/components/ui/StatCard";
+import { SeverityBadge } from "@/components/ui/SeverityBadge";
+import type { DashboardData } from "@/types";
 
 export function OverviewTab({ data }: { data: DashboardData }) {
   const { vulnerabilities, threats, networkEvents, scans } = data;

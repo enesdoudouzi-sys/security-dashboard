@@ -1,5 +1,5 @@
 "use client";
-import type { Scan } from "../types";
+import type { Scan } from "@/types";
 
 const STATUS_STYLES: Record<string, string> = {
   completed:  "text-green-400 border-green-800 bg-green-900/30",

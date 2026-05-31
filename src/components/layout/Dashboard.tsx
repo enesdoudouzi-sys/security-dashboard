@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
-import { Navbar } from "./Navbar";
-import { OverviewTab } from "./OverviewTab";
-import { VulnerabilitiesTab } from "./VulnerabilitiesTab";
-import { ThreatsTab } from "./ThreatsTab";
-import { NetworkTab } from "./NetworkTab";
-import { ScansTab } from "./ScansTab";
-import type { DashboardData } from "../types";
+import { Navbar } from "@/components/layout/Navbar";
+import { OverviewTab } from "@/components/tabs/OverviewTab";
+import { VulnerabilitiesTab } from "@/components/tabs/VulnerabilitiesTab";
+import { ThreatsTab } from "@/components/tabs/ThreatsTab";
+import { NetworkTab } from "@/components/tabs/NetworkTab";
+import { ScansTab } from "@/components/tabs/ScansTab";
+import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
   const [active, setActive] = useState("overview");

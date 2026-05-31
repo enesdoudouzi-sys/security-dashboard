@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { SeverityBadge } from "./SeverityBadge";
-import type { Vulnerability } from "../types";
+import { SeverityBadge } from "@/components/ui/SeverityBadge";
+import type { Vulnerability } from "@/types";
 
 const STATUS_COLORS: Record<string, string> = {
   open:          "text-red-400",

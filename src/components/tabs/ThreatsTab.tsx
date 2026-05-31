@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { SeverityBadge } from "./SeverityBadge";
-import type { Threat } from "../types";
+import { SeverityBadge } from "@/components/ui/SeverityBadge";
+import type { Threat } from "@/types";
 
 const STATUS_STYLES: Record<string, string> = {
   active:        "bg-red-900/50 text-red-300 border-red-700",

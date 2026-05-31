@@ -1,5 +1,5 @@
 "use client";
-import type { NetworkEvent } from "../types";
+import type { NetworkEvent } from "@/types";
 
 const CATEGORY_COLORS: Record<string, string> = {
   "C2 Communication":  "text-red-400",
