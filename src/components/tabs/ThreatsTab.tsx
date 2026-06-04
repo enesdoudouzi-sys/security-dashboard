@@ -26,7 +26,7 @@ export function ThreatsTab({ threats }: { threats: Threat[] }) {
   );
   const [toast, setToast] = useState<string | null>(null);
 
-  function update(id: string, status: ThreatStatus, msg: string) {
+  function update(id: string, status: ThreatStatus, msg: string): void {
     setStatuses((prev) => ({ ...prev, [id]: status }));
     setToast(msg);
     setTimeout(() => setToast(null), 3000);
@@ -88,27 +88,27 @@ export function ThreatsTab({ threats }: { threats: Threat[] }) {
 
               <div className="pt-1 border-t border-gray-800 flex gap-2">
                 <button
-                  onClick={() => update(t.id, "blocked", `IOC ${t.ioc} blocked`)}
+                  onClick={() => update(t.id, "blocked", `IOC ${t.ioc} blockiert`)}
                   disabled={status === "blocked"}
                   className="text-xs text-gray-500 hover:text-red-400 transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                 >
-                  Block IOC
+                  IOC blockieren
                 </button>
                 <span className="text-gray-700">|</span>
                 <button
-                  onClick={() => update(t.id, "investigating", `${t.name} marked for investigation`)}
+                  onClick={() => update(t.id, "investigating", `${t.name} zur Untersuchung vorgemerkt`)}
                   disabled={status === "investigating"}
                   className="text-xs text-gray-500 hover:text-yellow-400 transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                 >
-                  Investigate
+                  Untersuchen
                 </button>
                 <span className="text-gray-700">|</span>
                 <button
-                  onClick={() => update(t.id, "monitoring", `${t.name} resolved — monitoring`)}
+                  onClick={() => update(t.id, "monitoring", `${t.name} gelöst — Beobachtung`)}
                   disabled={status === "monitoring"}
                   className="text-xs text-gray-500 hover:text-green-400 transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
                 >
-                  Mark Resolved
+                  Als gelöst markieren
                 </button>
               </div>
             </div>

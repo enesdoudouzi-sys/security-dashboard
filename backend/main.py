@@ -10,7 +10,12 @@ app = FastAPI(title="CyberShield API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "https://security-dashboard-irl5.onrender.com",
+        "https://enesdoudouzi-sys.github.io",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )

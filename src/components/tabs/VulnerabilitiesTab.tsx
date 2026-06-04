@@ -50,12 +50,12 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
     });
 
   const filters = [
-    { label: "All",          value: "all"          },
-    { label: "Critical",     value: "critical"      },
-    { label: "High",         value: "high"          },
-    { label: "Open",         value: "open"          },
-    { label: "Investigating",value: "investigating"  },
-    { label: "Patched",      value: "patched"       },
+    { label: "Alle",          value: "all"          },
+    { label: "Kritisch",      value: "critical"     },
+    { label: "Hoch",          value: "high"         },
+    { label: "Offen",         value: "open"         },
+    { label: "In Bearbeitung",value: "investigating" },
+    { label: "Gepatcht",      value: "patched"      },
   ];
 
   function SortIcon({ col }: { col: SortKey }) {
@@ -79,7 +79,7 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
       <div className="flex flex-wrap gap-3 items-center">
         <input
           type="text"
-          placeholder="Search CVE, name, host..."
+          placeholder="CVE, Name oder Host suchen..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="bg-gray-900 border border-gray-700 rounded px-3 py-1.5 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-green-500 w-64"
@@ -106,14 +106,14 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
         <table className="w-full text-xs">
           <thead>
             <tr className="text-gray-500 uppercase tracking-widest border-b border-gray-800">
-              <th className="text-left py-2 pr-4">CVE ID</th>
+              <th className="text-left py-2 pr-4">CVE-ID</th>
               <th className="text-left py-2 pr-4">Name</th>
-              <Th col="severity" label="Severity" />
-              <Th col="cvss"     label="CVSS"     />
-              <Th col="host"     label="Host"     />
-              <th className="text-left py-2 pr-4">Service / Port</th>
-              <Th col="status"    label="Status"    />
-              <Th col="discovered" label="Discovered" />
+              <Th col="severity"   label="Schweregrad" />
+              <Th col="cvss"       label="CVSS"        />
+              <Th col="host"       label="Host"        />
+              <th className="text-left py-2 pr-4">Dienst / Port</th>
+              <Th col="status"     label="Status"      />
+              <Th col="discovered" label="Entdeckt"    />
             </tr>
           </thead>
           <tbody>
@@ -144,7 +144,7 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
           </tbody>
         </table>
         {filtered.length === 0 && (
-          <div className="text-center text-gray-600 py-12 text-sm">No vulnerabilities match your filter.</div>
+          <div className="text-center text-gray-600 py-12 text-sm">Keine Schwachstellen entsprechen dem Filter.</div>
         )}
       </div>
     </div>
