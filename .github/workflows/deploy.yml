@@ -12,6 +12,9 @@ jobs:
       contents: write
 
     steps:
+      - name: Test
+        run: echo "GitHub Actions works!"
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
