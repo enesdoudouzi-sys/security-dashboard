@@ -2,7 +2,9 @@
 import { useState } from "react";
 import type { Scan } from "@/types";
 
-const BACKEND = "https://security-dashboard-irl5.onrender.com";
+const BACKEND = typeof window !== "undefined" && window.location.hostname === "localhost"
+  ? "http://localhost:8000"
+  : "https://security-dashboard-irl5.onrender.com";
 
 const STATUS_STYLES: Record<string, string> = {
   completed: "text-green-400 border-green-800 bg-green-900/30",
