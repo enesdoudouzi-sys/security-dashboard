@@ -15,16 +15,16 @@ export function Dashboard({ data }: { data: DashboardData }) {
     <div className="min-h-screen flex flex-col">
       <Navbar active={active} setActive={setActive} />
       <main className="flex-1 overflow-auto">
-        {active === "overview"        && <OverviewTab data={data} />}
+        {active === "overview"        && <OverviewTab data={data} onNavigate={setActive} />}
         {active === "vulnerabilities" && <VulnerabilitiesTab vulnerabilities={data.vulnerabilities} />}
         {active === "threats"         && <ThreatsTab threats={data.threats} />}
         {active === "network"         && <NetworkTab networkEvents={data.networkEvents} />}
         {active === "scans"           && <ScansTab scans={data.scans} />}
       </main>
-      <footer className="border-t border-gray-800/60 px-6 py-2.5 flex justify-between text-gray-600 text-[10px]"
-              style={{ background: "#0a0f1a" }}>
-        <span className="text-emerald-700">CyberShield SOC Dashboard v1.0</span>
-        <span>Daten werden alle 60s aktualisiert · Alle Zeiten UTC</span>
+      <footer className="px-6 py-2 flex justify-between text-[10px]"
+              style={{ background: "#020817", borderTop: "1px solid rgba(30,41,59,0.5)", color: "#1e3a2a" }}>
+        <span style={{ color: "#064e3b" }}>CyberShield SOC Dashboard v2.0</span>
+        <span>Alle Zeiten UTC</span>
       </footer>
     </div>
   );
