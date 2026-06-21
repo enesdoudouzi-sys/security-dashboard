@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { SeverityBadge } from "@/components/ui/SeverityBadge";
 import type { Vulnerability } from "@/types";
+import { exportCSV, exportPDF } from "@/lib/exportVulns";
 
 type SortKey = "cvss" | "severity" | "discovered" | "host" | "status";
 type SortDir = "asc" | "desc";
@@ -210,10 +211,38 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
             </button>
           ))}
         </div>
-        <span className="ml-auto text-[10px] flex items-center gap-1.5" style={{ color: "#334155" }}>
-          <span style={{ color: "#64748b" }}>{filtered.length}</span> Einträge ·
-          <span style={{ color: "#34d399" }}>Zeile klicken für Lösungen</span>
-        </span>
+        <div className="ml-auto flex items-center gap-2">
+          <span className="text-[10px] flex items-center gap-1.5 mr-2" style={{ color: "#334155" }}>
+            <span style={{ color: "#64748b" }}>{filtered.length}</span> Einträge ·
+            <span style={{ color: "#34d399" }}>Zeile klicken für Lösungen</span>
+          </span>
+          <button
+            onClick={() => exportCSV(filtered)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-semibold cursor-pointer transition-all"
+            style={{ background: "rgba(30,41,59,0.6)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.25)" }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(59,130,246,0.15)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(30,41,59,0.6)"; }}
+            title="Als CSV herunterladen"
+          >
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            CSV
+          </button>
+          <button
+            onClick={() => exportPDF(filtered)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-semibold cursor-pointer transition-all"
+            style={{ background: "rgba(30,41,59,0.6)", color: "#f87171", border: "1px solid rgba(248,113,113,0.25)" }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(239,68,68,0.15)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(30,41,59,0.6)"; }}
+            title="Als PDF exportieren"
+          >
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+            </svg>
+            PDF
+          </button>
+        </div>
       </div>
 
       {/* Table */}
