@@ -10,6 +10,8 @@ import { ProtectTab } from "@/components/tabs/ProtectTab";
 import { HardeningTab } from "@/components/tabs/HardeningTab";
 import { ToolsTab } from "@/components/tabs/ToolsTab";
 import { JournalTab } from "@/components/tabs/JournalTab";
+import { VulnScanTab } from "@/components/tabs/VulnScanTab";
+import { CommandsTab } from "@/components/tabs/CommandsTab";
 import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
@@ -28,6 +30,8 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "hardening"       && <HardeningTab />}
         {active === "tools"           && <ToolsTab />}
         {active === "journal"         && <JournalTab />}
+        {active === "vulnscan"        && <VulnScanTab />}
+        {active === "commands"        && <CommandsTab />}
       </main>
       <footer className="px-6 py-2 flex justify-between text-[10px]"
               style={{ background: "#020817", borderTop: "1px solid rgba(30,41,59,0.5)", color: "#1e3a2a" }}>
