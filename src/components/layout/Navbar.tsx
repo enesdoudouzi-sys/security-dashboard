@@ -7,6 +7,10 @@ const tabs = [
   { id: "threats",         label: "Bedrohungen",    icon: "☣" },
   { id: "network",         label: "Netzwerk",       icon: "⬡" },
   { id: "scans",           label: "Scans",          icon: "⊕" },
+  { id: "protect",         label: "PC-Schutz",      icon: "🛡" },
+  { id: "hardening",       label: "Härtung",        icon: "⚙" },
+  { id: "tools",           label: "Werkzeuge",      icon: "🧰" },
+  { id: "journal",         label: "Logbuch",        icon: "📓" },
 ];
 
 export function Navbar({ active, setActive }: { active: string; setActive: (id: string) => void }) {

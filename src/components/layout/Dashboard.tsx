@@ -6,6 +6,10 @@ import { VulnerabilitiesTab } from "@/components/tabs/VulnerabilitiesTab";
 import { ThreatsTab } from "@/components/tabs/ThreatsTab";
 import { NetworkTab } from "@/components/tabs/NetworkTab";
 import { ScansTab } from "@/components/tabs/ScansTab";
+import { ProtectTab } from "@/components/tabs/ProtectTab";
+import { HardeningTab } from "@/components/tabs/HardeningTab";
+import { ToolsTab } from "@/components/tabs/ToolsTab";
+import { JournalTab } from "@/components/tabs/JournalTab";
 import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
@@ -20,6 +24,10 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "threats"         && <ThreatsTab threats={data.threats} />}
         {active === "network"         && <NetworkTab networkEvents={data.networkEvents} />}
         {active === "scans"           && <ScansTab scans={data.scans} />}
+        {active === "protect"         && <ProtectTab />}
+        {active === "hardening"       && <HardeningTab />}
+        {active === "tools"           && <ToolsTab />}
+        {active === "journal"         && <JournalTab />}
       </main>
       <footer className="px-6 py-2 flex justify-between text-[10px]"
               style={{ background: "#020817", borderTop: "1px solid rgba(30,41,59,0.5)", color: "#1e3a2a" }}>
