@@ -7,6 +7,8 @@ const tabs = [
   { id: "threats",         label: "Bedrohungen",    icon: "☣" },
   { id: "network",         label: "Netzwerk",       icon: "⬡" },
   { id: "scans",           label: "Scans",          icon: "⊕" },
+  { id: "vulnscan",        label: "Schwachstellen-Scan", icon: "◎" },
+  { id: "commands",        label: "Befehle",        icon: "⌨" },
   { id: "protect",         label: "PC-Schutz",      icon: "🛡" },
   { id: "hardening",       label: "Härtung",        icon: "⚙" },
   { id: "tools",           label: "Werkzeuge",      icon: "🧰" },
