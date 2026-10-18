@@ -44,3 +44,10 @@ next-env.d.ts
 backend/venv/
 backend/security.db
 backend/__pycache__/
+
+# backend (Python)
+backend/.venv/
+backend/venv/
+backend/*.db
+__pycache__/
+.pytest_cache/

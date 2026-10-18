@@ -6,8 +6,8 @@ const BACKEND = typeof window !== "undefined" && window.location.hostname === "l
   ? "http://localhost:8000"
   : "https://security-dashboard-irl5.onrender.com";
 
+// Nur freigegebene Ziele. scanme.nmap.org ist das offizielle Übungsziel von Nmap.
 const PRESETS = [
-  { label: "Eigenes Netzwerk", value: "192.168.178.0/24" },
   { label: "scanme.nmap.org",  value: "scanme.nmap.org"  },
   { label: "Localhost",        value: "127.0.0.1"         },
 ];
@@ -88,12 +88,27 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
     log("───────────────────────────────────");
 
     try {
+      const apiKey = typeof window !== "undefined" ? (localStorage.getItem("scan-api-key") || "") : "";
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (apiKey) headers["X-API-Key"] = apiKey;
       const res = await fetch(`${BACKEND}/api/scans`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({ target: t }),
       });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        const reason =
+          res.status === 403 ? (data.detail || "Dieses Ziel ist nicht freigegeben.")
+          : res.status === 401 ? "API-Schlüssel fehlt oder ist falsch (Ayarlar)."
+          : res.status === 429 ? "Zu viele Scans — bitte kurz warten."
+          : `HTTP ${res.status}`;
+        log(`ABGELEHNT: ${reason}`);
+        setError(reason);
+        showToast(reason, false);
+        setScanning(false);
+        return;
+      }
       const job = await res.json();
       log(`Job #${job.job_id} erstellt — warte auf Ergebnisse…`);
       setTarget("");
@@ -183,7 +198,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
               </div>
               <input
                 type="text"
-                placeholder="Ziel — 192.168.1.0/24 · scanme.nmap.org · 10.0.0.1"
+                placeholder="Freigegebenes Ziel — z. B. scanme.nmap.org · 127.0.0.1"
                 value={target}
                 onChange={(e) => setTarget(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && !scanning && startScan()}
