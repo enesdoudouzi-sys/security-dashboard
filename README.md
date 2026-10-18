@@ -2,6 +2,18 @@
 
 A Security Operations Center (SOC) dashboard for monitoring vulnerabilities, threats, network events, and running real network scans.
 
+> ⚠️ **Nur legale Scans.** Das Backend scannt ausschließlich freigegebene
+> Ziele (`ALLOWED_TARGETS`, Standard: `scanme.nmap.org`, Localhost). Fremde
+> Systeme ohne ausdrückliche Erlaubnis zu scannen ist strafbar.
+
+**Anleitungen:** [Live schalten](docs/DEPLOY.md) · [Legales Hacking lernen](docs/LERNEN.md) · [Übungslabor](docs/LABOR.md)
+
+## Sicherheit (Backend)
+- Ziel-Freigabeliste (`ALLOWED_TARGETS`), CIDR-Größe begrenzt (`MAX_SCAN_HOSTS`)
+- Optionaler API-Schlüssel (`SCAN_API_KEY`) für Scans
+- Ratenlimit pro IP (`SCAN_RATE_LIMIT` / `SCAN_RATE_WINDOW`)
+- Tests: `cd backend && pytest -q`
+
 ## Features
 
 - **Overview** — Risk Score, KPI cards, top CVEs, active threats
