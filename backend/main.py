@@ -69,6 +69,28 @@ def start_scan(
 def policy():
     return {"allowed_targets": _allowed_entries(), "api_key_required": bool(SCAN_API_KEY)}
 
+# ── Schwachstellen-Scan (leicht, nur freigegebene Ziele) ──────
+@app.post("/api/vulnscan")
+def vulnscan(
+    req: ScanRequest,
+    request: Request,
+    x_api_key: str = Header(default=""),
+):
+    if SCAN_API_KEY and x_api_key != SCAN_API_KEY:
+        raise HTTPException(401, "Ungültiger oder fehlender API-Schlüssel.")
+    client_ip = (request.headers.get("x-forwarded-for", "") or (request.client.host if request.client else "")).split(",")[0].strip()
+    if not check_rate(client_ip or "unknown"):
+        raise HTTPException(429, "Zu viele Scans. Bitte später erneut versuchen.")
+    try:
+        target = validate_target(req.target)
+    except TargetNotAllowed as e:
+        raise HTTPException(403, str(e))
+    try:
+        from vuln import run_vulnscan
+        return run_vulnscan(target)
+    except Exception:
+        raise HTTPException(503, "Scan nicht möglich (nmap verfügbar?).")
+
 # ── Alle Jobs auflisten ───────────────────────────────────────
 @app.get("/api/scans")
 def list_scans(db: Session = Depends(get_db)):
