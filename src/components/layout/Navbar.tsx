@@ -24,10 +24,12 @@ const GROUPS: { group: string; tabs: Tab[] }[] = [
     { id: "encoder",     label: "Encoder",     icon: "🔄" },
   ]},
   { group: "Reaktion & Schutz", tabs: [
-    { id: "playbooks", label: "Playbooks",  icon: "📋" },
-    { id: "protect",   label: "PC-Schutz",  icon: "🛡" },
-    { id: "hardening", label: "Härtung",    icon: "⚙" },
-    { id: "tools",     label: "Werkzeuge",  icon: "🧰" },
+    { id: "playbooks", label: "Playbooks",   icon: "📋" },
+    { id: "protect",   label: "PC-Schutz",   icon: "🛡" },
+    { id: "hardening", label: "Härtung",     icon: "⚙" },
+    { id: "password",  label: "Passwörter",  icon: "🔑" },
+    { id: "tools",     label: "Werkzeuge",   icon: "🧰" },
+    { id: "security",  label: "Sicherheits-Status", icon: "✅" },
   ]},
   { group: "Lernen", tabs: [
     { id: "roadmap", label: "Lern-Roadmap", icon: "🧭" },
@@ -84,7 +86,7 @@ export function Navbar({ active, setActive }: { active: string; setActive: (id: 
          style={{ background: "rgba(2,8,23,0.95)", borderBottom: "1px solid rgba(16,185,129,0.15)", backdropFilter: "blur(20px)" }}>
       <div style={{ height: 2, background: "linear-gradient(90deg, transparent, #10b981, #34d399, #10b981, transparent)" }} />
 
-      <div className="flex items-center px-5 gap-0 h-14">
+      <div className="flex flex-wrap items-center px-3 sm:px-5 gap-x-0 gap-y-1 py-1.5 lg:py-0 lg:flex-nowrap lg:h-14">
         {/* Logo */}
         <div className="flex items-center gap-3 pr-5 mr-2" style={{ borderRight: "1px solid rgba(30,41,59,0.8)" }}>
           <div className="w-9 h-9 rounded-xl flex items-center justify-center animate-pulse-ring flex-shrink-0"
@@ -101,7 +103,7 @@ export function Navbar({ active, setActive }: { active: string; setActive: (id: 
 
         {/* Übersicht (direkt) */}
         <button onClick={() => pick(OVERVIEW.id)}
-          className="relative flex items-center h-14 px-3.5 text-[13px] uppercase tracking-[0.1em] font-medium cursor-pointer whitespace-nowrap transition-all"
+          className="relative flex items-center h-11 lg:h-14 px-3 sm:px-3.5 text-[12px] sm:text-[13px] uppercase tracking-[0.1em] font-medium cursor-pointer whitespace-nowrap transition-all"
           style={active === OVERVIEW.id ? { color: "#34d399", textShadow: "0 0 15px rgba(52,211,153,0.6)" } : { color: "#64748b" }}>
           {OVERVIEW.label}
           {active === OVERVIEW.id && <span className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(90deg, transparent, #34d399, transparent)" }} />}
@@ -112,16 +114,16 @@ export function Navbar({ active, setActive }: { active: string; setActive: (id: 
           const hasActive = g.tabs.some((t) => t.id === active);
           const isOpen = open === g.group;
           return (
-            <div key={g.group} className="relative h-14">
+            <div key={g.group} className="relative h-11 lg:h-14">
               <button onClick={() => setOpen(isOpen ? null : g.group)}
-                className="relative flex items-center gap-1 h-14 px-3.5 text-[13px] uppercase tracking-[0.1em] font-medium cursor-pointer whitespace-nowrap transition-all"
+                className="relative flex items-center gap-1 h-11 lg:h-14 px-3 sm:px-3.5 text-[12px] sm:text-[13px] uppercase tracking-[0.1em] font-medium cursor-pointer whitespace-nowrap transition-all"
                 style={hasActive || isOpen ? { color: "#34d399", textShadow: hasActive ? "0 0 15px rgba(52,211,153,0.6)" : "none" } : { color: "#64748b" }}>
                 {g.group}
                 <span className="text-[9px]" style={{ transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .15s" }}>▼</span>
                 {hasActive && <span className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(90deg, transparent, #34d399, transparent)" }} />}
               </button>
               {isOpen && (
-                <div className="absolute top-14 left-0 rounded-xl overflow-hidden py-1 animate-fade-in"
+                <div className="absolute top-full left-0 rounded-xl overflow-hidden py-1 animate-fade-in z-50"
                      style={{ minWidth: 200, background: "rgba(2,8,23,0.98)", border: "1px solid rgba(16,185,129,0.25)", boxShadow: "0 12px 40px rgba(0,0,0,0.6)", backdropFilter: "blur(20px)" }}>
                   {g.tabs.map((t) => (
                     <button key={t.id} onClick={() => pick(t.id)}
@@ -141,8 +143,8 @@ export function Navbar({ active, setActive }: { active: string; setActive: (id: 
           );
         })}
 
-        {/* Right */}
-        <div className="ml-auto flex items-center gap-4">
+        {/* Right (auf kleinen Bildschirmen ausgeblendet, um Platz zu sparen) */}
+        <div className="ml-auto hidden md:flex items-center gap-4">
           {/* aktiver Tab-Name (klein, zur Orientierung) */}
           <span className="text-[12px] uppercase tracking-[0.15em] hidden lg:block" style={{ color: "#334155" }}>{activeLabel}</span>
 
