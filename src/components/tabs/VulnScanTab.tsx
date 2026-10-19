@@ -1,10 +1,7 @@
 "use client";
 import { useState } from "react";
 import { CommandRow } from "@/components/ui/CopyBtn";
-
-const BACKEND = typeof window !== "undefined" && window.location.hostname === "localhost"
-  ? "http://localhost:8000"
-  : "https://security-dashboard-irl5.onrender.com";
+import { BACKEND } from "@/lib/backend";
 
 const SEV: Record<string, { color: string; bg: string; label: string }> = {
   critical: { color: "#f87171", bg: "rgba(127,29,29,0.4)", label: "KRITISCH" },
