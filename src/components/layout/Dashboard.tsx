@@ -47,7 +47,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "playbooks"       && <PlaybooksTab />}
         {active === "roadmap"         && <RoadmapTab />}
       </main>
-      <footer className="px-6 py-2 flex justify-between text-[10px]"
+      <footer className="px-6 py-2 flex justify-between text-[12px]"
               style={{ background: "#020817", borderTop: "1px solid rgba(30,41,59,0.5)", color: "#1e3a2a" }}>
         <span style={{ color: "#064e3b" }}>CyberShield SOC Dashboard v2.0</span>
         <span>Alle Zeiten UTC</span>

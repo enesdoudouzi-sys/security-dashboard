@@ -62,8 +62,8 @@ export function CveSearchTab() {
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <div className="mb-4">
-        <h2 className="text-lg font-bold text-gradient-green">CVE-Live-Suche (NVD)</h2>
-        <p className="text-[12px] mt-1" style={{ color: "#64748b" }}>
+        <h2 className="text-2xl font-bold text-gradient-green">CVE-Live-Suche (NVD)</h2>
+        <p className="text-[14px] mt-1" style={{ color: "#64748b" }}>
           Echte Schwachstellen live aus der offiziellen NIST-Datenbank. Suche per Stichwort
           (z. B. <code style={{ color: "#67e8f9" }}>openssh</code>) oder exakter ID
           (<code style={{ color: "#67e8f9" }}>CVE-2024-3094</code>).
@@ -79,10 +79,10 @@ export function CveSearchTab() {
       <div className="flex gap-2">
         <input value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && search()}
           placeholder="Stichwort oder CVE-ID…"
-          className="flex-1 px-3 py-2.5 rounded-xl text-[13px] outline-none"
+          className="flex-1 px-3 py-2.5 rounded-xl text-[15px] outline-none"
           style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#10b981" }} />
         <button onClick={search} disabled={!q.trim() || state === "loading"}
-          className="px-5 py-2.5 rounded-xl text-[13px] font-bold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+          className="px-5 py-2.5 rounded-xl text-[15px] font-bold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>
           {state === "loading" ? "Suche…" : "Suchen"}
         </button>
@@ -90,13 +90,13 @@ export function CveSearchTab() {
       <div className="flex gap-2 mt-2 flex-wrap">
         {["openssh", "log4j", "fortinet", "CVE-2024-3094"].map((ex) => (
           <button key={ex} onClick={() => { setQ(ex); }}
-            className="text-[11px] px-2.5 py-1 rounded-lg cursor-pointer"
+            className="text-[13px] px-2.5 py-1 rounded-lg cursor-pointer"
             style={{ background: "rgba(30,41,59,0.5)", border: "1px solid rgba(51,65,85,0.6)", color: "#94a3b8" }}>{ex}</button>
         ))}
       </div>
 
       {state === "error" && (
-        <div className="mt-5 rounded-xl p-4 text-[12px]"
+        <div className="mt-5 rounded-xl p-4 text-[14px]"
              style={{ background: "rgba(127,29,29,0.18)", border: "1px solid rgba(239,68,68,0.3)", color: "#fca5a5" }}>
           Die Live-Abfrage war nicht möglich (NVD limitiert Browser-Zugriffe manchmal oder es gab ein Netzwerkproblem).
           Du kannst dieselbe Suche direkt bei NVD öffnen:{" "}
@@ -107,30 +107,30 @@ export function CveSearchTab() {
 
       {state === "ok" && (
         <div className="mt-5 space-y-3">
-          <div className="text-[11px] uppercase tracking-wider font-bold" style={{ color: "#94a3b8" }}>
+          <div className="text-[13px] uppercase tracking-wider font-bold" style={{ color: "#94a3b8" }}>
             {results.length} Treffer
           </div>
-          {results.length === 0 && <p className="text-[12px]" style={{ color: "#64748b" }}>Keine CVEs gefunden.</p>}
+          {results.length === 0 && <p className="text-[14px]" style={{ color: "#64748b" }}>Keine CVEs gefunden.</p>}
           {results.map((c) => {
             const col = SEV_COLOR[c.severity] || "#94a3b8";
             return (
               <div key={c.id} className="rounded-xl p-4" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
                 <div className="flex items-center justify-between gap-3 flex-wrap">
                   <a href={`https://nvd.nist.gov/vuln/detail/${c.id}`} target="_blank" rel="noreferrer"
-                     className="text-[13px] font-bold font-mono" style={{ color: "#67e8f9" }}>{c.id}</a>
+                     className="text-[15px] font-bold font-mono" style={{ color: "#67e8f9" }}>{c.id}</a>
                   <div className="flex items-center gap-2">
-                    {c.score != null && <span className="text-[12px] font-bold" style={{ color: col }}>CVSS {c.score}</span>}
-                    <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded font-bold"
+                    {c.score != null && <span className="text-[14px] font-bold" style={{ color: col }}>CVSS {c.score}</span>}
+                    <span className="text-[12px] uppercase tracking-wider px-2 py-0.5 rounded font-bold"
                           style={{ background: `${col}22`, color: col }}>{c.severity}</span>
-                    {c.published && <span className="text-[10px]" style={{ color: "#475569" }}>{c.published}</span>}
+                    {c.published && <span className="text-[12px]" style={{ color: "#475569" }}>{c.published}</span>}
                   </div>
                 </div>
-                <p className="text-[12px] mt-2 leading-relaxed" style={{ color: "#cbd5e1" }}>{c.desc}</p>
+                <p className="text-[14px] mt-2 leading-relaxed" style={{ color: "#cbd5e1" }}>{c.desc}</p>
                 {c.refs.length > 0 && (
                   <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
                     {c.refs.map((r, i) => (
                       <a key={i} href={r} target="_blank" rel="noreferrer"
-                         className="text-[10px] truncate max-w-[220px]" style={{ color: "#64748b" }}>↗ {r.replace(/^https?:\/\//, "")}</a>
+                         className="text-[12px] truncate max-w-[220px]" style={{ color: "#64748b" }}>↗ {r.replace(/^https?:\/\//, "")}</a>
                     ))}
                   </div>
                 )}

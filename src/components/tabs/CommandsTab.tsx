@@ -59,14 +59,14 @@ export function CommandsTab() {
   return (
     <div className="p-6 max-w-5xl mx-auto">
       <div className="mb-4">
-        <h2 className="text-lg font-bold text-gradient-green">Übungs-Befehle</h2>
-        <p className="text-[12px] mt-1" style={{ color: "#64748b" }}>
+        <h2 className="text-2xl font-bold text-gradient-green">Übungs-Befehle</h2>
+        <p className="text-[14px] mt-1" style={{ color: "#64748b" }}>
           Legale Befehle zum Lernen, nach den Phasen eines Pentests sortiert. Kopieren,
           im Terminal ausführen, die Ausgabe verstehen.
         </p>
       </div>
 
-      <div className="rounded-xl p-4 mb-5 text-[12px]"
+      <div className="rounded-xl p-4 mb-5 text-[14px]"
            style={{ background: "rgba(127,29,29,0.25)", border: "1px solid rgba(239,68,68,0.35)", color: "#fca5a5" }}>
         ⚠️ Nur gegen <b>scanme.nmap.org</b> (offiziell zum Üben freigegeben) oder dein
         <b> eigenes Labor</b>. Fremde Systeme ohne schriftliche Erlaubnis zu scannen ist strafbar (§ 202 StGB).
@@ -79,8 +79,8 @@ export function CommandsTab() {
             <button onClick={() => setOpen(open === i ? -1 : i)}
               className="w-full flex items-center justify-between px-5 py-3.5 cursor-pointer text-left">
               <div>
-                <div className="text-[14px] font-bold" style={{ color: "#e2e8f0" }}>{g.phase}</div>
-                <div className="text-[11px] mt-0.5" style={{ color: "#64748b" }}>{g.desc}</div>
+                <div className="text-[16px] font-bold" style={{ color: "#e2e8f0" }}>{g.phase}</div>
+                <div className="text-[13px] mt-0.5" style={{ color: "#64748b" }}>{g.desc}</div>
               </div>
               <span style={{ color: "#34d399" }}>{open === i ? "▾" : "▸"}</span>
             </button>
@@ -93,7 +93,7 @@ export function CommandsTab() {
         ))}
       </div>
 
-      <p className="mt-5 text-[11px]" style={{ color: "#475569" }}>
+      <p className="mt-5 text-[13px]" style={{ color: "#475569" }}>
         Werkzeuge installieren (Ubuntu): <code style={{ color: "#67e8f9" }}>sudo apt install -y nmap nikto gobuster whatweb tcpdump</code>.
         Noch mehr in <code style={{ color: "#67e8f9" }}>docs/LERNEN.md</code>.
       </p>

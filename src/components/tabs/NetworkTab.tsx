@@ -58,7 +58,7 @@ export function NetworkTab({ networkEvents }: { networkEvents: NetworkEvent[] })
           <div key={label} className="rounded-xl p-4"
                style={{ background: "linear-gradient(135deg, #0f172a, #0d1b2a)", border: "1px solid rgba(30,41,59,0.8)" }}>
             <div className="text-2xl font-bold" style={{ color, textShadow: `0 0 12px ${color}50` }}>{value}</div>
-            <div className="text-[10px] mt-1 uppercase tracking-[0.12em]" style={{ color: "#374151" }}>{label}</div>
+            <div className="text-[12px] mt-1 uppercase tracking-[0.12em]" style={{ color: "#374151" }}>{label}</div>
           </div>
         ))}
       </div>
@@ -67,25 +67,25 @@ export function NetworkTab({ networkEvents }: { networkEvents: NetworkEvent[] })
       <div className="flex gap-2">
         {(["all", "blocked", "allowed"] as const).map((f) => (
           <button key={f} onClick={() => setFilter(f)}
-                  className="px-4 py-1.5 rounded-lg text-[10px] font-medium cursor-pointer transition-all uppercase tracking-[0.12em]"
+                  className="px-4 py-1.5 rounded-lg text-[12px] font-medium cursor-pointer transition-all uppercase tracking-[0.12em]"
                   style={filter === f
                     ? { background: "rgba(16,185,129,0.15)", color: "#34d399", border: "1px solid rgba(16,185,129,0.35)" }
                     : { background: "rgba(15,23,42,0.5)",   color: "#4b5563", border: "1px solid rgba(30,41,59,0.6)" }}>
             {f === "all" ? "Alle" : f === "blocked" ? "Blockiert" : "Erlaubt"}
           </button>
         ))}
-        <span className="ml-auto text-[10px] self-center" style={{ color: "#374151" }}>{sorted.length} Einträge</span>
+        <span className="ml-auto text-[12px] self-center" style={{ color: "#374151" }}>{sorted.length} Einträge</span>
       </div>
 
       {/* Table */}
       <div className="rounded-xl overflow-hidden"
            style={{ background: "linear-gradient(135deg, #0f172a, #0d1b2a)", border: "1px solid rgba(30,41,59,0.8)" }}>
         <div className="overflow-x-auto">
-          <table className="w-full text-[11px]">
+          <table className="w-full text-[13px]">
             <thead>
               <tr style={{ borderBottom: "1px solid rgba(30,41,59,0.8)", background: "rgba(15,23,42,0.6)" }}>
                 {["Zeit", "Quell-IP", "Ziel", "Proto", "Kategorie", "Daten", "Aktion"].map((h) => (
-                  <th key={h} className="text-left px-4 py-3 font-semibold uppercase tracking-[0.12em] text-[10px]"
+                  <th key={h} className="text-left px-4 py-3 font-semibold uppercase tracking-[0.12em] text-[12px]"
                       style={{ color: "#374151" }}>{h}</th>
                 ))}
               </tr>
@@ -102,7 +102,7 @@ export function NetworkTab({ networkEvents }: { networkEvents: NetworkEvent[] })
                     {e.dstIp}<span style={{ color: "#374151" }}>:{e.dstPort ?? "–"}</span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className="px-2 py-0.5 rounded text-[9px] font-mono"
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono"
                           style={{ background: "rgba(30,41,59,0.5)", color: "#64748b", border: "1px solid rgba(30,41,59,0.8)" }}>
                       {e.protocol}
                     </span>
@@ -112,7 +112,7 @@ export function NetworkTab({ networkEvents }: { networkEvents: NetworkEvent[] })
                   </td>
                   <td className="px-4 py-3" style={{ color: "#4b5563" }}>{bytes(e.bytes)}</td>
                   <td className="px-4 py-3">
-                    <span className="px-2 py-0.5 rounded text-[9px] font-bold"
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold"
                           style={e.action === "blocked"
                             ? { background: "rgba(6,78,59,0.4)", color: "#34d399", border: "1px solid rgba(16,185,129,0.3)" }
                             : { background: "rgba(127,29,29,0.4)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}>

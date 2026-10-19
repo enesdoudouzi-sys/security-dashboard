@@ -91,8 +91,8 @@ export function HardeningTab() {
   return (
     <div className="p-6 max-w-5xl mx-auto">
       <div className="mb-5">
-        <h2 className="text-lg font-bold text-gradient-green">System-Härtung</h2>
-        <p className="text-[12px] mt-1" style={{ color: "#64748b" }}>
+        <h2 className="text-2xl font-bold text-gradient-green">System-Härtung</h2>
+        <p className="text-[14px] mt-1" style={{ color: "#64748b" }}>
           Schritt-für-Schritt-Checkliste, um deinen Rechner abzusichern. Dein Fortschritt
           wird lokal in diesem Browser gespeichert.
         </p>
@@ -102,7 +102,7 @@ export function HardeningTab() {
         <div className="flex gap-2">
           {(["linux", "windows"] as const).map((key) => (
             <button key={key} onClick={() => setOsSel(key)}
-              className="px-3.5 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg text-[13px] font-bold uppercase tracking-wider cursor-pointer"
               style={osSel === key
                 ? { color: "#34d399", background: "rgba(6,78,59,0.4)", border: "1px solid rgba(16,185,129,0.4)" }
                 : { color: "#64748b", background: "rgba(30,41,59,0.4)", border: "1px solid rgba(51,65,85,0.5)" }}>
@@ -111,7 +111,7 @@ export function HardeningTab() {
           ))}
         </div>
         <div className="flex-1 min-w-[180px]">
-          <div className="flex justify-between text-[11px] mb-1">
+          <div className="flex justify-between text-[13px] mb-1">
             <span style={{ color: "#64748b" }}>Abgesichert</span>
             <span style={{ color: "#34d399" }} className="font-bold">{doneCount}/{all.length} · {pct}%</span>
           </div>
@@ -125,22 +125,22 @@ export function HardeningTab() {
         {groups.map((g) => (
           <div key={g.title} className="rounded-xl p-5"
                style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
-            <h3 className="text-[13px] font-bold uppercase tracking-wider mb-3" style={{ color: "#94a3b8" }}>{g.title}</h3>
+            <h3 className="text-[15px] font-bold uppercase tracking-wider mb-3" style={{ color: "#94a3b8" }}>{g.title}</h3>
             <div className="space-y-2.5">
               {g.checks.map((c) => (
                 <div key={c.id} className="flex items-start gap-3">
                   <button onClick={() => toggle(c.id)} aria-label="Erledigt"
-                    className="mt-0.5 w-5 h-5 rounded flex items-center justify-center flex-none cursor-pointer text-[12px] font-bold"
+                    className="mt-0.5 w-5 h-5 rounded flex items-center justify-center flex-none cursor-pointer text-[14px] font-bold"
                     style={done[c.id]
                       ? { background: "#059669", color: "#fff", border: "1px solid #10b981" }
                       : { background: "transparent", color: "transparent", border: "1px solid #475569" }}>
                     ✓
                   </button>
                   <div className="flex-1 min-w-0">
-                    <span className="text-[13px]" style={{ color: done[c.id] ? "#64748b" : "#e2e8f0", textDecoration: done[c.id] ? "line-through" : "none" }}>{c.text}</span>
+                    <span className="text-[15px]" style={{ color: done[c.id] ? "#64748b" : "#e2e8f0", textDecoration: done[c.id] ? "line-through" : "none" }}>{c.text}</span>
                     {c.cmd && (
                       <div className="mt-1.5 flex items-start gap-2">
-                        <code className="flex-1 text-[11px] font-mono break-all rounded px-2 py-1" style={{ background: "#020817", color: "#67e8f9" }}>{c.cmd}</code>
+                        <code className="flex-1 text-[13px] font-mono break-all rounded px-2 py-1" style={{ background: "#020817", color: "#67e8f9" }}>{c.cmd}</code>
                         <CopyBtn text={c.cmd} />
                       </div>
                     )}

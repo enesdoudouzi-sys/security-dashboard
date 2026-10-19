@@ -16,7 +16,7 @@ export function CopyBtn({ text, label = "Kopieren" }: { text: string; label?: st
   return (
     <button
       onClick={copy}
-      className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider cursor-pointer transition-all"
+      className="px-2.5 py-1 rounded-md text-[12px] font-bold uppercase tracking-wider cursor-pointer transition-all"
       style={{
         color: done ? "#34d399" : "#94a3b8",
         background: done ? "rgba(6,78,59,0.4)" : "rgba(30,41,59,0.5)",
@@ -34,10 +34,10 @@ export function CommandRow({ cmd, note }: { cmd: string; note?: string }) {
     <div className="rounded-lg p-3 flex items-start gap-3"
          style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.6)" }}>
       <div className="flex-1 min-w-0">
-        <code className="block text-[12px] font-mono break-all" style={{ color: "#67e8f9" }}>
+        <code className="block text-[14px] font-mono break-all" style={{ color: "#67e8f9" }}>
           <span style={{ color: "#4b5563" }}>$ </span>{cmd}
         </code>
-        {note && <p className="mt-1.5 text-[11px]" style={{ color: "#64748b" }}>{note}</p>}
+        {note && <p className="mt-1.5 text-[13px]" style={{ color: "#64748b" }}>{note}</p>}
       </div>
       <CopyBtn text={cmd} />
     </div>

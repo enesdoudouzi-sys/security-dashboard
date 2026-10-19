@@ -101,8 +101,8 @@ export function AttackTab() {
   return (
     <div className="p-6 max-w-[1400px] mx-auto">
       <div className="mb-4">
-        <h2 className="text-lg font-bold text-gradient-green">MITRE ATT&amp;CK Matrix</h2>
-        <p className="text-[12px] mt-1" style={{ color: "#64748b" }}>
+        <h2 className="text-2xl font-bold text-gradient-green">MITRE ATT&amp;CK Matrix</h2>
+        <p className="text-[14px] mt-1" style={{ color: "#64748b" }}>
           Die Landkarte der Angreifer-Methoden. <b style={{ color: "#94a3b8" }}>Spalten = Taktiken</b> (das Ziel),
           <b style={{ color: "#94a3b8" }}> Kacheln = Techniken</b> (die Methode). Kachel anklicken für Details & Erkennung.
         </p>
@@ -122,8 +122,8 @@ export function AttackTab() {
             <div key={t.id} className="flex-shrink-0" style={{ width: 160 }}>
               <div className="rounded-lg px-2.5 py-2 mb-2"
                    style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)" }}>
-                <div className="text-[11px] font-bold leading-tight" style={{ color: "#e2e8f0" }}>{t.name}</div>
-                <div className="text-[9px] mt-0.5" style={{ color: "#64748b" }}>{t.goal}</div>
+                <div className="text-[13px] font-bold leading-tight" style={{ color: "#e2e8f0" }}>{t.name}</div>
+                <div className="text-[10px] mt-0.5" style={{ color: "#64748b" }}>{t.goal}</div>
               </div>
               <div className="space-y-1.5">
                 {t.techniques.map((tech) => {
@@ -135,8 +135,8 @@ export function AttackTab() {
                         background: active ? "rgba(16,185,129,0.18)" : "rgba(15,23,42,0.6)",
                         border: `1px solid ${active ? "rgba(52,211,153,0.5)" : "rgba(30,41,59,0.6)"}`,
                       }}>
-                      <div className="text-[10px] font-mono" style={{ color: SEV }}>{tech.id}</div>
-                      <div className="text-[11px] leading-tight mt-0.5" style={{ color: "#cbd5e1" }}>{tech.name}</div>
+                      <div className="text-[12px] font-mono" style={{ color: SEV }}>{tech.id}</div>
+                      <div className="text-[13px] leading-tight mt-0.5" style={{ color: "#cbd5e1" }}>{tech.name}</div>
                     </button>
                   );
                 })}
@@ -152,28 +152,28 @@ export function AttackTab() {
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded"
+                <span className="text-[13px] font-mono px-2 py-0.5 rounded"
                       style={{ background: "rgba(16,185,129,0.15)", color: SEV }}>{sel.tech.id}</span>
-                <span className="text-[15px] font-bold" style={{ color: "#f1f5f9" }}>{sel.tech.name}</span>
+                <span className="text-[17px] font-bold" style={{ color: "#f1f5f9" }}>{sel.tech.name}</span>
               </div>
-              <div className="text-[11px] mt-1" style={{ color: "#64748b" }}>
+              <div className="text-[13px] mt-1" style={{ color: "#64748b" }}>
                 Taktik: <span style={{ color: "#94a3b8" }}>{sel.tactic.name}</span> — {sel.tactic.goal}
               </div>
             </div>
-            <button onClick={() => setSel(null)} className="text-[18px] cursor-pointer" style={{ color: "#475569" }}>×</button>
+            <button onClick={() => setSel(null)} className="text-[20px] cursor-pointer" style={{ color: "#475569" }}>×</button>
           </div>
           <div className="mt-4 grid md:grid-cols-2 gap-4">
             <div className="rounded-lg p-3" style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.6)" }}>
-              <div className="text-[10px] uppercase tracking-wider font-bold mb-1" style={{ color: "#94a3b8" }}>Was macht der Angreifer?</div>
-              <p className="text-[12px]" style={{ color: "#cbd5e1" }}>{sel.tech.desc}</p>
+              <div className="text-[12px] uppercase tracking-wider font-bold mb-1" style={{ color: "#94a3b8" }}>Was macht der Angreifer?</div>
+              <p className="text-[14px]" style={{ color: "#cbd5e1" }}>{sel.tech.desc}</p>
             </div>
             <div className="rounded-lg p-3" style={{ background: "#020817", border: "1px solid rgba(16,185,129,0.25)" }}>
-              <div className="text-[10px] uppercase tracking-wider font-bold mb-1" style={{ color: SEV }}>🔍 So erkennst du es</div>
-              <p className="text-[12px]" style={{ color: "#a7f3d0" }}>{sel.tech.detect}</p>
+              <div className="text-[12px] uppercase tracking-wider font-bold mb-1" style={{ color: SEV }}>🔍 So erkennst du es</div>
+              <p className="text-[14px]" style={{ color: "#a7f3d0" }}>{sel.tech.detect}</p>
             </div>
           </div>
           <a href={`https://attack.mitre.org/techniques/${sel.tech.id}/`} target="_blank" rel="noreferrer"
-             className="inline-block mt-3 text-[11px]" style={{ color: "#67e8f9" }}>
+             className="inline-block mt-3 text-[13px]" style={{ color: "#67e8f9" }}>
             → Vollständige Doku auf attack.mitre.org
           </a>
         </div>

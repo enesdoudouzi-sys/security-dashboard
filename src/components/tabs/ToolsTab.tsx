@@ -29,8 +29,8 @@ const WANTED = [
 function Card({ title, desc, children }: { title: string; desc: string; children: React.ReactNode }) {
   return (
     <div className="rounded-xl p-5" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
-      <h3 className="text-[14px] font-bold" style={{ color: "#e2e8f0" }}>{title}</h3>
-      <p className="text-[12px] mt-1 mb-4" style={{ color: "#64748b" }}>{desc}</p>
+      <h3 className="text-[16px] font-bold" style={{ color: "#e2e8f0" }}>{title}</h3>
+      <p className="text-[14px] mt-1 mb-4" style={{ color: "#64748b" }}>{desc}</p>
       {children}
     </div>
   );
@@ -57,8 +57,8 @@ export function ToolsTab() {
   return (
     <div className="p-6 max-w-5xl mx-auto">
       <div className="mb-5">
-        <h2 className="text-lg font-bold text-gradient-green">DevSecOps-Werkzeuge</h2>
-        <p className="text-[12px] mt-1" style={{ color: "#64748b" }}>
+        <h2 className="text-2xl font-bold text-gradient-green">DevSecOps-Werkzeuge</h2>
+        <p className="text-[14px] mt-1" style={{ color: "#64748b" }}>
           Praktische Helfer für sichere Entwicklung. Alles läuft nur in deinem Browser –
           Passwörter und Eingaben verlassen dein Gerät nicht.
         </p>
@@ -69,30 +69,30 @@ export function ToolsTab() {
         <Card title="Passwort-Stärke" desc="Schätzt die Stärke anhand von Länge und Zeichenvielfalt.">
           <input type="text" value={pw} onChange={(e) => setPw(e.target.value)}
             placeholder="Passwort eingeben (wird nicht gesendet)"
-            className="w-full rounded-lg px-3 py-2 text-[13px] font-mono outline-none"
+            className="w-full rounded-lg px-3 py-2 text-[15px] font-mono outline-none"
             style={{ background: "#020817", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" }} />
-          <div className="mt-3 flex items-center justify-between text-[12px]">
+          <div className="mt-3 flex items-center justify-between text-[14px]">
             <span style={{ color: "#64748b" }}>≈ {score.bits} Bit Entropie</span>
             <span className="font-bold" style={{ color: score.color }}>{score.label}</span>
           </div>
           <div className="mt-2 h-2 rounded-full overflow-hidden" style={{ background: "rgba(30,41,59,0.6)" }}>
             <div className="h-full rounded-full transition-all" style={{ width: `${score.pct}%`, background: score.color }} />
           </div>
-          <p className="mt-3 text-[11px]" style={{ color: "#64748b" }}>Tipp: lieber lang (3–4 zufällige Wörter) als kompliziert kurz.</p>
+          <p className="mt-3 text-[13px]" style={{ color: "#64748b" }}>Tipp: lieber lang (3–4 zufällige Wörter) als kompliziert kurz.</p>
         </Card>
 
         {/* SHA-256 */}
         <Card title="SHA-256 Hash" desc="Erzeugt den Hash eines Textes – z. B. zum Vergleich von Prüfsummen.">
           <input type="text" value={hashIn} onChange={(e) => setHashIn(e.target.value)}
             placeholder="Text eingeben"
-            className="w-full rounded-lg px-3 py-2 text-[13px] font-mono outline-none"
+            className="w-full rounded-lg px-3 py-2 text-[15px] font-mono outline-none"
             style={{ background: "#020817", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" }} />
           <button onClick={doHash}
-            className="mt-3 px-3.5 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider cursor-pointer"
+            className="mt-3 px-3.5 py-1.5 rounded-lg text-[13px] font-bold uppercase tracking-wider cursor-pointer"
             style={{ color: "#34d399", background: "rgba(6,78,59,0.4)", border: "1px solid rgba(16,185,129,0.4)" }}>
             Hash erzeugen
           </button>
-          {hash && <code className="block mt-3 text-[11px] font-mono break-all rounded px-2 py-2" style={{ background: "#020817", color: "#67e8f9" }}>{hash}</code>}
+          {hash && <code className="block mt-3 text-[13px] font-mono break-all rounded px-2 py-2" style={{ background: "#020817", color: "#67e8f9" }}>{hash}</code>}
         </Card>
 
         {/* Security-Header */}
@@ -100,16 +100,16 @@ export function ToolsTab() {
           <CommandRow cmd="curl -sI https://deine-seite.de" />
           <textarea value={headerText} onChange={(e) => setHeaderText(e.target.value)}
             placeholder="Ausgabe von curl -sI hier einfügen…" rows={4}
-            className="w-full mt-3 rounded-lg px-3 py-2 text-[12px] font-mono outline-none resize-y"
+            className="w-full mt-3 rounded-lg px-3 py-2 text-[14px] font-mono outline-none resize-y"
             style={{ background: "#020817", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" }} />
           {headerText.trim() && (
             <>
-              <div className="mt-3 text-[12px] font-bold" style={{ color: headerScore >= 5 ? "#34d399" : headerScore >= 3 ? "#fbbf24" : "#f87171" }}>
+              <div className="mt-3 text-[14px] font-bold" style={{ color: headerScore >= 5 ? "#34d399" : headerScore >= 3 ? "#fbbf24" : "#f87171" }}>
                 {headerScore}/{WANTED.length} Schutz-Header vorhanden
               </div>
               <div className="mt-2 space-y-1.5">
                 {headerResult.map((h) => (
-                  <div key={h.key} className="flex items-center gap-2 text-[12px]">
+                  <div key={h.key} className="flex items-center gap-2 text-[14px]">
                     <span style={{ color: h.present ? "#34d399" : "#f87171" }}>{h.present ? "✓" : "✗"}</span>
                     <span style={{ color: "#e2e8f0" }}>{h.name}</span>
                     <span style={{ color: "#475569" }}>— {h.why}</span>
@@ -131,7 +131,7 @@ export function ToolsTab() {
         </Card>
       </div>
 
-      <div className="mt-5 rounded-xl p-4 text-[12px]"
+      <div className="mt-5 rounded-xl p-4 text-[14px]"
            style={{ background: "rgba(30,58,138,0.2)", border: "1px solid rgba(59,130,246,0.3)", color: "#93c5fd" }}>
         🔒 Mehr Web-Lücken üben: PortSwigger Web Security Academy (kostenlos). Siehe docs/LERNEN.md.
       </div>

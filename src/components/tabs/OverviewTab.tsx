@@ -7,7 +7,7 @@ import type { DashboardData } from "@/types";
 /* ── Kleine Hilfselemente ── */
 function Pill({ color, children }: { color: string; children: React.ReactNode }) {
   return (
-    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider"
+    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider"
           style={{ background: `${color}18`, color, border: `1px solid ${color}35` }}>
       {children}
     </span>
@@ -18,9 +18,9 @@ function SectionHeader({ icon, title, count, color = "#64748b" }: { icon: string
   return (
     <div className="flex items-center gap-2 mb-4">
       <span style={{ color }}>{icon}</span>
-      <span className="text-[11px] uppercase tracking-[0.18em] font-semibold" style={{ color: "#64748b" }}>{title}</span>
+      <span className="text-[13px] uppercase tracking-[0.18em] font-semibold" style={{ color: "#64748b" }}>{title}</span>
       {count !== undefined && (
-        <span className="ml-auto text-[10px] px-2 py-0.5 rounded-full font-bold"
+        <span className="ml-auto text-[12px] px-2 py-0.5 rounded-full font-bold"
               style={{ background: `${color}18`, color }}>{count}</span>
       )}
     </div>
@@ -36,14 +36,14 @@ function KpiCard({ label, value, sub, color, icon, trend }: {
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
            style={{ background: `radial-gradient(circle at 0% 0%, ${color}08, transparent 60%)` }} />
       <div className="flex items-start justify-between mb-3">
-        <span className="text-[10px] uppercase tracking-[0.18em] font-medium" style={{ color: "#475569" }}>{label}</span>
+        <span className="text-[12px] uppercase tracking-[0.18em] font-medium" style={{ color: "#475569" }}>{label}</span>
         <span className="text-lg">{icon}</span>
       </div>
       <div className="text-4xl font-bold tracking-tight mb-1"
            style={{ color, textShadow: `0 0 24px ${color}55` }}>{value}</div>
       <div className="flex items-center justify-between">
-        <span className="text-[10px]" style={{ color: "#334155" }}>{sub}</span>
-        {trend && <span className="text-[9px] font-bold px-1.5 py-0.5 rounded" style={{ color: "#f87171", background: "rgba(239,68,68,0.1)" }}>{trend}</span>}
+        <span className="text-[12px]" style={{ color: "#334155" }}>{sub}</span>
+        {trend && <span className="text-[10px] font-bold px-1.5 py-0.5 rounded" style={{ color: "#f87171", background: "rgba(239,68,68,0.1)" }}>{trend}</span>}
       </div>
     </div>
   );
@@ -64,7 +64,7 @@ function RiskGauge({ score }: { score: number }) {
              style={{ background: grad.replace("VAR", deg), mask: "radial-gradient(circle at center, transparent 38px, black 39px)" }} />
         <div className="flex flex-col items-center">
           <span className="text-3xl font-bold" style={{ color, textShadow: `0 0 20px ${color}` }}>{score}</span>
-          <span className="text-[9px]" style={{ color: "#334155" }}>/ 100</span>
+          <span className="text-[10px]" style={{ color: "#334155" }}>/ 100</span>
         </div>
       </div>
       <Pill color={color}>{label}</Pill>
@@ -77,12 +77,12 @@ function MiniBar({ label, value, max, color }: { label: string; value: number; m
   const pct = max > 0 ? Math.round((value / max) * 100) : 0;
   return (
     <div className="flex items-center gap-3">
-      <span className="w-14 text-[10px] text-right shrink-0" style={{ color: "#475569" }}>{label}</span>
+      <span className="w-14 text-[12px] text-right shrink-0" style={{ color: "#475569" }}>{label}</span>
       <div className="flex-1 rounded-full h-1.5 overflow-hidden" style={{ background: "#1e293b" }}>
         <div className="h-1.5 rounded-full transition-all duration-700"
              style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${color}88, ${color})` }} />
       </div>
-      <span className="w-6 text-[10px] font-bold shrink-0" style={{ color }}>{value}</span>
+      <span className="w-6 text-[12px] font-bold shrink-0" style={{ color }}>{value}</span>
     </div>
   );
 }
@@ -120,7 +120,7 @@ function QuickScanWidget({ onGoToScans }: { onGoToScans?: () => void }) {
       <div className="px-5 py-3 flex items-center gap-2"
            style={{ borderBottom: "1px solid rgba(16,185,129,0.1)" }}>
         <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#10b981" }} />
-        <span className="text-[11px] uppercase tracking-[0.18em] font-semibold" style={{ color: "#34d399" }}>
+        <span className="text-[13px] uppercase tracking-[0.18em] font-semibold" style={{ color: "#34d399" }}>
           Schnell-Scan
         </span>
       </div>
@@ -129,29 +129,29 @@ function QuickScanWidget({ onGoToScans }: { onGoToScans?: () => void }) {
           <input value={target} onChange={(e) => setTarget(e.target.value)}
                  onKeyDown={(e) => e.key === "Enter" && go()}
                  disabled={scanning}
-                 className="flex-1 px-3 py-2.5 rounded-xl text-[12px] outline-none"
+                 className="flex-1 px-3 py-2.5 rounded-xl text-[14px] outline-none"
                  style={{ background: "rgba(2,8,23,0.8)", border: "1px solid rgba(16,185,129,0.2)", color: "#e2e8f0", caretColor: "#10b981" }}
                  placeholder="IP / Netzwerk / Host…" />
           <button onClick={go} disabled={scanning || !target.trim()}
-                  className="px-4 py-2.5 rounded-xl text-[12px] font-bold transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="px-4 py-2.5 rounded-xl text-[14px] font-bold transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ background: "linear-gradient(135deg,#065f46,#10b981)", color: "#fff", border: "1px solid rgba(16,185,129,0.4)", boxShadow: "0 0 16px rgba(16,185,129,0.25)" }}>
             {scanning ? <span className="w-4 h-4 rounded-full animate-spin inline-block"
                               style={{ border: "2px solid rgba(255,255,255,0.2)", borderTopColor: "#fff" }} /> : "▶ Start"}
           </button>
         </div>
         {done && (
-          <div className="flex items-center gap-2 text-[11px] px-3 py-2 rounded-lg"
+          <div className="flex items-center gap-2 text-[13px] px-3 py-2 rounded-lg"
                style={{ background: "rgba(6,78,59,0.4)", color: "#34d399", border: "1px solid rgba(16,185,129,0.2)" }}>
             ✓ {done}
           </div>
         )}
         {err && (
-          <div className="text-[11px] px-3 py-2 rounded-lg"
+          <div className="text-[13px] px-3 py-2 rounded-lg"
                style={{ background: "rgba(127,29,29,0.4)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)" }}>
             ✗ {err}
           </div>
         )}
-        <p className="text-[9px]" style={{ color: "#1e3a2a" }}>Nmap · Ports 1-1024 · SYN-Scan</p>
+        <p className="text-[10px]" style={{ color: "#1e3a2a" }}>Nmap · Ports 1-1024 · SYN-Scan</p>
       </div>
     </div>
   );
@@ -207,9 +207,9 @@ export function OverviewTab({ data, onNavigate }: { data: DashboardData; onNavig
         {/* Risiko-Score */}
         <div className="rounded-2xl p-6 flex flex-col items-center justify-center gap-4"
              style={{ background: "linear-gradient(145deg,#0c1525,#0f1d2e)", border: "1px solid rgba(30,41,59,0.8)" }}>
-          <span className="text-[10px] uppercase tracking-[0.2em]" style={{ color: "#475569" }}>Sicherheits-Risikoscore</span>
+          <span className="text-[12px] uppercase tracking-[0.2em]" style={{ color: "#475569" }}>Sicherheits-Risikoscore</span>
           <RiskGauge score={riskScore} />
-          <div className="w-full space-y-1.5 text-[10px]" style={{ color: "#334155" }}>
+          <div className="w-full space-y-1.5 text-[12px]" style={{ color: "#334155" }}>
             <div className="flex justify-between"><span>Kritische Vulns</span><span style={{ color: "#f87171" }}>−{cp}</span></div>
             <div className="flex justify-between"><span>Hohe Vulns</span><span style={{ color: "#fb923c" }}>−{hp}</span></div>
             <div className="flex justify-between"><span>Aktive Bedrohungen</span><span style={{ color: "#fbbf24" }}>−{tp}</span></div>
@@ -240,13 +240,13 @@ export function OverviewTab({ data, onNavigate }: { data: DashboardData; onNavig
           <div className="mt-5 pt-4 grid grid-cols-2 gap-3" style={{ borderTop: "1px solid rgba(30,41,59,0.5)" }}>
             <div className="text-center">
               <div className="text-xl font-bold" style={{ color: "#34d399" }}>{patched}</div>
-              <div className="text-[9px] mt-0.5" style={{ color: "#334155" }}>Gepatcht</div>
+              <div className="text-[10px] mt-0.5" style={{ color: "#334155" }}>Gepatcht</div>
             </div>
             <div className="text-center">
               <div className="text-xl font-bold" style={{ color: "#fbbf24" }}>
                 {vulnerabilities.filter((v) => v.status === "investigating").length}
               </div>
-              <div className="text-[9px] mt-0.5" style={{ color: "#334155" }}>In Bearbeitung</div>
+              <div className="text-[10px] mt-0.5" style={{ color: "#334155" }}>In Bearbeitung</div>
             </div>
           </div>
         </div>
@@ -263,7 +263,7 @@ export function OverviewTab({ data, onNavigate }: { data: DashboardData; onNavig
           <div className="px-5 py-3 flex items-center gap-2"
                style={{ borderBottom: "1px solid rgba(248,113,113,0.1)", background: "rgba(239,68,68,0.04)" }}>
             <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#f87171" }} />
-            <span className="text-[11px] uppercase tracking-[0.18em] font-semibold" style={{ color: "#f87171" }}>
+            <span className="text-[13px] uppercase tracking-[0.18em] font-semibold" style={{ color: "#f87171" }}>
               Sofortige Maßnahmen erforderlich
             </span>
             <Pill color="#f87171">{critOpen.length}</Pill>
@@ -276,7 +276,7 @@ export function OverviewTab({ data, onNavigate }: { data: DashboardData; onNavig
               );
             })}
             {critOpen.length === 0 && (
-              <div className="p-6 text-center text-[12px]" style={{ color: "#34d399" }}>
+              <div className="p-6 text-center text-[14px]" style={{ color: "#34d399" }}>
                 ✓ Keine kritischen offenen Schwachstellen
               </div>
             )}
@@ -294,15 +294,15 @@ export function OverviewTab({ data, onNavigate }: { data: DashboardData; onNavig
             <div className="divide-y" style={{ borderColor: "rgba(30,41,59,0.3)" }}>
               {recentEvents.map((e) => (
                 <div key={e.id} className="px-4 py-2.5 flex items-center gap-3">
-                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded shrink-0"
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0"
                         style={e.action === "blocked"
                           ? { background: "rgba(6,78,59,0.4)", color: "#34d399", border: "1px solid rgba(16,185,129,0.2)" }
                           : { background: "rgba(127,29,29,0.4)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)" }}>
                     {e.action === "blocked" ? "BLOCK" : "PASS"}
                   </span>
                   <div className="min-w-0">
-                    <div className="text-[10px] font-medium truncate" style={{ color: "#94a3b8" }}>{e.category}</div>
-                    <div className="text-[9px] font-mono" style={{ color: "#334155" }}>{e.srcIp}</div>
+                    <div className="text-[12px] font-medium truncate" style={{ color: "#94a3b8" }}>{e.category}</div>
+                    <div className="text-[10px] font-mono" style={{ color: "#334155" }}>{e.srcIp}</div>
                   </div>
                 </div>
               ))}
@@ -319,8 +319,8 @@ export function OverviewTab({ data, onNavigate }: { data: DashboardData; onNavig
               {threats.filter((t) => t.status === "active").map((t) => (
                 <div key={t.id} className="px-4 py-2.5 flex items-center justify-between gap-3">
                   <div className="min-w-0">
-                    <div className="text-[11px] font-semibold truncate" style={{ color: "#e2e8f0" }}>{t.name}</div>
-                    <div className="text-[9px] font-mono" style={{ color: "#f87171" }}>{t.ioc}</div>
+                    <div className="text-[13px] font-semibold truncate" style={{ color: "#e2e8f0" }}>{t.name}</div>
+                    <div className="text-[10px] font-mono" style={{ color: "#f87171" }}>{t.ioc}</div>
                   </div>
                   <SeverityBadge severity={t.severity} />
                 </div>
@@ -347,13 +347,13 @@ function ActionRow({ v, fixes }: { v: { id: string; name: string; host: string; 
       >
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-0.5">
-            <span className="text-[11px] font-bold" style={{ color: "#f87171" }}>{v.id}</span>
-            <span className="text-[10px] font-bold" style={{ color: v.cvss >= 9 ? "#f87171" : "#fb923c" }}>CVSS {v.cvss}</span>
+            <span className="text-[13px] font-bold" style={{ color: "#f87171" }}>{v.id}</span>
+            <span className="text-[12px] font-bold" style={{ color: v.cvss >= 9 ? "#f87171" : "#fb923c" }}>CVSS {v.cvss}</span>
           </div>
-          <div className="text-[11px] truncate" style={{ color: "#94a3b8" }}>{v.name}</div>
-          <div className="text-[9px] font-mono mt-0.5" style={{ color: "#334155" }}>{v.host}</div>
+          <div className="text-[13px] truncate" style={{ color: "#94a3b8" }}>{v.name}</div>
+          <div className="text-[10px] font-mono mt-0.5" style={{ color: "#334155" }}>{v.host}</div>
         </div>
-        <span className="shrink-0 text-[10px] font-bold transition-transform duration-200"
+        <span className="shrink-0 text-[12px] font-bold transition-transform duration-200"
               style={{ color: "#f87171", transform: open ? "rotate(180deg)" : "none" }}>▾</span>
       </button>
 
@@ -361,11 +361,11 @@ function ActionRow({ v, fixes }: { v: { id: string; name: string; host: string; 
         <div className="px-5 pb-4 animate-fade-in">
           <div className="rounded-xl p-4 space-y-2"
                style={{ background: "rgba(2,8,23,0.6)", border: "1px solid rgba(16,185,129,0.15)" }}>
-            <div className="text-[10px] uppercase tracking-[0.15em] font-semibold mb-3" style={{ color: "#34d399" }}>
+            <div className="text-[12px] uppercase tracking-[0.15em] font-semibold mb-3" style={{ color: "#34d399" }}>
               ✓ Empfohlene Maßnahmen
             </div>
             {fixes.map((fix, i) => (
-              <div key={i} className="flex items-start gap-2 text-[11px]" style={{ color: "#94a3b8" }}>
+              <div key={i} className="flex items-start gap-2 text-[13px]" style={{ color: "#94a3b8" }}>
                 <span className="shrink-0 font-bold" style={{ color: "#10b981" }}>{i + 1}.</span>
                 {fix}
               </div>

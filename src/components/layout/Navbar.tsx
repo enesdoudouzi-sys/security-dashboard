@@ -1,31 +1,45 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { BACKEND } from "@/lib/backend";
 
-const tabs = [
-  { id: "overview",        label: "Übersicht",     icon: "▣" },
-  { id: "vulnerabilities", label: "Schwachstellen", icon: "◈" },
-  { id: "threats",         label: "Bedrohungen",    icon: "☣" },
-  { id: "network",         label: "Netzwerk",       icon: "⬡" },
-  { id: "scans",           label: "Scans",          icon: "⊕" },
-  { id: "vulnscan",        label: "Schwachstellen-Scan", icon: "◎" },
-  { id: "cve",             label: "CVE-Suche",      icon: "🔎" },
-  { id: "attack",          label: "ATT&CK",         icon: "🎯" },
-  { id: "loganalyzer",     label: "Log-Analyse",    icon: "📑" },
-  { id: "phishing",        label: "Phishing",       icon: "🎣" },
-  { id: "commands",        label: "Befehle",        icon: "⌨" },
-  { id: "encoder",         label: "Encoder",        icon: "🔄" },
-  { id: "playbooks",       label: "Playbooks",      icon: "📋" },
-  { id: "roadmap",         label: "Lern-Roadmap",   icon: "🧭" },
-  { id: "protect",         label: "PC-Schutz",      icon: "🛡" },
-  { id: "hardening",       label: "Härtung",        icon: "⚙" },
-  { id: "tools",           label: "Werkzeuge",      icon: "🧰" },
-  { id: "journal",         label: "Logbuch",        icon: "📓" },
+// Tab-Gruppen, damit die Leiste trotz vieler Tabs aufgeräumt bleibt.
+type Tab = { id: string; label: string; icon: string };
+const OVERVIEW: Tab = { id: "overview", label: "Übersicht", icon: "▣" };
+const GROUPS: { group: string; tabs: Tab[] }[] = [
+  { group: "Monitoring", tabs: [
+    { id: "vulnerabilities", label: "Schwachstellen", icon: "◈" },
+    { id: "threats",         label: "Bedrohungen",    icon: "☣" },
+    { id: "network",         label: "Netzwerk",       icon: "⬡" },
+    { id: "scans",           label: "Scans",          icon: "⊕" },
+  ]},
+  { group: "Scannen", tabs: [
+    { id: "vulnscan", label: "Schwachstellen-Scan", icon: "◎" },
+    { id: "cve",      label: "CVE-Suche",           icon: "🔎" },
+    { id: "commands", label: "Befehle",             icon: "⌨" },
+  ]},
+  { group: "Analyse", tabs: [
+    { id: "attack",      label: "ATT&CK",      icon: "🎯" },
+    { id: "loganalyzer", label: "Log-Analyse", icon: "📑" },
+    { id: "phishing",    label: "Phishing",    icon: "🎣" },
+    { id: "encoder",     label: "Encoder",     icon: "🔄" },
+  ]},
+  { group: "Reaktion & Schutz", tabs: [
+    { id: "playbooks", label: "Playbooks",  icon: "📋" },
+    { id: "protect",   label: "PC-Schutz",  icon: "🛡" },
+    { id: "hardening", label: "Härtung",    icon: "⚙" },
+    { id: "tools",     label: "Werkzeuge",  icon: "🧰" },
+  ]},
+  { group: "Lernen", tabs: [
+    { id: "roadmap", label: "Lern-Roadmap", icon: "🧭" },
+    { id: "journal", label: "Logbuch",      icon: "📓" },
+  ]},
 ];
 
 export function Navbar({ active, setActive }: { active: string; setActive: (id: string) => void }) {
   const [now, setNow] = useState<Date | null>(null);
   const [backendOk, setBackendOk] = useState<boolean | null>(null);
+  const [open, setOpen] = useState<string | null>(null);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setNow(new Date());
@@ -47,71 +61,109 @@ export function Navbar({ active, setActive }: { active: string; setActive: (id: 
     return () => clearInterval(id);
   }, []);
 
+  // Dropdown schließen bei Klick außerhalb oder Escape.
+  useEffect(() => {
+    function onDown(e: MouseEvent) {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) setOpen(null);
+    }
+    function onKey(e: KeyboardEvent) { if (e.key === "Escape") setOpen(null); }
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("mousedown", onDown); document.removeEventListener("keydown", onKey); };
+  }, []);
+
+  function pick(id: string) { setActive(id); setOpen(null); }
+
   const timeStr = now ? now.toISOString().slice(0, 19).replace("T", " ") : "";
+  const activeLabel = active === OVERVIEW.id
+    ? OVERVIEW.label
+    : GROUPS.flatMap((g) => g.tabs).find((t) => t.id === active)?.label ?? "";
 
   return (
-    <nav className="sticky top-0 z-50"
+    <nav ref={navRef} className="sticky top-0 z-50"
          style={{ background: "rgba(2,8,23,0.95)", borderBottom: "1px solid rgba(16,185,129,0.15)", backdropFilter: "blur(20px)" }}>
-      {/* Top accent line */}
       <div style={{ height: 2, background: "linear-gradient(90deg, transparent, #10b981, #34d399, #10b981, transparent)" }} />
 
       <div className="flex items-center px-5 gap-0 h-14">
         {/* Logo */}
-        <div className="flex items-center gap-3 pr-6 mr-2" style={{ borderRight: "1px solid rgba(30,41,59,0.8)" }}>
-          <div className="relative">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center animate-pulse-ring"
-                 style={{ background: "linear-gradient(135deg, #064e3b 0%, #065f46 100%)", border: "1px solid rgba(16,185,129,0.5)" }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
+        <div className="flex items-center gap-3 pr-5 mr-2" style={{ borderRight: "1px solid rgba(30,41,59,0.8)" }}>
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center animate-pulse-ring flex-shrink-0"
+               style={{ background: "linear-gradient(135deg, #064e3b 0%, #065f46 100%)", border: "1px solid rgba(16,185,129,0.5)" }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
           </div>
-          <div>
+          <div className="hidden sm:block">
             <div className="text-sm font-bold tracking-tight text-gradient-green">CyberShield</div>
-            <div className="text-[9px] uppercase tracking-[0.25em]" style={{ color: "#4b5563" }}>SOC Platform</div>
+            <div className="text-[10px] uppercase tracking-[0.25em]" style={{ color: "#4b5563" }}>SOC Platform</div>
           </div>
         </div>
 
-        {/* Tabs */}
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActive(tab.id)}
-            className="relative flex items-center gap-1.5 px-4 h-14 text-[11px] uppercase tracking-[0.12em] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap"
-            style={active === tab.id
-              ? { color: "#34d399", textShadow: "0 0 15px rgba(52,211,153,0.7)" }
-              : { color: "#4b5563" }}
-          >
-            {tab.label}
-            {active === tab.id && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-t"
-                    style={{ background: "linear-gradient(90deg, transparent, #10b981, #34d399, #10b981, transparent)" }} />
-            )}
-          </button>
-        ))}
+        {/* Übersicht (direkt) */}
+        <button onClick={() => pick(OVERVIEW.id)}
+          className="relative flex items-center h-14 px-3.5 text-[13px] uppercase tracking-[0.1em] font-medium cursor-pointer whitespace-nowrap transition-all"
+          style={active === OVERVIEW.id ? { color: "#34d399", textShadow: "0 0 15px rgba(52,211,153,0.6)" } : { color: "#64748b" }}>
+          {OVERVIEW.label}
+          {active === OVERVIEW.id && <span className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(90deg, transparent, #34d399, transparent)" }} />}
+        </button>
+
+        {/* Gruppen als Dropdowns */}
+        {GROUPS.map((g) => {
+          const hasActive = g.tabs.some((t) => t.id === active);
+          const isOpen = open === g.group;
+          return (
+            <div key={g.group} className="relative h-14">
+              <button onClick={() => setOpen(isOpen ? null : g.group)}
+                className="relative flex items-center gap-1 h-14 px-3.5 text-[13px] uppercase tracking-[0.1em] font-medium cursor-pointer whitespace-nowrap transition-all"
+                style={hasActive || isOpen ? { color: "#34d399", textShadow: hasActive ? "0 0 15px rgba(52,211,153,0.6)" : "none" } : { color: "#64748b" }}>
+                {g.group}
+                <span className="text-[9px]" style={{ transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .15s" }}>▼</span>
+                {hasActive && <span className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(90deg, transparent, #34d399, transparent)" }} />}
+              </button>
+              {isOpen && (
+                <div className="absolute top-14 left-0 rounded-xl overflow-hidden py-1 animate-fade-in"
+                     style={{ minWidth: 200, background: "rgba(2,8,23,0.98)", border: "1px solid rgba(16,185,129,0.25)", boxShadow: "0 12px 40px rgba(0,0,0,0.6)", backdropFilter: "blur(20px)" }}>
+                  {g.tabs.map((t) => (
+                    <button key={t.id} onClick={() => pick(t.id)}
+                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-[14px] text-left cursor-pointer transition-all"
+                      style={active === t.id
+                        ? { background: "rgba(16,185,129,0.15)", color: "#34d399" }
+                        : { color: "#94a3b8" }}
+                      onMouseEnter={(e) => { if (active !== t.id) e.currentTarget.style.background = "rgba(30,41,59,0.5)"; }}
+                      onMouseLeave={(e) => { if (active !== t.id) e.currentTarget.style.background = "transparent"; }}>
+                      <span className="text-[15px] w-5 text-center">{t.icon}</span>
+                      <span>{t.label}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
 
         {/* Right */}
         <div className="ml-auto flex items-center gap-4">
-          {/* Scanner-Backend-Status (optional – nur für Live-Nmap-Scans) */}
-          <div className="flex items-center gap-1.5 text-[10px]"
+          {/* aktiver Tab-Name (klein, zur Orientierung) */}
+          <span className="text-[12px] uppercase tracking-[0.15em] hidden lg:block" style={{ color: "#334155" }}>{activeLabel}</span>
+
+          <div className="flex items-center gap-1.5 text-[12px]"
                title={backendOk
                  ? "Scanner-Backend verbunden – Live-Nmap-Scans sind möglich."
                  : "Scanner-Backend ist optional. Alle Analyse-Tabs laufen ohne Backend im Browser. Für Live-Scans Backend lokal starten oder auf Render deployen."}
                style={{ color: backendOk ? "#34d399" : "#64748b" }}>
-            <span className="w-1.5 h-1.5 rounded-full inline-block"
-                  style={{ background: backendOk ? "#34d399" : "#475569" }} />
-            {backendOk ? "SCANNER VERBUNDEN" : backendOk === false ? "SCANNER OPTIONAL" : "..."}
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: backendOk ? "#34d399" : "#475569" }} />
+            <span className="hidden md:inline">{backendOk ? "SCANNER VERBUNDEN" : backendOk === false ? "SCANNER OPTIONAL" : "..."}</span>
           </div>
 
-          <div style={{ width: 1, height: 20, background: "rgba(30,41,59,0.8)" }} />
+          <div style={{ width: 1, height: 20, background: "rgba(30,41,59,0.8)" }} className="hidden md:block" />
 
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-[10px] font-bold"
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-[12px] font-bold"
                style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)", color: "#34d399" }}>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
             LIVE
           </div>
 
-          <span className="text-[10px] font-mono hidden md:block" style={{ color: "#374151" }}>{timeStr} UTC</span>
+          <span className="text-[12px] font-mono hidden xl:block" style={{ color: "#374151" }}>{timeStr} UTC</span>
         </div>
       </div>
     </nav>
