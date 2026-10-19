@@ -18,10 +18,11 @@ const GROUPS: { group: string; tabs: Tab[] }[] = [
     { id: "commands", label: "Befehle",             icon: "⌨" },
   ]},
   { group: "Analyse", tabs: [
-    { id: "attack",      label: "ATT&CK",      icon: "🎯" },
-    { id: "loganalyzer", label: "Log-Analyse", icon: "📑" },
-    { id: "phishing",    label: "Phishing",    icon: "🎣" },
-    { id: "encoder",     label: "Encoder",     icon: "🔄" },
+    { id: "attack",      label: "ATT&CK",       icon: "🎯" },
+    { id: "loganalyzer", label: "Log-Analyse",  icon: "📑" },
+    { id: "phishing",    label: "Phishing",     icon: "🎣" },
+    { id: "encoder",     label: "Encoder",      icon: "🔄" },
+    { id: "nettools",    label: "Netz & Hash",  icon: "🌐" },
   ]},
   { group: "Reaktion & Schutz", tabs: [
     { id: "playbooks", label: "Playbooks",   icon: "📋" },
@@ -33,7 +34,9 @@ const GROUPS: { group: string; tabs: Tab[] }[] = [
   ]},
   { group: "Lernen", tabs: [
     { id: "roadmap", label: "Lern-Roadmap", icon: "🧭" },
+    { id: "quiz",    label: "Quiz",         icon: "❓" },
     { id: "journal", label: "Logbuch",      icon: "📓" },
+    { id: "about",   label: "Über / Projekt", icon: "⭐" },
   ]},
 ];
 
