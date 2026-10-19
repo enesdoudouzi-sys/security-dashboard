@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { BACKEND } from "@/lib/backend";
 
 const tabs = [
   { id: "overview",        label: "Übersicht",     icon: "▣" },
@@ -8,6 +9,10 @@ const tabs = [
   { id: "network",         label: "Netzwerk",       icon: "⬡" },
   { id: "scans",           label: "Scans",          icon: "⊕" },
   { id: "vulnscan",        label: "Schwachstellen-Scan", icon: "◎" },
+  { id: "cve",             label: "CVE-Suche",      icon: "🔎" },
+  { id: "attack",          label: "ATT&CK",         icon: "🎯" },
+  { id: "loganalyzer",     label: "Log-Analyse",    icon: "📑" },
+  { id: "phishing",        label: "Phishing",       icon: "🎣" },
   { id: "commands",        label: "Befehle",        icon: "⌨" },
   { id: "protect",         label: "PC-Schutz",      icon: "🛡" },
   { id: "hardening",       label: "Härtung",        icon: "⚙" },
@@ -28,7 +33,7 @@ export function Navbar({ active, setActive }: { active: string; setActive: (id: 
   useEffect(() => {
     async function ping() {
       try {
-        const res = await fetch("http://localhost:8000/api/health", { signal: AbortSignal.timeout(2000) });
+        const res = await fetch(`${BACKEND}/api/health`, { signal: AbortSignal.timeout(2000) });
         setBackendOk(res.ok);
       } catch {
         setBackendOk(false);
@@ -84,12 +89,15 @@ export function Navbar({ active, setActive }: { active: string; setActive: (id: 
 
         {/* Right */}
         <div className="ml-auto flex items-center gap-4">
-          {/* Backend status */}
+          {/* Scanner-Backend-Status (optional – nur für Live-Nmap-Scans) */}
           <div className="flex items-center gap-1.5 text-[10px]"
-               style={{ color: backendOk ? "#34d399" : backendOk === false ? "#f87171" : "#4b5563" }}>
-            <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse"
-                  style={{ background: backendOk ? "#34d399" : backendOk === false ? "#f87171" : "#4b5563" }} />
-            {backendOk ? "BACKEND ONLINE" : backendOk === false ? "BACKEND OFFLINE" : "..."}
+               title={backendOk
+                 ? "Scanner-Backend verbunden – Live-Nmap-Scans sind möglich."
+                 : "Scanner-Backend ist optional. Alle Analyse-Tabs laufen ohne Backend im Browser. Für Live-Scans Backend lokal starten oder auf Render deployen."}
+               style={{ color: backendOk ? "#34d399" : "#64748b" }}>
+            <span className="w-1.5 h-1.5 rounded-full inline-block"
+                  style={{ background: backendOk ? "#34d399" : "#475569" }} />
+            {backendOk ? "SCANNER VERBUNDEN" : backendOk === false ? "SCANNER OPTIONAL" : "..."}
           </div>
 
           <div style={{ width: 1, height: 20, background: "rgba(30,41,59,0.8)" }} />
