@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { SeverityBadge } from "@/components/ui/SeverityBadge";
+import { BACKEND } from "@/lib/backend";
 import type { DashboardData } from "@/types";
 
 /* ── Kleine Hilfselemente ── */
@@ -98,7 +99,7 @@ function QuickScanWidget({ onGoToScans }: { onGoToScans?: () => void }) {
     if (!t || scanning) return;
     setScanning(true); setDone(null); setErr(null);
     try {
-      const res = await fetch("http://localhost:8000/api/scans", {
+      const res = await fetch(`${BACKEND}/api/scans`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ target: t }),
@@ -107,7 +108,7 @@ function QuickScanWidget({ onGoToScans }: { onGoToScans?: () => void }) {
       const j = await res.json();
       setDone(`Job #${j.job_id} gestartet — gehe zu Scans für Live-Ergebnisse`);
     } catch {
-      setErr("Backend nicht erreichbar (localhost:8000)");
+      setErr("Scanner-Backend nicht verbunden (optional). Dieses Widget braucht das Backend – alle anderen Tabs laufen ohne.");
     } finally {
       setScanning(false);
     }
