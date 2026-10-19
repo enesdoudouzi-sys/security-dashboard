@@ -2,9 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import type { Scan } from "@/types";
 
-const BACKEND = typeof window !== "undefined" && window.location.hostname === "localhost"
-  ? "http://localhost:8000"
-  : "https://security-dashboard-irl5.onrender.com";
+import { BACKEND } from "@/lib/backend";
 
 // Nur freigegebene Ziele. scanme.nmap.org ist das offizielle Übungsziel von Nmap.
 const PRESETS = [
