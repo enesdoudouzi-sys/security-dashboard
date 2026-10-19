@@ -16,6 +16,9 @@ import { AttackTab } from "@/components/tabs/AttackTab";
 import { LogAnalyzerTab } from "@/components/tabs/LogAnalyzerTab";
 import { PhishingTab } from "@/components/tabs/PhishingTab";
 import { CveSearchTab } from "@/components/tabs/CveSearchTab";
+import { EncoderTab } from "@/components/tabs/EncoderTab";
+import { PlaybooksTab } from "@/components/tabs/PlaybooksTab";
+import { RoadmapTab } from "@/components/tabs/RoadmapTab";
 import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
@@ -40,6 +43,9 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "loganalyzer"     && <LogAnalyzerTab />}
         {active === "phishing"        && <PhishingTab />}
         {active === "commands"        && <CommandsTab />}
+        {active === "encoder"         && <EncoderTab />}
+        {active === "playbooks"       && <PlaybooksTab />}
+        {active === "roadmap"         && <RoadmapTab />}
       </main>
       <footer className="px-6 py-2 flex justify-between text-[10px]"
               style={{ background: "#020817", borderTop: "1px solid rgba(30,41,59,0.5)", color: "#1e3a2a" }}>
