@@ -22,10 +22,18 @@ const V_COLOR: Record<string, string> = { pass: "#34d399", fail: "#f87171", warn
 const V_ICON: Record<string, string> = { pass: "✓", fail: "✗", warn: "!", info: "·" };
 
 function header(text: string, name: string): string {
-  // unfolding: Folgezeilen (mit Leerzeichen/Tab beginnend) an die Header-Zeile hängen
-  const re = new RegExp(`^${name}:\\s*([\\s\\S]*?)(?=\\n\\S|$)`, "im");
-  const m = text.match(re);
-  return m ? m[1].replace(/\s+/g, " ").trim() : "";
+  // Header-Zeile finden und gefaltete Folgezeilen (beginnen mit Space/Tab) anhängen.
+  const lines = text.split(/\r?\n/);
+  const re = new RegExp(`^${name}:\\s*(.*)$`, "i");
+  for (let i = 0; i < lines.length; i++) {
+    const m = lines[i].match(re);
+    if (m) {
+      let value = m[1];
+      for (let j = i + 1; j < lines.length && /^\s/.test(lines[j]); j++) value += " " + lines[j].trim();
+      return value.replace(/\s+/g, " ").trim();
+    }
+  }
+  return "";
 }
 function domainOf(s: string): string {
   const m = s.match(/@([A-Za-z0-9.-]+)/);
