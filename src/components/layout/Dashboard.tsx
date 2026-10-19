@@ -21,6 +21,9 @@ import { PlaybooksTab } from "@/components/tabs/PlaybooksTab";
 import { RoadmapTab } from "@/components/tabs/RoadmapTab";
 import { PasswordTab } from "@/components/tabs/PasswordTab";
 import { SecurityStatusTab } from "@/components/tabs/SecurityStatusTab";
+import { AboutTab } from "@/components/tabs/AboutTab";
+import { QuizTab } from "@/components/tabs/QuizTab";
+import { NetToolsTab } from "@/components/tabs/NetToolsTab";
 import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
@@ -28,6 +31,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <div className="scan-beam" aria-hidden="true" />
       <Navbar active={active} setActive={setActive} />
       <main className="flex-1 overflow-auto">
         {active === "overview"        && <OverviewTab data={data} onNavigate={setActive} />}
@@ -50,6 +54,9 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "roadmap"         && <RoadmapTab />}
         {active === "password"        && <PasswordTab />}
         {active === "security"        && <SecurityStatusTab />}
+        {active === "nettools"        && <NetToolsTab />}
+        {active === "quiz"            && <QuizTab />}
+        {active === "about"           && <AboutTab />}
       </main>
       <footer className="px-6 py-2 flex justify-between text-[12px]"
               style={{ background: "#020817", borderTop: "1px solid rgba(30,41,59,0.5)", color: "#1e3a2a" }}>
