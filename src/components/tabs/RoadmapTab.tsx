@@ -95,8 +95,8 @@ export function RoadmapTab() {
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <div className="mb-4">
-        <h2 className="text-lg font-bold text-gradient-green">Lern-Roadmap: Einstieg in Cyber Security</h2>
-        <p className="text-[12px] mt-1" style={{ color: "#64748b" }}>
+        <h2 className="text-2xl font-bold text-gradient-green">Lern-Roadmap: Einstieg in Cyber Security</h2>
+        <p className="text-[14px] mt-1" style={{ color: "#64748b" }}>
           Ein realistischer Weg vom Anfänger zum ersten Job. Hake ab, was du kannst – dein Fortschritt bleibt gespeichert.
         </p>
       </div>
@@ -109,8 +109,8 @@ export function RoadmapTab() {
 
       <div className="rounded-xl p-4 mb-4" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[12px] uppercase tracking-wider font-bold" style={{ color: "#94a3b8" }}>Gesamt-Fortschritt</span>
-          <span className="text-[12px] font-bold" style={{ color: pct === 100 ? "#34d399" : "#94a3b8" }}>{doneCount}/{allKeys.length} · {pct}%</span>
+          <span className="text-[14px] uppercase tracking-wider font-bold" style={{ color: "#94a3b8" }}>Gesamt-Fortschritt</span>
+          <span className="text-[14px] font-bold" style={{ color: pct === 100 ? "#34d399" : "#94a3b8" }}>{doneCount}/{allKeys.length} · {pct}%</span>
         </div>
         <div className="w-full rounded-full h-2" style={{ background: "rgba(30,41,59,0.8)" }}>
           <div className="h-2 rounded-full transition-all" style={{ width: `${pct}%`, background: "linear-gradient(90deg,#10b981,#34d399)" }} />
@@ -126,18 +126,18 @@ export function RoadmapTab() {
             <div key={s.id} className="rounded-xl overflow-hidden" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
               <button onClick={() => setOpen(isOpen ? "" : s.id)} className="w-full flex items-center justify-between px-5 py-3.5 cursor-pointer text-left">
                 <div>
-                  <div className="text-[14px] font-bold" style={{ color: "#e2e8f0" }}>{s.title}</div>
-                  <div className="text-[11px] mt-0.5" style={{ color: "#64748b" }}>{s.weeks} · {s.goal}</div>
+                  <div className="text-[16px] font-bold" style={{ color: "#e2e8f0" }}>{s.title}</div>
+                  <div className="text-[13px] mt-0.5" style={{ color: "#64748b" }}>{s.weeks} · {s.goal}</div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[11px] font-bold" style={{ color: stageDone === stageKeys.length ? "#34d399" : "#64748b" }}>{stageDone}/{stageKeys.length}</span>
+                  <span className="text-[13px] font-bold" style={{ color: stageDone === stageKeys.length ? "#34d399" : "#64748b" }}>{stageDone}/{stageKeys.length}</span>
                   <span style={{ color: "#34d399" }}>{isOpen ? "▾" : "▸"}</span>
                 </div>
               </button>
               {isOpen && (
                 <div className="px-5 pb-5 space-y-4">
                   <div>
-                    <div className="text-[10px] uppercase tracking-wider font-bold mb-2" style={{ color: "#94a3b8" }}>Das solltest du können</div>
+                    <div className="text-[12px] uppercase tracking-wider font-bold mb-2" style={{ color: "#94a3b8" }}>Das solltest du können</div>
                     <div className="space-y-1.5">
                       {s.skills.map((skill, i) => {
                         const key = `${s.id}-${i}`; const checked = !!done[key];
@@ -145,31 +145,31 @@ export function RoadmapTab() {
                           <button key={i} onClick={() => toggle(key)}
                             className="w-full flex items-start gap-3 text-left rounded-lg px-3 py-2 cursor-pointer"
                             style={{ background: checked ? "rgba(6,78,59,0.25)" : "rgba(2,8,23,0.5)", border: `1px solid ${checked ? "rgba(16,185,129,0.3)" : "rgba(30,41,59,0.5)"}` }}>
-                            <span className="w-5 h-5 rounded flex items-center justify-center text-[11px] font-bold flex-shrink-0 mt-0.5"
+                            <span className="w-5 h-5 rounded flex items-center justify-center text-[13px] font-bold flex-shrink-0 mt-0.5"
                                   style={{ background: checked ? "#10b981" : "transparent", border: `1px solid ${checked ? "#10b981" : "#475569"}`, color: "#020817" }}>{checked ? "✓" : ""}</span>
-                            <span className="text-[12.5px]" style={{ color: checked ? "#64748b" : "#cbd5e1", textDecoration: checked ? "line-through" : "none" }}>{skill}</span>
+                            <span className="text-[14.5px]" style={{ color: checked ? "#64748b" : "#cbd5e1", textDecoration: checked ? "line-through" : "none" }}>{skill}</span>
                           </button>
                         );
                       })}
                     </div>
                   </div>
                   <div>
-                    <div className="text-[10px] uppercase tracking-wider font-bold mb-2" style={{ color: "#94a3b8" }}>Übungs-Plattformen</div>
+                    <div className="text-[12px] uppercase tracking-wider font-bold mb-2" style={{ color: "#94a3b8" }}>Übungs-Plattformen</div>
                     <div className="space-y-2">
                       {s.platforms.map((p, i) => (
                         <a key={i} href={p.url} target="_blank" rel="noreferrer"
                            className="block rounded-lg px-3 py-2" style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.6)" }}>
-                          <div className="text-[12px] font-semibold" style={{ color: "#67e8f9" }}>↗ {p.name}</div>
-                          <div className="text-[11px]" style={{ color: "#64748b" }}>{p.note}</div>
+                          <div className="text-[14px] font-semibold" style={{ color: "#67e8f9" }}>↗ {p.name}</div>
+                          <div className="text-[13px]" style={{ color: "#64748b" }}>{p.note}</div>
                         </a>
                       ))}
                     </div>
                   </div>
                   {s.cert && (
                     <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.25)" }}>
-                      <div className="text-[11px] uppercase tracking-wider font-bold mb-0.5" style={{ color: "#34d399" }}>🎓 Passendes Zertifikat</div>
-                      <div className="text-[12px] font-semibold" style={{ color: "#e2e8f0" }}>{s.cert.name}</div>
-                      <div className="text-[11px]" style={{ color: "#94a3b8" }}>{s.cert.note}</div>
+                      <div className="text-[13px] uppercase tracking-wider font-bold mb-0.5" style={{ color: "#34d399" }}>🎓 Passendes Zertifikat</div>
+                      <div className="text-[14px] font-semibold" style={{ color: "#e2e8f0" }}>{s.cert.name}</div>
+                      <div className="text-[13px]" style={{ color: "#94a3b8" }}>{s.cert.note}</div>
                     </div>
                   )}
                 </div>

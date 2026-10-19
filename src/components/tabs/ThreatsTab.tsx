@@ -35,7 +35,7 @@ export function ThreatsTab({ threats }: { threats: Threat[] }) {
   return (
     <div className="p-5 space-y-5 max-w-screen-2xl mx-auto">
       {toast && (
-        <div className="fixed top-16 right-5 z-50 px-4 py-3 rounded-xl text-[12px] font-medium animate-fade-in"
+        <div className="fixed top-16 right-5 z-50 px-4 py-3 rounded-xl text-[14px] font-medium animate-fade-in"
              style={{ background: "rgba(6,78,59,0.9)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399", backdropFilter: "blur(12px)" }}>
           ✓ {toast}
         </div>
@@ -51,7 +51,7 @@ export function ThreatsTab({ threats }: { threats: Threat[] }) {
           <div key={label} className="rounded-xl p-4 flex items-center gap-4"
                style={{ background: "linear-gradient(135deg, #0f172a, #0d1b2a)", border: "1px solid rgba(30,41,59,0.8)" }}>
             <span className="text-3xl font-bold" style={{ color, textShadow: `0 0 15px ${color}50` }}>{value}</span>
-            <span className="text-[10px] uppercase tracking-[0.15em]" style={{ color: "#4b5563" }}>{label}</span>
+            <span className="text-[12px] uppercase tracking-[0.15em]" style={{ color: "#4b5563" }}>{label}</span>
           </div>
         ))}
       </div>
@@ -73,8 +73,8 @@ export function ThreatsTab({ threats }: { threats: Threat[] }) {
                   <div className="flex items-center gap-3">
                     <div className="text-2xl">{TYPE_ICONS[t.type] ?? "⚠️"}</div>
                     <div>
-                      <div className="text-[13px] font-bold" style={{ color: "#e2e8f0" }}>{t.name}</div>
-                      <div className="text-[10px] mt-0.5" style={{ color: "#4b5563" }}>{t.type}</div>
+                      <div className="text-[15px] font-bold" style={{ color: "#e2e8f0" }}>{t.name}</div>
+                      <div className="text-[12px] mt-0.5" style={{ color: "#4b5563" }}>{t.type}</div>
                     </div>
                   </div>
                   <SeverityBadge severity={t.severity} />
@@ -82,7 +82,7 @@ export function ThreatsTab({ threats }: { threats: Threat[] }) {
 
                 {/* Status badge */}
                 <div className="mb-4">
-                  <span className="flex items-center gap-1.5 w-fit px-2.5 py-1 rounded-lg text-[10px] font-bold"
+                  <span className="flex items-center gap-1.5 w-fit px-2.5 py-1 rounded-lg text-[12px] font-bold"
                         style={{ color: sc.color, background: sc.bg, border: `1px solid ${sc.border}` }}>
                     {status === "active" && <span className="w-1.5 h-1.5 rounded-full animate-pulse inline-block" style={{ background: sc.color }} />}
                     {sc.label}
@@ -90,7 +90,7 @@ export function ThreatsTab({ threats }: { threats: Threat[] }) {
                 </div>
 
                 {/* Details */}
-                <div className="space-y-2 text-[11px]">
+                <div className="space-y-2 text-[13px]">
                   <div className="flex justify-between py-1.5" style={{ borderBottom: "1px solid rgba(30,41,59,0.5)" }}>
                     <span style={{ color: "#374151" }}>Indicator of Compromise</span>
                     <span className="font-mono" style={{ color: "#f87171" }}>{t.ioc}</span>
@@ -145,7 +145,7 @@ function ActionBtn({ label, active, color, onClick }: { label: string; active: b
   return (
     <button
       onClick={onClick} disabled={active}
-      className="flex-1 py-1.5 rounded-lg text-[10px] font-semibold transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+      className="flex-1 py-1.5 rounded-lg text-[12px] font-semibold transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
       style={active
         ? { background: `${color}15`, color, border: `1px solid ${color}40` }
         : { background: "transparent", color: "#374151", border: "1px solid rgba(30,41,59,0.6)" }}

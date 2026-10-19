@@ -103,8 +103,8 @@ export function PhishingTab() {
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <div className="mb-4">
-        <h2 className="text-lg font-bold text-gradient-green">Phishing- &amp; E-Mail-Header-Analyse</h2>
-        <p className="text-[12px] mt-1" style={{ color: "#64748b" }}>
+        <h2 className="text-2xl font-bold text-gradient-green">Phishing- &amp; E-Mail-Header-Analyse</h2>
+        <p className="text-[14px] mt-1" style={{ color: "#64748b" }}>
           Rohe E-Mail-Header einfügen → SPF/DKIM/DMARC und Absender-Fälschung werden geprüft.
           Header findest du im Mailprogramm unter &bdquo;Original anzeigen&ldquo; / &bdquo;Quelltext&ldquo;. Nichts verlässt den Browser.
         </p>
@@ -118,17 +118,17 @@ export function PhishingTab() {
 
       <textarea value={text} onChange={(e) => setText(e.target.value)} rows={9}
         placeholder="E-Mail-Header hier einfügen…"
-        className="w-full px-3 py-3 rounded-xl text-[12px] font-mono outline-none resize-y"
+        className="w-full px-3 py-3 rounded-xl text-[14px] font-mono outline-none resize-y"
         style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#cbd5e1", caretColor: "#10b981" }} />
 
       <div className="flex gap-2 mt-3">
         <button onClick={() => setRes(analyze(text))} disabled={!text.trim()}
-          className="px-4 py-2 rounded-xl text-[12px] font-bold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+          className="px-4 py-2 rounded-xl text-[14px] font-bold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>
           Prüfen
         </button>
         <button onClick={() => { setText(SAMPLE); setRes(analyze(SAMPLE)); }}
-          className="px-4 py-2 rounded-xl text-[12px] font-medium cursor-pointer"
+          className="px-4 py-2 rounded-xl text-[14px] font-medium cursor-pointer"
           style={{ background: "rgba(30,41,59,0.5)", border: "1px solid rgba(51,65,85,0.6)", color: "#94a3b8" }}>
           Beispiel laden
         </button>
@@ -137,21 +137,21 @@ export function PhishingTab() {
       {res && (
         <div className="mt-5 space-y-4">
           <div className="rounded-xl p-4" style={{ background: `${res.score.color}14`, border: `1px solid ${res.score.color}55` }}>
-            <div className="text-[14px] font-bold" style={{ color: res.score.color }}>{res.score.label}</div>
-            <div className="text-[12px] mt-1" style={{ color: "#cbd5e1" }}>{res.score.text}</div>
+            <div className="text-[16px] font-bold" style={{ color: res.score.color }}>{res.score.label}</div>
+            <div className="text-[14px] mt-1" style={{ color: "#cbd5e1" }}>{res.score.text}</div>
           </div>
           <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(30,41,59,0.6)" }}>
             {res.checks.map((c, i) => (
               <div key={i} className="flex items-start gap-3 px-4 py-3"
                    style={{ background: i % 2 ? "rgba(15,23,42,0.4)" : "transparent", borderTop: i ? "1px solid rgba(30,41,59,0.4)" : "none" }}>
-                <span className="w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0 mt-0.5"
+                <span className="w-5 h-5 rounded-full flex items-center justify-center text-[13px] font-bold flex-shrink-0 mt-0.5"
                       style={{ background: `${V_COLOR[c.verdict]}22`, color: V_COLOR[c.verdict] }}>{V_ICON[c.verdict]}</span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[12px] font-semibold" style={{ color: "#e2e8f0" }}>{c.label}</span>
-                    <span className="text-[11px] font-mono break-all" style={{ color: V_COLOR[c.verdict] }}>{c.value}</span>
+                    <span className="text-[14px] font-semibold" style={{ color: "#e2e8f0" }}>{c.label}</span>
+                    <span className="text-[13px] font-mono break-all" style={{ color: V_COLOR[c.verdict] }}>{c.value}</span>
                   </div>
-                  <div className="text-[11px] mt-0.5" style={{ color: "#64748b" }}>{c.hint}</div>
+                  <div className="text-[13px] mt-0.5" style={{ color: "#64748b" }}>{c.hint}</div>
                 </div>
               </div>
             ))}

@@ -7,7 +7,7 @@ export function SeverityBadge({ severity }: { severity: string }) {
   };
   const s = styles[severity] ?? { bg: "rgba(31,41,55,0.5)", text: "#9ca3af", border: "#374151" };
   return (
-    <span className="px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider"
+    <span className="px-2 py-0.5 rounded text-[12px] uppercase font-bold tracking-wider"
           style={{ background: s.bg, color: s.text, border: `1px solid ${s.border}` }}>
       {severity}
     </span>

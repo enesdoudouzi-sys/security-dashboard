@@ -25,7 +25,7 @@ function StatusBadge({ status }: { status: string }) {
   };
   const s = cfg[status] ?? { color: "#94a3b8", bg: "rgba(30,41,59,0.4)", border: "rgba(30,41,59,0.3)", label: status.toUpperCase() };
   return (
-    <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-bold"
+    <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[12px] font-bold"
           style={{ color: s.color, background: s.bg, border: `1px solid ${s.border}` }}>
       {status === "running" && <span className="w-1.5 h-1.5 rounded-full animate-pulse inline-block" style={{ background: s.color }} />}
       {s.label}
@@ -175,11 +175,11 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
           </svg>
-          <span className="text-[11px] uppercase tracking-[0.2em] font-semibold" style={{ color: "#34d399" }}>
+          <span className="text-[13px] uppercase tracking-[0.2em] font-semibold" style={{ color: "#34d399" }}>
             Nmap-Scan starten
           </span>
           {/* Backend indicator */}
-          <div className="ml-auto flex items-center gap-1.5 text-[10px]"
+          <div className="ml-auto flex items-center gap-1.5 text-[12px]"
                style={{ color: backendOk ? "#34d399" : backendOk === false ? "#f87171" : "#4b5563" }}>
             <span className="w-1.5 h-1.5 rounded-full inline-block"
                   style={{ background: backendOk ? "#34d399" : backendOk === false ? "#f87171" : "#4b5563" }} />
@@ -241,10 +241,10 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
 
           {/* Presets */}
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[10px]" style={{ color: "#374151" }}>Schnellauswahl:</span>
+            <span className="text-[12px]" style={{ color: "#374151" }}>Schnellauswahl:</span>
             {PRESETS.map((p) => (
               <button key={p.value} onClick={() => setTarget(p.value)} disabled={scanning}
-                      className="text-[10px] px-2.5 py-1 rounded-lg transition-colors cursor-pointer disabled:opacity-40"
+                      className="text-[12px] px-2.5 py-1 rounded-lg transition-colors cursor-pointer disabled:opacity-40"
                       style={{ background: "rgba(30,41,59,0.5)", color: "#64748b", border: "1px solid rgba(30,41,59,0.8)" }}
                       onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "#34d399"; (e.target as HTMLElement).style.borderColor = "rgba(16,185,129,0.3)"; }}
                       onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "#64748b"; (e.target as HTMLElement).style.borderColor = "rgba(30,41,59,0.8)"; }}>
@@ -254,7 +254,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
           </div>
 
           {error && (
-            <div className="flex items-start gap-2 p-3 rounded-lg text-[11px]"
+            <div className="flex items-start gap-2 p-3 rounded-lg text-[13px]"
                  style={{ background: "rgba(127,29,29,0.3)", border: "1px solid rgba(239,68,68,0.3)", color: "#f87171" }}>
               <span className="shrink-0">✗</span>
               <span>{error}</span>
@@ -263,7 +263,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
 
           {/* Terminal */}
           {termLog.length > 0 && (
-            <div ref={termRef} className="rounded-xl p-4 font-mono text-[11px] space-y-1 overflow-y-auto max-h-44"
+            <div ref={termRef} className="rounded-xl p-4 font-mono text-[13px] space-y-1 overflow-y-auto max-h-44"
                  style={{ background: "#020817", border: "1px solid rgba(16,185,129,0.15)" }}>
               {termLog.map((line, i) => (
                 <div key={i} className={`leading-relaxed ${line.startsWith("FEHLER") ? "" : ""}`}
@@ -293,7 +293,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
               <div className="text-sm font-bold" style={{ color: "#e2e8f0" }}>
                 Live-Scan: <span style={{ color: "#34d399" }}>{liveJob.target}</span>
               </div>
-              <div className="text-[10px] mt-0.5" style={{ color: "#4b5563" }}>
+              <div className="text-[12px] mt-0.5" style={{ color: "#4b5563" }}>
                 {liveJob.host_count} Hosts · {liveJob.port_count} offene Ports
               </div>
             </div>
@@ -302,7 +302,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
 
           {liveJob.results.length > 0 ? (
             <div className="overflow-x-auto">
-              <table className="w-full text-[11px]">
+              <table className="w-full text-[13px]">
                 <thead>
                   <tr style={{ borderBottom: "1px solid rgba(30,41,59,0.6)" }}>
                     {["Host", "Port", "Dienst", "Status", "Version"].map((h) => (
@@ -321,7 +321,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
                       <td className="px-5 py-3 font-bold" style={{ color: "#34d399" }}>{r.port}</td>
                       <td className="px-5 py-3" style={{ color: "#cbd5e1" }}>{r.service}</td>
                       <td className="px-5 py-3">
-                        <span className="px-2 py-0.5 rounded text-[9px] font-bold"
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold"
                               style={{ background: "rgba(6,78,59,0.4)", color: "#34d399", border: "1px solid rgba(16,185,129,0.25)" }}>
                           {r.state.toUpperCase()}
                         </span>
@@ -333,7 +333,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
               </table>
             </div>
           ) : (
-            <div className="p-8 text-center text-[11px]" style={{ color: "#374151" }}>
+            <div className="p-8 text-center text-[13px]" style={{ color: "#374151" }}>
               {liveJob.status === "running" ? "Scanne… Ergebnisse erscheinen hier in Echtzeit" : "Keine offenen Ports gefunden"}
             </div>
           )}
@@ -344,7 +344,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
       <div>
         <div className="flex items-center gap-2 mb-4">
           <span className="w-2 h-2 rounded-full" style={{ background: "#6366f1" }} />
-          <span className="text-[10px] uppercase tracking-[0.2em] font-semibold" style={{ color: "#64748b" }}>Scan-Verlauf</span>
+          <span className="text-[12px] uppercase tracking-[0.2em] font-semibold" style={{ color: "#64748b" }}>Scan-Verlauf</span>
         </div>
         <div className="space-y-3">
           {scans.map((s) => (
@@ -355,10 +355,10 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
               <div className="px-5 py-4 flex flex-wrap items-center gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-bold" style={{ color: "#e2e8f0" }}>{s.type}</div>
-                  <div className="text-[10px] font-mono mt-0.5" style={{ color: "#374151" }}>{s.target}</div>
+                  <div className="text-[12px] font-mono mt-0.5" style={{ color: "#374151" }}>{s.target}</div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px]" style={{ color: "#374151" }}>
+                  <span className="text-[12px]" style={{ color: "#374151" }}>
                     {new Date(s.startTime).toLocaleString("de-DE")}
                   </span>
                   <StatusBadge status={s.status} />
@@ -377,7 +377,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
                     ].map(({ label, count, color }) => (
                       <div key={label} className="px-4 py-3 text-center" style={{ borderRight: "1px solid rgba(30,41,59,0.6)" }}>
                         <div className="text-xl font-bold" style={{ color, textShadow: `0 0 10px ${color}60` }}>{count}</div>
-                        <div className="text-[9px] mt-0.5" style={{ color: "#374151" }}>{label}</div>
+                        <div className="text-[10px] mt-0.5" style={{ color: "#374151" }}>{label}</div>
                       </div>
                     ))}
                   </div>
@@ -394,7 +394,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
                       ) : null
                     )}
                   </div>
-                  <div className="px-5 py-2.5 text-[10px] flex gap-4" style={{ color: "#374151" }}>
+                  <div className="px-5 py-2.5 text-[12px] flex gap-4" style={{ color: "#374151" }}>
                     <span>Dauer: <span style={{ color: "#64748b" }}>{formatDuration(s.startTime, s.endTime)}</span></span>
                     <span>Befunde: <span style={{ color: "#e2e8f0", fontWeight: "bold" }}>{s.findings}</span></span>
                   </div>

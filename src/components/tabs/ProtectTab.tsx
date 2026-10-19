@@ -124,8 +124,8 @@ export function ProtectTab() {
   return (
     <div className="p-6 max-w-5xl mx-auto">
       <div className="mb-5">
-        <h2 className="text-lg font-bold text-gradient-green">PC-Schutz-Assistent</h2>
-        <p className="text-[12px] mt-1" style={{ color: "#64748b" }}>
+        <h2 className="text-2xl font-bold text-gradient-green">PC-Schutz-Assistent</h2>
+        <p className="text-[14px] mt-1" style={{ color: "#64748b" }}>
           Echte Schutz-Befehle zum selbst Ausführen. Eine Website kann deinen PC nicht
           scannen – aber sie kann dir genau zeigen, was du im Terminal eingibst.
         </p>
@@ -134,7 +134,7 @@ export function ProtectTab() {
       <div className="flex gap-2 mb-6">
         {(Object.keys(SECTIONS) as OS[]).map((key) => (
           <button key={key} onClick={() => setOs(key)}
-            className="px-3.5 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider cursor-pointer"
+            className="px-3.5 py-1.5 rounded-lg text-[13px] font-bold uppercase tracking-wider cursor-pointer"
             style={os === key
               ? { color: "#34d399", background: "rgba(6,78,59,0.4)", border: "1px solid rgba(16,185,129,0.4)" }
               : { color: "#64748b", background: "rgba(30,41,59,0.4)", border: "1px solid rgba(51,65,85,0.5)" }}>
@@ -147,8 +147,8 @@ export function ProtectTab() {
         {section.items.map((item) => (
           <div key={item.title} className="rounded-xl p-5"
                style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
-            <h3 className="text-[14px] font-bold" style={{ color: "#e2e8f0" }}>{item.title}</h3>
-            <p className="text-[12px] mt-1 mb-3" style={{ color: "#64748b" }}>{item.desc}</p>
+            <h3 className="text-[16px] font-bold" style={{ color: "#e2e8f0" }}>{item.title}</h3>
+            <p className="text-[14px] mt-1 mb-3" style={{ color: "#64748b" }}>{item.desc}</p>
             <div className="space-y-2">
               {item.cmds.map((c) => <CommandRow key={c.cmd} cmd={c.cmd} note={c.note} />)}
             </div>
@@ -156,7 +156,7 @@ export function ProtectTab() {
         ))}
       </div>
 
-      <div className="mt-6 rounded-xl p-4 text-[12px]"
+      <div className="mt-6 rounded-xl p-4 text-[14px]"
            style={{ background: "rgba(120,53,15,0.2)", border: "1px solid rgba(245,158,11,0.3)", color: "#fcd34d" }}>
         ⚠️ Lade Antiviren-Programme nur von den offiziellen Herstellerseiten. Angebliche
         „Online-Virenscanner im Browser“ sind meist selbst Schadsoftware.

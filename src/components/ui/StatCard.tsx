@@ -12,7 +12,7 @@ export function StatCard({
            style={{ background: accentColor }} />
 
       <div className="flex items-center justify-between relative">
-        <span className="text-[10px] uppercase tracking-[0.18em] font-medium" style={{ color: "#64748b" }}>{label}</span>
+        <span className="text-[12px] uppercase tracking-[0.18em] font-medium" style={{ color: "#64748b" }}>{label}</span>
         <div className="text-xl">{icon}</div>
       </div>
 
@@ -23,7 +23,7 @@ export function StatCard({
       </div>
 
       {sub && (
-        <span className="text-[10px]" style={{ color: "#374151" }}>{sub}</span>
+        <span className="text-[12px]" style={{ color: "#374151" }}>{sub}</span>
       )}
 
       {/* Bottom glow line */}
