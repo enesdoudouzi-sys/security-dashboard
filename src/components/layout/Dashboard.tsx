@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { OverviewTab } from "@/components/tabs/OverviewTab";
 import { VulnerabilitiesTab } from "@/components/tabs/VulnerabilitiesTab";
@@ -28,6 +28,19 @@ import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
   const [active, setActive] = useState("overview");
+
+  // Direktlink-Unterstützung: ?tab=quiz öffnet direkt diesen Tab.
+  // Beim Tab-Wechsel wird die URL mitgeführt (teilbar, ohne Neuladen).
+  useEffect(() => {
+    const t = new URLSearchParams(window.location.search).get("tab");
+    if (t) setActive(t);
+  }, []);
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (active === "overview") url.searchParams.delete("tab");
+    else url.searchParams.set("tab", active);
+    window.history.replaceState(null, "", url);
+  }, [active]);
 
   return (
     <div className="min-h-screen flex flex-col">
