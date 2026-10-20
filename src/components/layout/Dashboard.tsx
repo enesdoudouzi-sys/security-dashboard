@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
+import { MatrixRain } from "@/components/layout/MatrixRain";
 import { OverviewTab } from "@/components/tabs/OverviewTab";
 import { VulnerabilitiesTab } from "@/components/tabs/VulnerabilitiesTab";
 import { ThreatsTab } from "@/components/tabs/ThreatsTab";
@@ -45,6 +46,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <MatrixRain />
       <div className="scan-beam" aria-hidden="true" />
       <Navbar active={active} setActive={setActive} />
       <main className="flex-1 overflow-auto">
