@@ -28,6 +28,7 @@ const GROUPS: { group: string; tabs: Tab[] }[] = [
     { id: "playbooks", label: "Playbooks",   icon: "📋" },
     { id: "protect",   label: "PC-Schutz",   icon: "🛡" },
     { id: "hardening", label: "Härtung",     icon: "⚙" },
+    { id: "seccheck",  label: "Security-Check", icon: "📊" },
     { id: "password",  label: "Passwörter",  icon: "🔑" },
     { id: "tools",     label: "Werkzeuge",   icon: "🧰" },
     { id: "security",  label: "Sicherheits-Status", icon: "✅" },
