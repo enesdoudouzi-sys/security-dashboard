@@ -90,10 +90,11 @@ function MiniBar({ label, value, max, color }: { label: string; value: number; m
 
 /* ── Quick-Scan Widget ── */
 function QuickScanWidget({ onGoToScans }: { onGoToScans?: () => void }) {
-  const [target, setTarget] = useState("192.168.178.0/24");
+  const [target, setTarget] = useState("scanme.nmap.org");
   const [scanning, setScanning] = useState(false);
   const [done, setDone] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [os, setOs] = useState<"linux" | "windows">("windows");
 
   async function go() {
     const t = target.trim();
@@ -146,25 +147,42 @@ function QuickScanWidget({ onGoToScans }: { onGoToScans?: () => void }) {
             ✓ {done}
           </div>
         )}
-        {err && (
+        {err && (() => {
+          const host = (target.trim() || "scanme.nmap.org").replace(/\/\d+$/, "");
+          const winCmd = `${host === target.trim() ? "" : ""}22,80,443,21,25,3389 | % { Test-NetConnection ${host} -Port $_ | Select RemotePort,TcpTestSucceeded }`;
+          const linCmd = `nmap -sV ${target.trim() || "scanme.nmap.org"}`;
+          const cmd = os === "windows" ? winCmd : linCmd;
+          return (
           <div className="space-y-2">
             <div className="text-[12px] px-3 py-2 rounded-lg"
                  style={{ background: "rgba(113,63,18,0.25)", color: "#fcd34d", border: "1px solid rgba(251,191,36,0.3)" }}>
-              ⓘ Kein Scanner-Backend verbunden. <b>Kein Problem</b> – führe den Scan direkt im Terminal aus:
+              ⓘ Kein Backend verbunden. <b>Kein Problem</b> – scanne direkt im Terminal:
+            </div>
+            {/* OS-Umschalter */}
+            <div className="flex rounded-lg overflow-hidden w-fit" style={{ border: "1px solid rgba(51,65,85,0.6)" }}>
+              {([["windows", "🪟 Windows (ohne Admin)"], ["linux", "🐧 Linux / macOS"]] as const).map(([k, lbl]) => (
+                <button key={k} onClick={() => setOs(k)}
+                  className="px-3 py-1.5 text-[11px] font-bold cursor-pointer"
+                  style={os === k ? { background: "rgba(16,185,129,0.2)", color: "#34d399" } : { color: "#64748b" }}>{lbl}</button>
+              ))}
             </div>
             <div className="rounded-lg p-3 flex items-start gap-2"
                  style={{ background: "#020817", border: "1px solid rgba(16,185,129,0.25)" }}>
               <code className="flex-1 text-[12px] font-mono break-all" style={{ color: "#67e8f9" }}>
-                <span style={{ color: "#4b5563" }}>$ </span>nmap -sV {target.trim() || "scanme.nmap.org"}
+                <span style={{ color: "#4b5563" }}>{os === "windows" ? "PS> " : "$ "}</span>{cmd}
               </code>
-              <CopyBtn text={`nmap -sV ${target.trim() || "scanme.nmap.org"}`} />
+              <CopyBtn text={cmd} />
             </div>
             <p className="text-[10px]" style={{ color: "#64748b" }}>
-              ⚖️ Nur gegen <b>scanme.nmap.org</b> oder <b>eigene</b> Systeme. Werkzeug: <code style={{ color: "#67e8f9" }}>sudo apt install nmap</code>
+              {os === "windows"
+                ? <>In PowerShell einfügen. <b>TcpTestSucceeded: True</b> = Port offen. Kein Admin, kein Install nötig.</>
+                : <>Werkzeug: <code style={{ color: "#67e8f9" }}>sudo apt install nmap</code></>}
+              {" "}⚖️ Nur <b>scanme.nmap.org</b> oder <b>eigene</b> Systeme.
             </p>
           </div>
-        )}
-        <p className="text-[10px]" style={{ color: "#1e3a2a" }}>Nmap · Ports 1-1024 · SYN-Scan</p>
+          );
+        })()}
+        <p className="text-[10px]" style={{ color: "#1e3a2a" }}>Scan-Befehl für dein Betriebssystem</p>
       </div>
     </div>
   );
