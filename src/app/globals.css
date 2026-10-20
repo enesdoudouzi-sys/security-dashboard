@@ -119,11 +119,18 @@ body > *:first-child::before {
   font-weight: bold;
 }
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar       { width: 4px; height: 4px; }
-::-webkit-scrollbar-track  { background: transparent; }
-::-webkit-scrollbar-thumb  { background: #1e293b; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #334155; }
+/* ── Scrollbar (edler, mit Emerald-Hover) ── */
+::-webkit-scrollbar       { width: 9px; height: 9px; }
+::-webkit-scrollbar-track  { background: rgba(2,6,23,0.4); }
+::-webkit-scrollbar-thumb  { background: #1e293b; border-radius: 9px; border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: #10b981; background-clip: padding-box; }
+* { scrollbar-width: thin; scrollbar-color: #1e293b transparent; }
+
+/* ── Text markieren in Markengrün ── */
+::selection { background: rgba(16,185,129,0.35); color: #ecfdf5; }
+
+/* ── Weiche Übergänge für Buttons/Links ── */
+button, a, input, textarea { transition: color .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .2s ease, transform .15s ease; }
 
 /* ── Glass card ── */
 .glass {
@@ -132,9 +139,15 @@ body > *:first-child::before {
   border: 1px solid rgba(30, 41, 59, 0.8);
 }
 
-/* ── Gradient text ── */
+/* ── Gradient text mit sanftem Leuchten ── */
 .text-gradient-green {
-  background: linear-gradient(135deg, #34d399, #10b981);
+  background: linear-gradient(135deg, #5eead4, #34d399, #10b981);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 18px rgba(52,211,153,0.35));
+  letter-spacing: -0.01em;
 }
+
+/* ── Karten bekommen beim Hover ein leichtes Anheben ── */
+[class*="rounded-2xl"], [class*="rounded-xl"] { transition: transform .18s ease, box-shadow .25s ease, border-color .2s ease; }
