@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { SeverityBadge } from "@/components/ui/SeverityBadge";
+import { CopyBtn } from "@/components/ui/CopyBtn";
 import { BACKEND } from "@/lib/backend";
 import type { DashboardData } from "@/types";
 
@@ -146,9 +147,21 @@ function QuickScanWidget({ onGoToScans }: { onGoToScans?: () => void }) {
           </div>
         )}
         {err && (
-          <div className="text-[13px] px-3 py-2 rounded-lg"
-               style={{ background: "rgba(127,29,29,0.4)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)" }}>
-            ✗ {err}
+          <div className="space-y-2">
+            <div className="text-[12px] px-3 py-2 rounded-lg"
+                 style={{ background: "rgba(113,63,18,0.25)", color: "#fcd34d", border: "1px solid rgba(251,191,36,0.3)" }}>
+              ⓘ Kein Scanner-Backend verbunden. <b>Kein Problem</b> – führe den Scan direkt im Terminal aus:
+            </div>
+            <div className="rounded-lg p-3 flex items-start gap-2"
+                 style={{ background: "#020817", border: "1px solid rgba(16,185,129,0.25)" }}>
+              <code className="flex-1 text-[12px] font-mono break-all" style={{ color: "#67e8f9" }}>
+                <span style={{ color: "#4b5563" }}>$ </span>nmap -sV {target.trim() || "scanme.nmap.org"}
+              </code>
+              <CopyBtn text={`nmap -sV ${target.trim() || "scanme.nmap.org"}`} />
+            </div>
+            <p className="text-[10px]" style={{ color: "#64748b" }}>
+              ⚖️ Nur gegen <b>scanme.nmap.org</b> oder <b>eigene</b> Systeme. Werkzeug: <code style={{ color: "#67e8f9" }}>sudo apt install nmap</code>
+            </p>
           </div>
         )}
         <p className="text-[10px]" style={{ color: "#1e3a2a" }}>Nmap · Ports 1-1024 · SYN-Scan</p>
