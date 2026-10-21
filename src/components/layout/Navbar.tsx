@@ -34,6 +34,7 @@ const GROUPS: { group: string; tabs: Tab[] }[] = [
     { id: "security",  label: "Sicherheits-Status", icon: "✅" },
   ]},
   { group: "Lernen", tabs: [
+    { id: "progress", label: "Mein Fortschritt", icon: "📈" },
     { id: "roadmap", label: "Lern-Roadmap", icon: "🧭" },
     { id: "quiz",    label: "Quiz",         icon: "❓" },
     { id: "journal", label: "Logbuch",      icon: "📓" },
