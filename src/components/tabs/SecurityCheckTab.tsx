@@ -67,6 +67,53 @@ export function SecurityCheckTab() {
 
   function reset() { setAnswers({}); }
 
+  function printReport() {
+    const date = new Date().toLocaleDateString("de-DE");
+    const rows = QUESTIONS.map((q, i) => {
+      const a = answers[i];
+      const txt = a === undefined ? "—" : q.options[a];
+      const col = a === 2 ? "#15803d" : a === 1 ? "#b45309" : a === 0 ? "#b91c1c" : "#64748b";
+      return `<tr><td>${q.area}</td><td style="color:${col};font-weight:600">${txt}</td></tr>`;
+    }).join("");
+    const recList = recs.map((r) =>
+      `<li><b>${r.a === 0 ? "Dringend" : "Verbessern"} – ${r.q.area}:</b> ${r.q.tip}</li>`).join("");
+    const html = `<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Security-Check Report</title>
+<style>
+  @page { margin: 20mm; }
+  body { font-family: Arial, Helvetica, sans-serif; color:#1e293b; line-height:1.5; }
+  h1 { color:#059669; margin:0 0 4px; }
+  .sub { color:#64748b; font-size:13px; margin-bottom:18px; }
+  .score { display:flex; align-items:center; gap:16px; border:1px solid #e2e8f0; border-radius:12px; padding:16px; margin-bottom:18px; }
+  .num { font-size:42px; font-weight:bold; color:${level.color}; }
+  .badge { display:inline-block; padding:3px 10px; border-radius:20px; font-weight:bold; font-size:13px; color:#fff; background:${level.color}; }
+  table { width:100%; border-collapse:collapse; margin-bottom:18px; font-size:13px; }
+  td { border-bottom:1px solid #eee; padding:7px 4px; }
+  td:first-child { color:#475569; width:45%; }
+  h2 { font-size:15px; margin:14px 0 6px; }
+  li { margin-bottom:6px; font-size:13px; }
+  .foot { margin-top:24px; font-size:11px; color:#94a3b8; border-top:1px solid #eee; padding-top:8px; }
+</style></head><body>
+  <h1>Security-Prozess-Check</h1>
+  <div class="sub">Reifegrad-Analyse &middot; Datum: ${date}</div>
+  <div class="score">
+    <div class="num">${pct}<span style="font-size:18px;color:#94a3b8">/100</span></div>
+    <div><div class="badge">${allDone ? level.label : "unvollständig"}</div>
+    <div style="font-size:12px;color:#64748b;margin-top:4px">${answeredCount} von ${QUESTIONS.length} Fragen beantwortet</div></div>
+  </div>
+  <h2>Antworten im Überblick</h2>
+  <table><tbody>${rows}</tbody></table>
+  <h2>Empfohlene Maßnahmen (${recs.length})</h2>
+  <ul>${recList || "<li>Keine offensichtlichen Lücken – weiter so!</li>"}</ul>
+  <div class="foot">Dieser Check ist eine erste Orientierung und ersetzt keine vollständige Sicherheitsprüfung.
+  Erstellt mit dem CyberShield SOC Dashboard.</div>
+</body></html>`;
+    const w = window.open("", "_blank");
+    if (!w) return;
+    w.document.write(html);
+    w.document.close();
+    setTimeout(() => w.print(), 350);
+  }
+
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <div className="mb-4">
@@ -100,8 +147,13 @@ export function SecurityCheckTab() {
           <div className="text-[12px] mt-1" style={{ color: "#64748b" }}>{answeredCount} / {QUESTIONS.length} Fragen beantwortet</div>
         </div>
         {answeredCount > 0 && (
-          <button onClick={reset} className="ml-auto text-[11px] px-3 py-1.5 rounded-lg cursor-pointer self-start"
-            style={{ color: "#64748b", border: "1px solid rgba(51,65,85,0.6)" }}>Zurücksetzen</button>
+          <div className="ml-auto flex flex-col gap-2 self-start">
+            <button onClick={printReport}
+              className="text-[11px] px-3 py-1.5 rounded-lg cursor-pointer font-bold"
+              style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>📄 Report / PDF</button>
+            <button onClick={reset} className="text-[11px] px-3 py-1.5 rounded-lg cursor-pointer"
+              style={{ color: "#64748b", border: "1px solid rgba(51,65,85,0.6)" }}>Zurücksetzen</button>
+          </div>
         )}
       </div>
 
