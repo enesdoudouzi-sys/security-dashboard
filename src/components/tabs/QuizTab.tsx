@@ -42,7 +42,14 @@ export function QuizTab() {
     if (idx === q.correct) setScore((s) => s + 1);
   }
   function next() {
-    if (i + 1 >= QUESTIONS.length) { setDone(true); return; }
+    if (i + 1 >= QUESTIONS.length) {
+      try {
+        const prev = Number(localStorage.getItem("quiz-best") || "0");
+        if (score > prev) localStorage.setItem("quiz-best", String(score));
+      } catch {}
+      setDone(true);
+      return;
+    }
     setI(i + 1); setPicked(null);
   }
   function restart() { setI(0); setPicked(null); setScore(0); setDone(false); }
