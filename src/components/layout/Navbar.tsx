@@ -13,6 +13,7 @@ const GROUPS: { group: string; tabs: Tab[] }[] = [
     { id: "scans",           label: "Scans",          icon: "⊕" },
   ]},
   { group: "Scannen", tabs: [
+    { id: "exposure", label: "Exposure-Check (echt)", icon: "🛰" },
     { id: "vulnscan", label: "Schwachstellen-Scan", icon: "◎" },
     { id: "cve",      label: "CVE-Suche",           icon: "🔎" },
     { id: "commands", label: "Befehle",             icon: "⌨" },
