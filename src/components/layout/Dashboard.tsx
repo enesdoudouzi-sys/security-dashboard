@@ -28,6 +28,7 @@ import { NetToolsTab } from "@/components/tabs/NetToolsTab";
 import { SecurityCheckTab } from "@/components/tabs/SecurityCheckTab";
 import { ProgressTab } from "@/components/tabs/ProgressTab";
 import { ChallengesTab } from "@/components/tabs/ChallengesTab";
+import { ExposureTab } from "@/components/tabs/ExposureTab";
 import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
@@ -61,6 +62,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "hardening"       && <HardeningTab />}
         {active === "tools"           && <ToolsTab />}
         {active === "journal"         && <JournalTab />}
+        {active === "exposure"        && <ExposureTab />}
         {active === "vulnscan"        && <VulnScanTab />}
         {active === "cve"             && <CveSearchTab />}
         {active === "attack"          && <AttackTab />}
