@@ -27,6 +27,7 @@ import { QuizTab } from "@/components/tabs/QuizTab";
 import { NetToolsTab } from "@/components/tabs/NetToolsTab";
 import { SecurityCheckTab } from "@/components/tabs/SecurityCheckTab";
 import { ProgressTab } from "@/components/tabs/ProgressTab";
+import { ChallengesTab } from "@/components/tabs/ChallengesTab";
 import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
@@ -76,6 +77,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "about"           && <AboutTab />}
         {active === "seccheck"        && <SecurityCheckTab />}
         {active === "progress"        && <ProgressTab onNavigate={setActive} />}
+        {active === "challenges"      && <ChallengesTab />}
       </main>
       <footer className="px-6 py-2 flex justify-between text-[12px]"
               style={{ background: "#020817", borderTop: "1px solid rgba(30,41,59,0.5)", color: "#1e3a2a" }}>
