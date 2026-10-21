@@ -50,7 +50,7 @@ export function JournalTab() {
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
 
-  const inputStyle = { background: "#020817", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" };
+  const inputStyle = { background: "#07010f", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" };
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
@@ -85,7 +85,7 @@ export function JournalTab() {
           className="w-full mt-3 rounded-lg px-3 py-2 text-[15px] outline-none resize-y" style={inputStyle} />
         <button onClick={add}
           className="mt-3 px-4 py-2 rounded-lg text-[14px] font-bold uppercase tracking-wider cursor-pointer"
-          style={{ color: "#34d399", background: "rgba(6,78,59,0.4)", border: "1px solid rgba(16,185,129,0.4)" }}>
+          style={{ color: "#00f0ff", background: "rgba(10,26,46,0.4)", border: "1px solid rgba(0,240,255,0.4)" }}>
           + Eintrag speichern
         </button>
       </div>
@@ -101,7 +101,7 @@ export function JournalTab() {
             <div key={e.id} className="rounded-xl p-4" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2 text-[13px]">
-                  <span className="px-2 py-0.5 rounded font-bold" style={{ background: "rgba(6,78,59,0.4)", color: "#34d399", border: "1px solid rgba(16,185,129,0.3)" }}>{e.platform}</span>
+                  <span className="px-2 py-0.5 rounded font-bold" style={{ background: "rgba(10,26,46,0.4)", color: "#00f0ff", border: "1px solid rgba(0,240,255,0.3)" }}>{e.platform}</span>
                   <span style={{ color: "#475569" }}>{e.date}</span>
                 </div>
                 <button onClick={() => remove(e.id)} aria-label="Löschen"

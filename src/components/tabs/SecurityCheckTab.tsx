@@ -55,7 +55,7 @@ export function SecurityCheckTab() {
   const pct = Math.round((score / MAX) * 100);
   const allDone = answeredCount === QUESTIONS.length;
 
-  const level = pct >= 75 ? { label: "GUT AUFGESTELLT", color: "#34d399" }
+  const level = pct >= 75 ? { label: "GUT AUFGESTELLT", color: "#00f0ff" }
     : pct >= 45 ? { label: "AUSBAUFÄHIG", color: "#fbbf24" }
     : { label: "HANDLUNGSBEDARF", color: "#f87171" };
 
@@ -81,7 +81,7 @@ export function SecurityCheckTab() {
 <style>
   @page { margin: 20mm; }
   body { font-family: Arial, Helvetica, sans-serif; color:#1e293b; line-height:1.5; }
-  h1 { color:#059669; margin:0 0 4px; }
+  h1 { color:#0891b2; margin:0 0 4px; }
   .sub { color:#64748b; font-size:13px; margin-bottom:18px; }
   .score { display:flex; align-items:center; gap:16px; border:1px solid #e2e8f0; border-radius:12px; padding:16px; margin-bottom:18px; }
   .num { font-size:42px; font-weight:bold; color:${level.color}; }
@@ -150,7 +150,7 @@ export function SecurityCheckTab() {
           <div className="ml-auto flex flex-col gap-2 self-start">
             <button onClick={printReport}
               className="text-[11px] px-3 py-1.5 rounded-lg cursor-pointer font-bold"
-              style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>📄 Report / PDF</button>
+              style={{ background: "rgba(0,240,255,0.15)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff" }}>📄 Report / PDF</button>
             <button onClick={reset} className="text-[11px] px-3 py-1.5 rounded-lg cursor-pointer"
               style={{ color: "#64748b", border: "1px solid rgba(51,65,85,0.6)" }}>Zurücksetzen</button>
           </div>
@@ -161,18 +161,18 @@ export function SecurityCheckTab() {
       <div className="space-y-4">
         {QUESTIONS.map((q, i) => (
           <div key={i} className="rounded-xl p-4" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
-            <div className="text-[10px] uppercase tracking-wider font-bold mb-1" style={{ color: "#34d399" }}>{q.area}</div>
+            <div className="text-[10px] uppercase tracking-wider font-bold mb-1" style={{ color: "#00f0ff" }}>{q.area}</div>
             <div className="text-[14px] font-semibold mb-3" style={{ color: "#e2e8f0" }}>{i + 1}. {q.q}</div>
             <div className="flex flex-col sm:flex-row gap-2">
               {q.options.map((opt, idx) => {
                 const sel = answers[i] === idx;
-                const c = idx === 2 ? "#34d399" : idx === 1 ? "#fbbf24" : "#f87171";
+                const c = idx === 2 ? "#00f0ff" : idx === 1 ? "#fbbf24" : "#f87171";
                 return (
                   <button key={idx} onClick={() => setAnswers((a) => ({ ...a, [i]: idx }))}
                     className="flex-1 px-3 py-2 rounded-lg text-[12.5px] cursor-pointer transition-all text-left"
                     style={sel
                       ? { background: `${c}22`, border: `1px solid ${c}88`, color: c }
-                      : { background: "rgba(2,8,23,0.5)", border: "1px solid rgba(30,41,59,0.6)", color: "#94a3b8" }}>
+                      : { background: "rgba(7,1,15,0.5)", border: "1px solid rgba(30,41,59,0.6)", color: "#94a3b8" }}>
                     {sel ? "● " : "○ "}{opt}
                   </button>
                 );

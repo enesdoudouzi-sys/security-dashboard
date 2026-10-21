@@ -22,7 +22,7 @@ export function AboutTab() {
     <div className="p-6 max-w-4xl mx-auto">
       {/* Hero */}
       <div className="rounded-2xl p-8 mb-6 text-center relative overflow-hidden"
-           style={{ background: "linear-gradient(145deg,#061a12,#082418)", border: "1px solid rgba(16,185,129,0.3)" }}>
+           style={{ background: "linear-gradient(145deg,#070f1f,#0a1326)", border: "1px solid rgba(0,240,255,0.3)" }}>
         <div className="text-5xl mb-3">🛡️</div>
         <h1 className="text-3xl font-bold text-gradient-green mb-2">CyberShield SOC Dashboard</h1>
         <p className="text-[15px] max-w-xl mx-auto" style={{ color: "#94a3b8" }}>
@@ -32,7 +32,7 @@ export function AboutTab() {
         <div className="flex gap-3 justify-center mt-5 flex-wrap">
           <a href="https://enesdoudouzi-sys.github.io/security-dashboard/" target="_blank" rel="noreferrer"
              className="px-4 py-2 rounded-xl text-[13px] font-bold"
-             style={{ background: "linear-gradient(135deg,#065f46,#10b981)", color: "#fff" }}>🌐 Live-Dashboard</a>
+             style={{ background: "linear-gradient(135deg,#0e3a4d,#00b8d4)", color: "#fff" }}>🌐 Live-Dashboard</a>
           <a href="https://github.com/enesdoudouzi-sys/security-dashboard" target="_blank" rel="noreferrer"
              className="px-4 py-2 rounded-xl text-[13px] font-bold"
              style={{ background: "rgba(30,41,59,0.6)", border: "1px solid rgba(51,65,85,0.8)", color: "#e2e8f0" }}>💻 Quellcode (GitHub)</a>
@@ -59,7 +59,7 @@ export function AboutTab() {
       <div className="flex flex-wrap gap-2 mb-6">
         {STACK.map((t) => (
           <span key={t} className="px-3 py-1.5 rounded-lg text-[12px] font-semibold"
-                style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.25)", color: "#34d399" }}>{t}</span>
+                style={{ background: "rgba(0,240,255,0.1)", border: "1px solid rgba(0,240,255,0.25)", color: "#00f0ff" }}>{t}</span>
         ))}
       </div>
 

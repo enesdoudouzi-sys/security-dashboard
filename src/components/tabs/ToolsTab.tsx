@@ -12,7 +12,7 @@ function passwordScore(pw: string) {
   if (/[^a-zA-Z0-9]/.test(pw)) pool += 33;
   const bits = Math.round(pw.length * Math.log2(pool || 1));
   const label = bits < 40 ? "Schwach" : bits < 60 ? "Okay" : bits < 80 ? "Stark" : "Sehr stark";
-  const color = bits < 40 ? "#f87171" : bits < 60 ? "#fbbf24" : bits < 80 ? "#34d399" : "#22d3ee";
+  const color = bits < 40 ? "#f87171" : bits < 60 ? "#fbbf24" : bits < 80 ? "#00f0ff" : "#22d3ee";
   return { bits, label, color, pct: Math.min(100, Math.round((bits / 100) * 100)) };
 }
 
@@ -70,7 +70,7 @@ export function ToolsTab() {
           <input type="text" value={pw} onChange={(e) => setPw(e.target.value)}
             placeholder="Passwort eingeben (wird nicht gesendet)"
             className="w-full rounded-lg px-3 py-2 text-[15px] font-mono outline-none"
-            style={{ background: "#020817", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" }} />
+            style={{ background: "#07010f", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" }} />
           <div className="mt-3 flex items-center justify-between text-[14px]">
             <span style={{ color: "#64748b" }}>≈ {score.bits} Bit Entropie</span>
             <span className="font-bold" style={{ color: score.color }}>{score.label}</span>
@@ -86,13 +86,13 @@ export function ToolsTab() {
           <input type="text" value={hashIn} onChange={(e) => setHashIn(e.target.value)}
             placeholder="Text eingeben"
             className="w-full rounded-lg px-3 py-2 text-[15px] font-mono outline-none"
-            style={{ background: "#020817", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" }} />
+            style={{ background: "#07010f", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" }} />
           <button onClick={doHash}
             className="mt-3 px-3.5 py-1.5 rounded-lg text-[13px] font-bold uppercase tracking-wider cursor-pointer"
-            style={{ color: "#34d399", background: "rgba(6,78,59,0.4)", border: "1px solid rgba(16,185,129,0.4)" }}>
+            style={{ color: "#00f0ff", background: "rgba(10,26,46,0.4)", border: "1px solid rgba(0,240,255,0.4)" }}>
             Hash erzeugen
           </button>
-          {hash && <code className="block mt-3 text-[13px] font-mono break-all rounded px-2 py-2" style={{ background: "#020817", color: "#67e8f9" }}>{hash}</code>}
+          {hash && <code className="block mt-3 text-[13px] font-mono break-all rounded px-2 py-2" style={{ background: "#07010f", color: "#67e8f9" }}>{hash}</code>}
         </Card>
 
         {/* Security-Header */}
@@ -101,16 +101,16 @@ export function ToolsTab() {
           <textarea value={headerText} onChange={(e) => setHeaderText(e.target.value)}
             placeholder="Ausgabe von curl -sI hier einfügen…" rows={4}
             className="w-full mt-3 rounded-lg px-3 py-2 text-[14px] font-mono outline-none resize-y"
-            style={{ background: "#020817", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" }} />
+            style={{ background: "#07010f", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" }} />
           {headerText.trim() && (
             <>
-              <div className="mt-3 text-[14px] font-bold" style={{ color: headerScore >= 5 ? "#34d399" : headerScore >= 3 ? "#fbbf24" : "#f87171" }}>
+              <div className="mt-3 text-[14px] font-bold" style={{ color: headerScore >= 5 ? "#00f0ff" : headerScore >= 3 ? "#fbbf24" : "#f87171" }}>
                 {headerScore}/{WANTED.length} Schutz-Header vorhanden
               </div>
               <div className="mt-2 space-y-1.5">
                 {headerResult.map((h) => (
                   <div key={h.key} className="flex items-center gap-2 text-[14px]">
-                    <span style={{ color: h.present ? "#34d399" : "#f87171" }}>{h.present ? "✓" : "✗"}</span>
+                    <span style={{ color: h.present ? "#00f0ff" : "#f87171" }}>{h.present ? "✓" : "✗"}</span>
                     <span style={{ color: "#e2e8f0" }}>{h.name}</span>
                     <span style={{ color: "#475569" }}>— {h.why}</span>
                   </div>

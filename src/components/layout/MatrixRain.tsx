@@ -38,7 +38,7 @@ export function MatrixRain() {
       last = t;
 
       // leicht nachdunkeln → Schweif-Effekt
-      ctx.fillStyle = "rgba(2, 6, 23, 0.10)";
+      ctx.fillStyle = "rgba(6, 0, 16, 0.10)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.font = `${fontSize}px monospace`;
 
@@ -46,8 +46,8 @@ export function MatrixRain() {
         const text = chars[Math.floor(Math.random() * chars.length)];
         const x = i * fontSize;
         const y = drops[i] * fontSize;
-        // Kopf der Spur heller, Rest grün
-        ctx.fillStyle = Math.random() > 0.975 ? "rgba(167,243,208,0.9)" : "rgba(16,185,129,0.55)";
+        // Kopf der Spur hell (Magenta-Blitz), Rest Neon-Cyan
+        ctx.fillStyle = Math.random() > 0.985 ? "rgba(255,43,214,0.9)" : "rgba(0,240,255,0.5)";
         ctx.fillText(text, x, y);
         if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
         drops[i]++;

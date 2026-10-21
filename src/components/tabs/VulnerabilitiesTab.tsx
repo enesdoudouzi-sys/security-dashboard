@@ -13,7 +13,7 @@ const STATUS_RANK:   Record<string, number>  = { open: 3, investigating: 2, patc
 const STATUS_CFG: Record<string, { color: string; label: string }> = {
   open:          { color: "#f87171", label: "OFFEN"       },
   investigating: { color: "#fbbf24", label: "IN BEARB."   },
-  patched:       { color: "#34d399", label: "GEPATCHT"    },
+  patched:       { color: "#00f0ff", label: "GEPATCHT"    },
 };
 
 /* Empfohlene Maßnahmen pro CVE */
@@ -53,7 +53,7 @@ function VulnRow({ v }: { v: Vulnerability }) {
       <tr className="transition-all cursor-pointer"
           style={{ borderBottom: open ? "none" : "1px solid rgba(15,23,42,0.8)" }}
           onClick={() => setOpen((o) => !o)}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "rgba(16,185,129,0.025)")}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "rgba(0,240,255,0.025)")}
           onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = open ? "rgba(239,68,68,0.03)" : "")}>
         <td className="px-4 py-3 font-bold font-mono text-[13px]" style={{ color: "#f87171" }}>{v.id}</td>
         <td className="px-4 py-3 max-w-[200px] text-[13px]" style={{ color: "#cbd5e1" }}>
@@ -72,26 +72,26 @@ function VulnRow({ v }: { v: Vulnerability }) {
           {sc?.label ?? v.status.toUpperCase()}
         </td>
         <td className="px-4 py-3 text-[13px]" style={{ color: "#374151" }}>{v.discovered}</td>
-        <td className="px-4 py-3 text-[13px]" style={{ color: open ? "#34d399" : "#374151" }}>
+        <td className="px-4 py-3 text-[13px]" style={{ color: open ? "#00f0ff" : "#374151" }}>
           {open ? "▲ einklappen" : "▼ Lösungen"}
         </td>
       </tr>
 
       {open && (
-        <tr style={{ background: "rgba(2,8,23,0.6)", borderBottom: "1px solid rgba(30,41,59,0.6)" }}>
+        <tr style={{ background: "rgba(7,1,15,0.6)", borderBottom: "1px solid rgba(30,41,59,0.6)" }}>
           <td colSpan={9} className="px-6 py-4">
             <div className="flex flex-col sm:flex-row gap-4">
               {/* Fix-Steps */}
               <div className="flex-1 rounded-xl p-4"
-                   style={{ background: "rgba(6,78,59,0.12)", border: "1px solid rgba(16,185,129,0.2)" }}>
-                <div className="text-[12px] uppercase tracking-[0.15em] font-semibold mb-3" style={{ color: "#34d399" }}>
+                   style={{ background: "rgba(10,26,46,0.12)", border: "1px solid rgba(0,240,255,0.2)" }}>
+                <div className="text-[12px] uppercase tracking-[0.15em] font-semibold mb-3" style={{ color: "#00f0ff" }}>
                   ✓ Empfohlene Maßnahmen
                 </div>
                 <div className="space-y-2">
                   {fix.steps.map((s, i) => (
                     <div key={i} className="flex items-start gap-2 text-[13px]" style={{ color: "#94a3b8" }}>
                       <span className="shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold mt-px"
-                            style={{ background: "rgba(16,185,129,0.2)", color: "#10b981" }}>{i + 1}</span>
+                            style={{ background: "rgba(0,240,255,0.2)", color: "#00b8d4" }}>{i + 1}</span>
                       {s}
                     </div>
                   ))}
@@ -105,7 +105,7 @@ function VulnRow({ v }: { v: Vulnerability }) {
                 <InfoRow label="CVSS"         value={v.cvss.toFixed(1)} color={v.cvss >= 9 ? "#f87171" : "#fb923c"} />
                 <InfoRow label="Host"         value={v.host}       mono />
                 <InfoRow label="Service"      value={`${v.service}${v.port ? `:${v.port}` : ""}`} />
-                {fix.patchVersion && <InfoRow label="Patch"  value={fix.patchVersion} color="#34d399" />}
+                {fix.patchVersion && <InfoRow label="Patch"  value={fix.patchVersion} color="#00f0ff" />}
                 <InfoRow label="Entdeckt"     value={v.discovered} />
               </div>
             </div>
@@ -158,8 +158,8 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
     const active = sortKey === col;
     return (
       <th className="text-left px-4 py-3 cursor-pointer select-none font-semibold uppercase tracking-[0.1em] text-[12px] transition-colors"
-          style={{ color: active ? "#34d399" : "#334155" }} onClick={() => handleSort(col)}>
-        {label} <span style={{ color: active ? "#34d399" : "#1e293b" }}>{active ? (sortDir === "desc" ? "↓" : "↑") : "⇅"}</span>
+          style={{ color: active ? "#00f0ff" : "#334155" }} onClick={() => handleSort(col)}>
+        {label} <span style={{ color: active ? "#00f0ff" : "#1e293b" }}>{active ? (sortDir === "desc" ? "↓" : "↑") : "⇅"}</span>
       </th>
     );
   }
@@ -178,7 +178,7 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
         {[
           { label: "Kritisch", value: stats.critical, color: "#f87171" },
           { label: "Offen",    value: stats.open,     color: "#fbbf24" },
-          { label: "Gepatcht", value: stats.patched,  color: "#34d399" },
+          { label: "Gepatcht", value: stats.patched,  color: "#00f0ff" },
           { label: "Mit Lösungsschritten", value: stats.withFix, color: "#60a5fa" },
         ].map(({ label, value, color }) => (
           <div key={label} className="rounded-xl p-4 flex items-center gap-3"
@@ -196,8 +196,8 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[13px]" style={{ color: "#334155" }}>🔍</span>
           <input type="text" placeholder="CVE, Name oder Host…" value={search} onChange={(e) => setSearch(e.target.value)}
                  className="pl-8 pr-4 py-2 rounded-lg text-[13px] outline-none w-52"
-                 style={{ background: "rgba(2,8,23,0.8)", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#10b981" }}
-                 onFocus={(e) => (e.target.style.borderColor = "rgba(16,185,129,0.4)")}
+                 style={{ background: "rgba(7,1,15,0.8)", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#00b8d4" }}
+                 onFocus={(e) => (e.target.style.borderColor = "rgba(0,240,255,0.4)")}
                  onBlur={(e)  => (e.target.style.borderColor = "rgba(30,41,59,0.8)")} />
         </div>
         <div className="flex gap-1.5 flex-wrap">
@@ -205,8 +205,8 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
             <button key={f.value} onClick={() => setFilter(f.value)}
                     className="px-3 py-1.5 text-[12px] rounded-lg font-medium cursor-pointer transition-all"
                     style={filter === f.value
-                      ? { background: "rgba(16,185,129,0.15)", color: "#34d399", border: "1px solid rgba(16,185,129,0.35)" }
-                      : { background: "rgba(2,8,23,0.6)", color: "#334155", border: "1px solid rgba(30,41,59,0.6)" }}>
+                      ? { background: "rgba(0,240,255,0.15)", color: "#00f0ff", border: "1px solid rgba(0,240,255,0.35)" }
+                      : { background: "rgba(7,1,15,0.6)", color: "#334155", border: "1px solid rgba(30,41,59,0.6)" }}>
               {f.label}
             </button>
           ))}
@@ -214,7 +214,7 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
         <div className="ml-auto flex items-center gap-2">
           <span className="text-[12px] flex items-center gap-1.5 mr-2" style={{ color: "#334155" }}>
             <span style={{ color: "#64748b" }}>{filtered.length}</span> Einträge ·
-            <span style={{ color: "#34d399" }}>Zeile klicken für Lösungen</span>
+            <span style={{ color: "#00f0ff" }}>Zeile klicken für Lösungen</span>
           </span>
           <button
             onClick={() => exportCSV(filtered)}
@@ -251,7 +251,7 @@ export function VulnerabilitiesTab({ vulnerabilities }: { vulnerabilities: Vulne
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr style={{ borderBottom: "1px solid rgba(30,41,59,0.8)", background: "rgba(2,8,23,0.5)" }}>
+              <tr style={{ borderBottom: "1px solid rgba(30,41,59,0.8)", background: "rgba(7,1,15,0.5)" }}>
                 <th className="text-left px-4 py-3 font-semibold uppercase tracking-[0.1em] text-[12px]" style={{ color: "#334155" }}>CVE-ID</th>
                 <th className="text-left px-4 py-3 font-semibold uppercase tracking-[0.1em] text-[12px]" style={{ color: "#334155" }}>Name</th>
                 <Th col="severity"    label="Schweregrad" />

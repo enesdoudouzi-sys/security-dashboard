@@ -51,9 +51,9 @@ export function NetworkTab({ networkEvents }: { networkEvents: NetworkEvent[] })
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: "Ereignisse gesamt", value: networkEvents.length, color: "#94a3b8" },
-          { label: "Blockiert",         value: blocked,              color: "#34d399"  },
+          { label: "Blockiert",         value: blocked,              color: "#00f0ff"  },
           { label: "Durchgelassen",     value: allowed,              color: "#f87171"  },
-          { label: "Blockierrate",      value: `${blockPct}%`,       color: "#34d399"  },
+          { label: "Blockierrate",      value: `${blockPct}%`,       color: "#00f0ff"  },
         ].map(({ label, value, color }) => (
           <div key={label} className="rounded-xl p-4"
                style={{ background: "linear-gradient(135deg, #0f172a, #0d1b2a)", border: "1px solid rgba(30,41,59,0.8)" }}>
@@ -69,7 +69,7 @@ export function NetworkTab({ networkEvents }: { networkEvents: NetworkEvent[] })
           <button key={f} onClick={() => setFilter(f)}
                   className="px-4 py-1.5 rounded-lg text-[12px] font-medium cursor-pointer transition-all uppercase tracking-[0.12em]"
                   style={filter === f
-                    ? { background: "rgba(16,185,129,0.15)", color: "#34d399", border: "1px solid rgba(16,185,129,0.35)" }
+                    ? { background: "rgba(0,240,255,0.15)", color: "#00f0ff", border: "1px solid rgba(0,240,255,0.35)" }
                     : { background: "rgba(15,23,42,0.5)",   color: "#4b5563", border: "1px solid rgba(30,41,59,0.6)" }}>
             {f === "all" ? "Alle" : f === "blocked" ? "Blockiert" : "Erlaubt"}
           </button>
@@ -94,7 +94,7 @@ export function NetworkTab({ networkEvents }: { networkEvents: NetworkEvent[] })
               {sorted.map((e) => (
                 <tr key={e.id} className="transition-colors"
                     style={{ borderBottom: "1px solid rgba(15,23,42,0.8)" }}
-                    onMouseEnter={(el) => ((el.currentTarget as HTMLElement).style.background = "rgba(16,185,129,0.02)")}
+                    onMouseEnter={(el) => ((el.currentTarget as HTMLElement).style.background = "rgba(0,240,255,0.02)")}
                     onMouseLeave={(el) => ((el.currentTarget as HTMLElement).style.background = "")}>
                   <td className="px-4 py-3 font-mono" style={{ color: "#374151" }}>{time(e.timestamp)}</td>
                   <td className="px-4 py-3 font-mono" style={{ color: "#fb923c" }}>{e.srcIp}</td>
@@ -114,7 +114,7 @@ export function NetworkTab({ networkEvents }: { networkEvents: NetworkEvent[] })
                   <td className="px-4 py-3">
                     <span className="px-2 py-0.5 rounded text-[10px] font-bold"
                           style={e.action === "blocked"
-                            ? { background: "rgba(6,78,59,0.4)", color: "#34d399", border: "1px solid rgba(16,185,129,0.3)" }
+                            ? { background: "rgba(10,26,46,0.4)", color: "#00f0ff", border: "1px solid rgba(0,240,255,0.3)" }
                             : { background: "rgba(127,29,29,0.4)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}>
                       {e.action === "blocked" ? "BLOCKIERT" : "ERLAUBT"}
                     </span>

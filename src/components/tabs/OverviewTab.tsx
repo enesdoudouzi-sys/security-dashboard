@@ -52,9 +52,9 @@ function KpiCard({ label, value, sub, color, icon, trend }: {
 
 /* ── Risiko-Gauge ── */
 function RiskGauge({ score }: { score: number }) {
-  const color  = score >= 70 ? "#34d399" : score >= 40 ? "#fbbf24" : "#f87171";
+  const color  = score >= 70 ? "#00f0ff" : score >= 40 ? "#fbbf24" : "#f87171";
   const label  = score >= 70 ? "SICHER" : score >= 40 ? "MODERAT" : "KRITISCH";
-  const grad   = score >= 70 ? "conic-gradient(#10b981 0deg, #34d399 VAR, #1e293b VAR, #1e293b 360deg)"
+  const grad   = score >= 70 ? "conic-gradient(#00b8d4 0deg, #00f0ff VAR, #1e293b VAR, #1e293b 360deg)"
                : score >= 40 ? "conic-gradient(#d97706 0deg, #fbbf24 VAR, #1e293b VAR, #1e293b 360deg)"
                : "conic-gradient(#dc2626 0deg, #f87171 VAR, #1e293b VAR, #1e293b 360deg)";
   const deg    = `${Math.round(score / 100 * 360)}deg`;
@@ -118,11 +118,11 @@ function QuickScanWidget({ onGoToScans }: { onGoToScans?: () => void }) {
 
   return (
     <div className="rounded-2xl overflow-hidden"
-         style={{ background: "linear-gradient(145deg,#061a12,#082418)", border: "1px solid rgba(16,185,129,0.25)" }}>
+         style={{ background: "linear-gradient(145deg,#070f1f,#0a1326)", border: "1px solid rgba(0,240,255,0.25)" }}>
       <div className="px-5 py-3 flex items-center gap-2"
-           style={{ borderBottom: "1px solid rgba(16,185,129,0.1)" }}>
-        <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#10b981" }} />
-        <span className="text-[13px] uppercase tracking-[0.18em] font-semibold" style={{ color: "#34d399" }}>
+           style={{ borderBottom: "1px solid rgba(0,240,255,0.1)" }}>
+        <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#00b8d4" }} />
+        <span className="text-[13px] uppercase tracking-[0.18em] font-semibold" style={{ color: "#00f0ff" }}>
           Schnell-Scan
         </span>
       </div>
@@ -132,18 +132,18 @@ function QuickScanWidget({ onGoToScans }: { onGoToScans?: () => void }) {
                  onKeyDown={(e) => e.key === "Enter" && go()}
                  disabled={scanning}
                  className="flex-1 px-3 py-2.5 rounded-xl text-[14px] outline-none"
-                 style={{ background: "rgba(2,8,23,0.8)", border: "1px solid rgba(16,185,129,0.2)", color: "#e2e8f0", caretColor: "#10b981" }}
+                 style={{ background: "rgba(7,1,15,0.8)", border: "1px solid rgba(0,240,255,0.2)", color: "#e2e8f0", caretColor: "#00b8d4" }}
                  placeholder="IP / Netzwerk / Host…" />
           <button onClick={go} disabled={scanning || !target.trim()}
                   className="px-4 py-2.5 rounded-xl text-[14px] font-bold transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-                  style={{ background: "linear-gradient(135deg,#065f46,#10b981)", color: "#fff", border: "1px solid rgba(16,185,129,0.4)", boxShadow: "0 0 16px rgba(16,185,129,0.25)" }}>
+                  style={{ background: "linear-gradient(135deg,#0e3a4d,#00b8d4)", color: "#fff", border: "1px solid rgba(0,240,255,0.4)", boxShadow: "0 0 16px rgba(0,240,255,0.25)" }}>
             {scanning ? <span className="w-4 h-4 rounded-full animate-spin inline-block"
                               style={{ border: "2px solid rgba(255,255,255,0.2)", borderTopColor: "#fff" }} /> : "▶ Start"}
           </button>
         </div>
         {done && (
           <div className="flex items-center gap-2 text-[13px] px-3 py-2 rounded-lg"
-               style={{ background: "rgba(6,78,59,0.4)", color: "#34d399", border: "1px solid rgba(16,185,129,0.2)" }}>
+               style={{ background: "rgba(10,26,46,0.4)", color: "#00f0ff", border: "1px solid rgba(0,240,255,0.2)" }}>
             ✓ {done}
           </div>
         )}
@@ -163,11 +163,11 @@ function QuickScanWidget({ onGoToScans }: { onGoToScans?: () => void }) {
               {([["windows", "🪟 Windows (ohne Admin)"], ["linux", "🐧 Linux / macOS"]] as const).map(([k, lbl]) => (
                 <button key={k} onClick={() => setOs(k)}
                   className="px-3 py-1.5 text-[11px] font-bold cursor-pointer"
-                  style={os === k ? { background: "rgba(16,185,129,0.2)", color: "#34d399" } : { color: "#64748b" }}>{lbl}</button>
+                  style={os === k ? { background: "rgba(0,240,255,0.2)", color: "#00f0ff" } : { color: "#64748b" }}>{lbl}</button>
               ))}
             </div>
             <div className="rounded-lg p-3 flex items-start gap-2"
-                 style={{ background: "#020817", border: "1px solid rgba(16,185,129,0.25)" }}>
+                 style={{ background: "#07010f", border: "1px solid rgba(0,240,255,0.25)" }}>
               <code className="flex-1 text-[12px] font-mono break-all" style={{ color: "#67e8f9" }}>
                 <span style={{ color: "#4b5563" }}>{os === "windows" ? "PS> " : "$ "}</span>{cmd}
               </code>
@@ -182,7 +182,7 @@ function QuickScanWidget({ onGoToScans }: { onGoToScans?: () => void }) {
           </div>
           );
         })()}
-        <p className="text-[10px]" style={{ color: "#1e3a2a" }}>Scan-Befehl für dein Betriebssystem</p>
+        <p className="text-[10px]" style={{ color: "#1e2b3a" }}>Scan-Befehl für dein Betriebssystem</p>
       </div>
     </div>
   );
@@ -228,7 +228,7 @@ export function OverviewTab({ data, onNavigate }: { data: DashboardData; onNavig
       <div className="grid grid-cols-2 xl:grid-cols-5 gap-4">
         <KpiCard label="Kritische CVEs"         value={critOpen.length} color="#f87171" icon="🔴" sub="Sofortiger Handlungsbedarf" trend={critOpen.length > 0 ? `+${critOpen.length}` : undefined} />
         <KpiCard label="Aktive Bedrohungen"     value={activeThreats}   color="#fb923c" icon="☠️" sub="In Beobachtung" />
-        <KpiCard label="Blockierte Ereignisse"  value={blocked}         color="#34d399" icon="🛡️" sub="Letzte 24h" />
+        <KpiCard label="Blockierte Ereignisse"  value={blocked}         color="#00f0ff" icon="🛡️" sub="Letzte 24h" />
         <KpiCard label="Offene Schwachstellen"  value={openVulns}       color="#fbbf24" icon="⚠️" sub="Auf allen Hosts" />
         <KpiCard label="Gepatcht"               value={patched}         color="#60a5fa" icon="✅" sub="Erfolgreich behoben" />
       </div>
@@ -270,7 +270,7 @@ export function OverviewTab({ data, onNavigate }: { data: DashboardData; onNavig
           </div>
           <div className="mt-5 pt-4 grid grid-cols-2 gap-3" style={{ borderTop: "1px solid rgba(30,41,59,0.5)" }}>
             <div className="text-center">
-              <div className="text-xl font-bold" style={{ color: "#34d399" }}>{patched}</div>
+              <div className="text-xl font-bold" style={{ color: "#00f0ff" }}>{patched}</div>
               <div className="text-[10px] mt-0.5" style={{ color: "#334155" }}>Gepatcht</div>
             </div>
             <div className="text-center">
@@ -307,7 +307,7 @@ export function OverviewTab({ data, onNavigate }: { data: DashboardData; onNavig
               );
             })}
             {critOpen.length === 0 && (
-              <div className="p-6 text-center text-[14px]" style={{ color: "#34d399" }}>
+              <div className="p-6 text-center text-[14px]" style={{ color: "#00f0ff" }}>
                 ✓ Keine kritischen offenen Schwachstellen
               </div>
             )}
@@ -327,7 +327,7 @@ export function OverviewTab({ data, onNavigate }: { data: DashboardData; onNavig
                 <div key={e.id} className="px-4 py-2.5 flex items-center gap-3">
                   <span className="text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0"
                         style={e.action === "blocked"
-                          ? { background: "rgba(6,78,59,0.4)", color: "#34d399", border: "1px solid rgba(16,185,129,0.2)" }
+                          ? { background: "rgba(10,26,46,0.4)", color: "#00f0ff", border: "1px solid rgba(0,240,255,0.2)" }
                           : { background: "rgba(127,29,29,0.4)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)" }}>
                     {e.action === "blocked" ? "BLOCK" : "PASS"}
                   </span>
@@ -391,13 +391,13 @@ function ActionRow({ v, fixes }: { v: { id: string; name: string; host: string; 
       {open && (
         <div className="px-5 pb-4 animate-fade-in">
           <div className="rounded-xl p-4 space-y-2"
-               style={{ background: "rgba(2,8,23,0.6)", border: "1px solid rgba(16,185,129,0.15)" }}>
-            <div className="text-[12px] uppercase tracking-[0.15em] font-semibold mb-3" style={{ color: "#34d399" }}>
+               style={{ background: "rgba(7,1,15,0.6)", border: "1px solid rgba(0,240,255,0.15)" }}>
+            <div className="text-[12px] uppercase tracking-[0.15em] font-semibold mb-3" style={{ color: "#00f0ff" }}>
               ✓ Empfohlene Maßnahmen
             </div>
             {fixes.map((fix, i) => (
               <div key={i} className="flex items-start gap-2 text-[13px]" style={{ color: "#94a3b8" }}>
-                <span className="shrink-0 font-bold" style={{ color: "#10b981" }}>{i + 1}.</span>
+                <span className="shrink-0 font-bold" style={{ color: "#00b8d4" }}>{i + 1}.</span>
                 {fix}
               </div>
             ))}

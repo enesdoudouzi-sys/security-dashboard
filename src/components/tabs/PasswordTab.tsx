@@ -32,8 +32,8 @@ function entropyBits(poolSize: number, length: number) {
 function strength(bits: number) {
   if (bits < 40) return { label: "schwach", color: "#f87171", pct: 25 };
   if (bits < 60) return { label: "okay", color: "#fbbf24", pct: 50 };
-  if (bits < 80) return { label: "stark", color: "#34d399", pct: 75 };
-  return { label: "sehr stark", color: "#10b981", pct: 100 };
+  if (bits < 80) return { label: "stark", color: "#00f0ff", pct: 75 };
+  return { label: "sehr stark", color: "#00b8d4", pct: 100 };
 }
 
 export function PasswordTab() {
@@ -94,19 +94,19 @@ export function PasswordTab() {
         {([["pw", "Passwort"], ["phrase", "Passphrase"]] as const).map(([m, lbl]) => (
           <button key={m} onClick={() => setMode(m)}
             className="px-5 py-2 text-[13px] font-bold cursor-pointer"
-            style={mode === m ? { background: "rgba(16,185,129,0.2)", color: "#34d399" } : { color: "#64748b" }}>
+            style={mode === m ? { background: "rgba(0,240,255,0.2)", color: "#00f0ff" } : { color: "#64748b" }}>
             {lbl}
           </button>
         ))}
       </div>
 
       {/* Ergebnis */}
-      <div className="rounded-xl p-4 mb-4" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(16,185,129,0.25)" }}>
+      <div className="rounded-xl p-4 mb-4" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(0,240,255,0.25)" }}>
         <div className="flex items-center gap-3 flex-wrap">
           <code className="text-[18px] font-mono flex-1 break-all" style={{ color: "#67e8f9", minWidth: 200 }}>{out || "—"}</code>
           <div className="flex gap-2">
             <button onClick={generate} className="px-3 py-1.5 rounded-md text-[11px] font-bold uppercase tracking-wider cursor-pointer"
-              style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>↻ Neu</button>
+              style={{ background: "rgba(0,240,255,0.15)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff" }}>↻ Neu</button>
             {out && <CopyBtn text={out} />}
           </div>
         </div>
@@ -124,17 +124,17 @@ export function PasswordTab() {
         <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(15,23,42,0.5)", border: "1px solid rgba(30,41,59,0.6)" }}>
           <div>
             <div className="flex justify-between text-[13px] mb-2" style={{ color: "#cbd5e1" }}>
-              <span>Länge</span><span className="font-bold" style={{ color: "#34d399" }}>{length} Zeichen</span>
+              <span>Länge</span><span className="font-bold" style={{ color: "#00f0ff" }}>{length} Zeichen</span>
             </div>
             <input type="range" min={8} max={48} value={length} onChange={(e) => setLength(+e.target.value)}
-              className="w-full" style={{ accentColor: "#10b981" }} />
+              className="w-full" style={{ accentColor: "#00b8d4" }} />
           </div>
           <div className="flex flex-wrap gap-2">
             {([["lower", "Kleinbuchstaben"], ["upper", "Großbuchstaben"], ["digits", "Zahlen"], ["symbols", "Sonderzeichen"]] as const).map(([k, lbl]) => (
               <button key={k} onClick={() => setOpts((o) => ({ ...o, [k]: !o[k] }))}
                 className="px-3.5 py-1.5 rounded-lg text-[12px] font-semibold cursor-pointer transition-all"
                 style={opts[k]
-                  ? { background: "rgba(16,185,129,0.15)", border: "1px solid rgba(52,211,153,0.4)", color: "#34d399" }
+                  ? { background: "rgba(0,240,255,0.15)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff" }
                   : { background: "rgba(30,41,59,0.5)", border: "1px solid rgba(51,65,85,0.6)", color: "#64748b" }}>
                 {opts[k] ? "✓ " : ""}{lbl}
               </button>
@@ -144,10 +144,10 @@ export function PasswordTab() {
       ) : (
         <div className="rounded-xl p-5" style={{ background: "rgba(15,23,42,0.5)", border: "1px solid rgba(30,41,59,0.6)" }}>
           <div className="flex justify-between text-[13px] mb-2" style={{ color: "#cbd5e1" }}>
-            <span>Anzahl Wörter</span><span className="font-bold" style={{ color: "#34d399" }}>{words}</span>
+            <span>Anzahl Wörter</span><span className="font-bold" style={{ color: "#00f0ff" }}>{words}</span>
           </div>
           <input type="range" min={3} max={8} value={words} onChange={(e) => setWords(+e.target.value)}
-            className="w-full" style={{ accentColor: "#10b981" }} />
+            className="w-full" style={{ accentColor: "#00b8d4" }} />
           <p className="text-[11px] mt-2" style={{ color: "#64748b" }}>Beispiel-Stil: <code style={{ color: "#67e8f9" }}>Apfel-Mond-Segel-Tiger-42</code></p>
         </div>
       )}

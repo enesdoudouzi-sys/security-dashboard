@@ -109,12 +109,12 @@ export function LogAnalyzerTab() {
       <textarea value={text} onChange={(e) => setText(e.target.value)} rows={9}
         placeholder="Logzeilen hier einfügen (SSH, Nginx, Firewall, …)"
         className="w-full px-3 py-3 rounded-xl text-[14px] font-mono outline-none resize-y"
-        style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#cbd5e1", caretColor: "#10b981" }} />
+        style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.8)", color: "#cbd5e1", caretColor: "#00b8d4" }} />
 
       <div className="flex gap-2 mt-3">
         <button onClick={() => setRes(analyze(text))} disabled={!text.trim()}
           className="px-4 py-2 rounded-xl text-[14px] font-bold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-          style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>
+          style={{ background: "rgba(0,240,255,0.15)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff" }}>
           Analysieren
         </button>
         <button onClick={() => { setText(SAMPLE); setRes(analyze(SAMPLE)); }}

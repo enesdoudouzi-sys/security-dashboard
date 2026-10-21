@@ -60,7 +60,7 @@ const CHALLENGES: Ch[] = [
     explain: "Der Payload lautet {\"user\":\"enes\",\"role\":\"admin\",…}. Merke: ein JWT ist nur kodiert, NICHT verschlüsselt – niemals Geheimnisse hineinschreiben!" },
 ];
 
-const DIFF_COLOR: Record<string, string> = { "Einsteiger": "#34d399", "Fortgeschritten": "#fbbf24", "Profi": "#f87171" };
+const DIFF_COLOR: Record<string, string> = { "Einsteiger": "#00f0ff", "Fortgeschritten": "#fbbf24", "Profi": "#f87171" };
 
 function check(ch: Ch, val: string, pick: number | null): boolean {
   if (ch.kind === "mc") return pick === ch.correct;
@@ -107,11 +107,11 @@ export function ChallengesTab() {
       {/* Fortschritt */}
       <div className="rounded-xl p-4 mb-5 flex items-center gap-4"
            style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
-        <div className="text-3xl font-bold" style={{ color: pct === 100 ? "#34d399" : "#94a3b8" }}>{solvedCount}/{CHALLENGES.length}</div>
+        <div className="text-3xl font-bold" style={{ color: pct === 100 ? "#00f0ff" : "#94a3b8" }}>{solvedCount}/{CHALLENGES.length}</div>
         <div className="flex-1">
           <div className="text-[13px] font-semibold" style={{ color: "#e2e8f0" }}>gelöste Challenges</div>
           <div className="w-full rounded-full h-1.5 mt-1.5" style={{ background: "rgba(30,41,59,0.8)" }}>
-            <div className="h-1.5 rounded-full transition-all" style={{ width: `${pct}%`, background: "linear-gradient(90deg,#10b981,#34d399)" }} />
+            <div className="h-1.5 rounded-full transition-all" style={{ width: `${pct}%`, background: "linear-gradient(90deg,#00b8d4,#00f0ff)" }} />
           </div>
         </div>
       </div>
@@ -122,26 +122,26 @@ export function ChallengesTab() {
           const ok = solved[ch.id];
           return (
             <div key={ch.id} className="rounded-xl p-4"
-                 style={{ background: "rgba(15,23,42,0.6)", border: `1px solid ${isShown ? (ok ? "rgba(16,185,129,0.4)" : "rgba(239,68,68,0.35)") : "rgba(30,41,59,0.6)"}` }}>
+                 style={{ background: "rgba(15,23,42,0.6)", border: `1px solid ${isShown ? (ok ? "rgba(0,240,255,0.4)" : "rgba(239,68,68,0.35)") : "rgba(30,41,59,0.6)"}` }}>
               <div className="flex items-center gap-2 mb-2 flex-wrap">
                 <span className="text-[11px] font-bold" style={{ color: "#64748b" }}>#{i + 1}</span>
                 <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded font-bold"
                       style={{ background: `${DIFF_COLOR[ch.diff]}22`, color: DIFF_COLOR[ch.diff] }}>{ch.diff}</span>
                 <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded" style={{ background: "rgba(30,41,59,0.8)", color: "#94a3b8" }}>{ch.cat}</span>
-                {ok && <span className="ml-auto text-[12px] font-bold" style={{ color: "#34d399" }}>✓ Gelöst</span>}
+                {ok && <span className="ml-auto text-[12px] font-bold" style={{ color: "#00f0ff" }}>✓ Gelöst</span>}
               </div>
               <div className="text-[14px] font-semibold mb-2" style={{ color: "#e2e8f0" }}>{ch.q}</div>
-              {ch.code && <pre className="text-[12px] font-mono p-3 rounded-lg mb-2 overflow-x-auto" style={{ background: "#020817", color: "#67e8f9", border: "1px solid rgba(30,41,59,0.6)" }}>{ch.code}</pre>}
+              {ch.code && <pre className="text-[12px] font-mono p-3 rounded-lg mb-2 overflow-x-auto" style={{ background: "#07010f", color: "#67e8f9", border: "1px solid rgba(30,41,59,0.6)" }}>{ch.code}</pre>}
 
               {ch.kind === "mc" ? (
                 <div className="space-y-1.5">
                   {ch.options.map((opt, idx) => {
                     const chosen = picks[ch.id] === idx;
-                    let col = "#cbd5e1", bg = "rgba(2,8,23,0.5)", bd = "rgba(30,41,59,0.6)";
+                    let col = "#cbd5e1", bg = "rgba(7,1,15,0.5)", bd = "rgba(30,41,59,0.6)";
                     if (isShown) {
-                      if (idx === ch.correct) { col = "#34d399"; bg = "rgba(6,78,59,0.3)"; bd = "rgba(16,185,129,0.5)"; }
+                      if (idx === ch.correct) { col = "#00f0ff"; bg = "rgba(10,26,46,0.3)"; bd = "rgba(0,240,255,0.5)"; }
                       else if (chosen) { col = "#fca5a5"; bg = "rgba(127,29,29,0.25)"; bd = "rgba(239,68,68,0.5)"; }
-                    } else if (chosen) { col = "#34d399"; bd = "rgba(52,211,153,0.5)"; }
+                    } else if (chosen) { col = "#00f0ff"; bd = "rgba(0,240,255,0.5)"; }
                     return (
                       <button key={idx} disabled={isShown} onClick={() => setPicks((p) => ({ ...p, [ch.id]: idx }))}
                         className="w-full text-left px-3 py-2 rounded-lg text-[13px] cursor-pointer disabled:cursor-default"
@@ -154,14 +154,14 @@ export function ChallengesTab() {
                   onKeyDown={(e) => e.key === "Enter" && submit(ch)} disabled={ok}
                   placeholder={ch.kind === "regex" ? "deine Regex, z. B. ^...$" : "deine Antwort…"}
                   className="w-full px-3 py-2.5 rounded-lg text-[13px] font-mono outline-none"
-                  style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#10b981" }} />
+                  style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#00b8d4" }} />
               )}
 
               <div className="flex items-center gap-2 mt-3 flex-wrap">
                 {!ok && (
                   <button onClick={() => submit(ch)}
                     className="px-4 py-1.5 rounded-lg text-[12px] font-bold cursor-pointer"
-                    style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>Prüfen</button>
+                    style={{ background: "rgba(0,240,255,0.15)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff" }}>Prüfen</button>
                 )}
                 {ch.hint && !ok && (
                   <button onClick={() => setTips((t) => ({ ...t, [ch.id]: !t[ch.id] }))}
@@ -175,7 +175,7 @@ export function ChallengesTab() {
 
               {isShown && (
                 <div className="mt-3 text-[12px] p-3 rounded-lg"
-                     style={{ background: ok ? "rgba(6,78,59,0.3)" : "rgba(127,29,29,0.2)", border: `1px solid ${ok ? "rgba(16,185,129,0.3)" : "rgba(239,68,68,0.3)"}`, color: ok ? "#a7f3d0" : "#fca5a5" }}>
+                     style={{ background: ok ? "rgba(10,26,46,0.3)" : "rgba(127,29,29,0.2)", border: `1px solid ${ok ? "rgba(0,240,255,0.3)" : "rgba(239,68,68,0.3)"}`, color: ok ? "#a5f3ff" : "#fca5a5" }}>
                   {ok ? "✓ Richtig! " : "✗ Noch nicht. "}
                   <span style={{ color: "#cbd5e1" }}>{ch.explain}</span>
                   {!ok && ch.hint && <div className="mt-1" style={{ color: "#94a3b8" }}>💡 {ch.hint}</div>}
@@ -188,7 +188,7 @@ export function ChallengesTab() {
 
       {pct === 100 && (
         <div className="mt-5 rounded-xl p-4 text-center text-[14px] font-bold"
-             style={{ background: "rgba(6,78,59,0.3)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>
+             style={{ background: "rgba(10,26,46,0.3)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff" }}>
           🏆 Alle Challenges gelöst – stark! Bereit für die nächste Stufe (TryHackMe, Hack The Box – siehe Lern-Roadmap).
         </div>
       )}

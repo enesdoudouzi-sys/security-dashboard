@@ -110,10 +110,10 @@ export function RoadmapTab() {
       <div className="rounded-xl p-4 mb-4" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
         <div className="flex items-center justify-between mb-2">
           <span className="text-[14px] uppercase tracking-wider font-bold" style={{ color: "#94a3b8" }}>Gesamt-Fortschritt</span>
-          <span className="text-[14px] font-bold" style={{ color: pct === 100 ? "#34d399" : "#94a3b8" }}>{doneCount}/{allKeys.length} · {pct}%</span>
+          <span className="text-[14px] font-bold" style={{ color: pct === 100 ? "#00f0ff" : "#94a3b8" }}>{doneCount}/{allKeys.length} · {pct}%</span>
         </div>
         <div className="w-full rounded-full h-2" style={{ background: "rgba(30,41,59,0.8)" }}>
-          <div className="h-2 rounded-full transition-all" style={{ width: `${pct}%`, background: "linear-gradient(90deg,#10b981,#34d399)" }} />
+          <div className="h-2 rounded-full transition-all" style={{ width: `${pct}%`, background: "linear-gradient(90deg,#00b8d4,#00f0ff)" }} />
         </div>
       </div>
 
@@ -130,8 +130,8 @@ export function RoadmapTab() {
                   <div className="text-[13px] mt-0.5" style={{ color: "#64748b" }}>{s.weeks} · {s.goal}</div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[13px] font-bold" style={{ color: stageDone === stageKeys.length ? "#34d399" : "#64748b" }}>{stageDone}/{stageKeys.length}</span>
-                  <span style={{ color: "#34d399" }}>{isOpen ? "▾" : "▸"}</span>
+                  <span className="text-[13px] font-bold" style={{ color: stageDone === stageKeys.length ? "#00f0ff" : "#64748b" }}>{stageDone}/{stageKeys.length}</span>
+                  <span style={{ color: "#00f0ff" }}>{isOpen ? "▾" : "▸"}</span>
                 </div>
               </button>
               {isOpen && (
@@ -144,9 +144,9 @@ export function RoadmapTab() {
                         return (
                           <button key={i} onClick={() => toggle(key)}
                             className="w-full flex items-start gap-3 text-left rounded-lg px-3 py-2 cursor-pointer"
-                            style={{ background: checked ? "rgba(6,78,59,0.25)" : "rgba(2,8,23,0.5)", border: `1px solid ${checked ? "rgba(16,185,129,0.3)" : "rgba(30,41,59,0.5)"}` }}>
+                            style={{ background: checked ? "rgba(10,26,46,0.25)" : "rgba(7,1,15,0.5)", border: `1px solid ${checked ? "rgba(0,240,255,0.3)" : "rgba(30,41,59,0.5)"}` }}>
                             <span className="w-5 h-5 rounded flex items-center justify-center text-[13px] font-bold flex-shrink-0 mt-0.5"
-                                  style={{ background: checked ? "#10b981" : "transparent", border: `1px solid ${checked ? "#10b981" : "#475569"}`, color: "#020817" }}>{checked ? "✓" : ""}</span>
+                                  style={{ background: checked ? "#00b8d4" : "transparent", border: `1px solid ${checked ? "#00b8d4" : "#475569"}`, color: "#07010f" }}>{checked ? "✓" : ""}</span>
                             <span className="text-[14.5px]" style={{ color: checked ? "#64748b" : "#cbd5e1", textDecoration: checked ? "line-through" : "none" }}>{skill}</span>
                           </button>
                         );
@@ -158,7 +158,7 @@ export function RoadmapTab() {
                     <div className="space-y-2">
                       {s.platforms.map((p, i) => (
                         <a key={i} href={p.url} target="_blank" rel="noreferrer"
-                           className="block rounded-lg px-3 py-2" style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.6)" }}>
+                           className="block rounded-lg px-3 py-2" style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.6)" }}>
                           <div className="text-[14px] font-semibold" style={{ color: "#67e8f9" }}>↗ {p.name}</div>
                           <div className="text-[13px]" style={{ color: "#64748b" }}>{p.note}</div>
                         </a>
@@ -166,8 +166,8 @@ export function RoadmapTab() {
                     </div>
                   </div>
                   {s.cert && (
-                    <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.25)" }}>
-                      <div className="text-[13px] uppercase tracking-wider font-bold mb-0.5" style={{ color: "#34d399" }}>🎓 Passendes Zertifikat</div>
+                    <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(0,240,255,0.08)", border: "1px solid rgba(0,240,255,0.25)" }}>
+                      <div className="text-[13px] uppercase tracking-wider font-bold mb-0.5" style={{ color: "#00f0ff" }}>🎓 Passendes Zertifikat</div>
                       <div className="text-[14px] font-semibold" style={{ color: "#e2e8f0" }}>{s.cert.name}</div>
                       <div className="text-[13px]" style={{ color: "#94a3b8" }}>{s.cert.note}</div>
                     </div>

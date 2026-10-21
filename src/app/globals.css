@@ -4,34 +4,42 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Neon-Palette (Cyberpunk) */
+:root {
+  --neon-cyan: #00f0ff;
+  --neon-cyan-dim: #00b8d4;
+  --neon-magenta: #ff2bd6;
+  --neon-magenta-dim: #c01ba8;
+}
+
 /* ── Base ── */
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: #020617;
+  background-color: #060010;         /* fast schwarz, leicht violett */
   color: #e2e8f0;
   min-height: 100vh;
   position: relative;
   isolation: isolate;
 }
 
-/* Layer 1: kräftige, deutlich sichtbare Aurora-Lichter */
+/* Layer 1: grelle Neon-Aurora (Cyan + Magenta) */
 body::before {
   content: "";
   position: fixed;
   inset: -25%;
   z-index: -2;
   background:
-    radial-gradient(40% 44% at 15% 10%, rgba(16,185,129,0.42) 0%, transparent 60%),
-    radial-gradient(38% 40% at 88% 18%, rgba(6,182,212,0.36) 0%, transparent 60%),
-    radial-gradient(48% 48% at 78% 88%, rgba(16,185,129,0.34) 0%, transparent 60%),
-    radial-gradient(34% 38% at 22% 82%, rgba(99,102,241,0.28) 0%, transparent 60%),
-    radial-gradient(30% 34% at 50% 50%, rgba(45,212,191,0.22) 0%, transparent 65%);
+    radial-gradient(42% 46% at 12% 8%,  rgba(0,240,255,0.42) 0%, transparent 60%),
+    radial-gradient(40% 42% at 90% 14%, rgba(255,43,214,0.40) 0%, transparent 60%),
+    radial-gradient(50% 50% at 82% 90%, rgba(0,240,255,0.36) 0%, transparent 60%),
+    radial-gradient(38% 42% at 18% 86%, rgba(255,43,214,0.34) 0%, transparent 60%),
+    radial-gradient(32% 36% at 50% 50%, rgba(124,58,237,0.26) 0%, transparent 65%);
   filter: blur(14px);
   animation: aurora 18s ease-in-out infinite alternate;
 }
 
-/* Layer 2: Gitter + wandernder Scan-Beam */
+/* Layer 2: Neon-Gitter */
 body::after {
   content: "";
   position: fixed;
@@ -39,24 +47,21 @@ body::after {
   z-index: -1;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(16,185,129,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16,185,129,0.08) 1px, transparent 1px);
+    linear-gradient(rgba(0,240,255,0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,43,214,0.08) 1px, transparent 1px);
   background-size: 46px 46px, 46px 46px;
   animation: grid-drift 16s linear infinite;
   -webkit-mask-image: radial-gradient(ellipse 120% 95% at 50% 0%, #000 50%, transparent 100%);
           mask-image: radial-gradient(ellipse 120% 95% at 50% 0%, #000 50%, transparent 100%);
 }
 
-/* Layer 3: horizontaler Scan-Beam, der langsam nach unten wandert */
-body > *:first-child::before {
-  content: none;
-}
+/* Layer 3: horizontaler Scan-Beam (Cyan) */
 .scan-beam {
   position: fixed;
   left: 0; right: 0; height: 180px;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(180deg, transparent, rgba(16,185,129,0.10), transparent);
+  background: linear-gradient(180deg, transparent, rgba(0,240,255,0.14), transparent);
   animation: beam 9s linear infinite;
 }
 
@@ -85,9 +90,9 @@ body > *:first-child::before {
 /* ── Animations ── */
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes pulse-ring {
-  0%   { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
-  70%  { box-shadow: 0 0 0 10px rgba(16,185,129,0); }
-  100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(0,240,255,0.5); }
+  70%  { box-shadow: 0 0 0 10px rgba(0,240,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,240,255,0); }
 }
 @keyframes scanline {
   0%   { transform: translateY(-100%); }
@@ -115,39 +120,42 @@ body > *:first-child::before {
 /* ── Terminal ── */
 .terminal-line::before {
   content: "$ ";
-  color: #10b981;
+  color: var(--neon-cyan);
   font-weight: bold;
 }
 
-/* ── Scrollbar (edler, mit Emerald-Hover) ── */
-::-webkit-scrollbar       { width: 9px; height: 9px; }
-::-webkit-scrollbar-track  { background: rgba(2,6,23,0.4); }
-::-webkit-scrollbar-thumb  { background: #1e293b; border-radius: 9px; border: 2px solid transparent; background-clip: padding-box; }
-::-webkit-scrollbar-thumb:hover { background: #10b981; background-clip: padding-box; }
-* { scrollbar-width: thin; scrollbar-color: #1e293b transparent; }
+/* ── Scrollbar (Neon-Cyan-Hover) ── */
+::-webkit-scrollbar       { width: 10px; height: 10px; }
+::-webkit-scrollbar-track  { background: rgba(6,0,16,0.5); }
+::-webkit-scrollbar-thumb  { background: #1b1030; border-radius: 9px; border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: var(--neon-cyan); background-clip: padding-box; }
+* { scrollbar-width: thin; scrollbar-color: #2a1840 transparent; }
 
-/* ── Text markieren in Markengrün ── */
-::selection { background: rgba(16,185,129,0.35); color: #ecfdf5; }
+/* ── Text markieren in Neon-Magenta ── */
+::selection { background: rgba(255,43,214,0.45); color: #fff; }
 
 /* ── Weiche Übergänge für Buttons/Links ── */
 button, a, input, textarea { transition: color .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .2s ease, transform .15s ease; }
 
 /* ── Glass card ── */
 .glass {
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(13, 6, 26, 0.8);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(0,240,255,0.18);
 }
 
-/* ── Gradient text mit sanftem Leuchten ── */
+/* ── Gradient-Überschriften: Cyan → Magenta mit kräftigem Neon-Glühen ── */
+/* (Klassenname bleibt, damit alle Tabs ihn automatisch übernehmen) */
 .text-gradient-green {
-  background: linear-gradient(135deg, #5eead4, #34d399, #10b981);
+  background: linear-gradient(100deg, #00f0ff 0%, #5eead4 35%, #ff2bd6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 18px rgba(52,211,153,0.35));
+  filter: drop-shadow(0 0 10px rgba(0,240,255,0.55)) drop-shadow(0 0 22px rgba(255,43,214,0.35));
   letter-spacing: -0.01em;
+  font-weight: 800;
 }
 
-/* ── Karten bekommen beim Hover ein leichtes Anheben ── */
+/* ── Karten bekommen beim Hover ein leichtes Anheben + Neon-Rand ── */
 [class*="rounded-2xl"], [class*="rounded-xl"] { transition: transform .18s ease, box-shadow .25s ease, border-color .2s ease; }
+[class*="rounded-2xl"]:hover, [class*="rounded-xl"]:hover { box-shadow: 0 0 0 1px rgba(0,240,255,0.25), 0 8px 30px rgba(0,240,255,0.08); }

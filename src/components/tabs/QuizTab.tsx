@@ -60,13 +60,13 @@ export function QuizTab() {
     return (
       <div className="p-6 max-w-2xl mx-auto text-center">
         <h2 className="text-2xl font-bold text-gradient-green mb-4">Quiz beendet</h2>
-        <div className="rounded-2xl p-8 mb-5" style={{ background: "linear-gradient(145deg,#061a12,#082418)", border: "1px solid rgba(16,185,129,0.3)" }}>
-          <div className="text-6xl font-bold" style={{ color: pct >= 50 ? "#34d399" : "#fbbf24" }}>{score}/{QUESTIONS.length}</div>
+        <div className="rounded-2xl p-8 mb-5" style={{ background: "linear-gradient(145deg,#070f1f,#0a1326)", border: "1px solid rgba(0,240,255,0.3)" }}>
+          <div className="text-6xl font-bold" style={{ color: pct >= 50 ? "#00f0ff" : "#fbbf24" }}>{score}/{QUESTIONS.length}</div>
           <div className="text-[14px] mt-2" style={{ color: "#94a3b8" }}>{pct}% richtig</div>
           <div className="text-[15px] mt-4" style={{ color: "#e2e8f0" }}>{msg}</div>
         </div>
         <button onClick={restart} className="px-6 py-2.5 rounded-xl text-[14px] font-bold cursor-pointer"
-          style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>↻ Nochmal</button>
+          style={{ background: "rgba(0,240,255,0.15)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff" }}>↻ Nochmal</button>
       </div>
     );
   }
@@ -85,19 +85,19 @@ export function QuizTab() {
 
       <div className="flex items-center justify-between mb-3 text-[12px]" style={{ color: "#64748b" }}>
         <span>Frage {i + 1} / {QUESTIONS.length}</span>
-        <span>Punkte: <b style={{ color: "#34d399" }}>{score}</b></span>
+        <span>Punkte: <b style={{ color: "#00f0ff" }}>{score}</b></span>
       </div>
       <div className="w-full rounded-full h-1.5 mb-5" style={{ background: "rgba(30,41,59,0.8)" }}>
-        <div className="h-1.5 rounded-full transition-all" style={{ width: `${(i / QUESTIONS.length) * 100}%`, background: "linear-gradient(90deg,#10b981,#34d399)" }} />
+        <div className="h-1.5 rounded-full transition-all" style={{ width: `${(i / QUESTIONS.length) * 100}%`, background: "linear-gradient(90deg,#00b8d4,#00f0ff)" }} />
       </div>
 
       <div className="rounded-xl p-5 mb-4" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
         <div className="text-[16px] font-semibold mb-4" style={{ color: "#e2e8f0" }}>{q.q}</div>
         <div className="space-y-2">
           {q.options.map((opt, idx) => {
-            let bg = "rgba(2,8,23,0.6)", border = "rgba(30,41,59,0.6)", color = "#cbd5e1";
+            let bg = "rgba(7,1,15,0.6)", border = "rgba(30,41,59,0.6)", color = "#cbd5e1";
             if (picked !== null) {
-              if (idx === q.correct) { bg = "rgba(6,78,59,0.4)"; border = "rgba(16,185,129,0.5)"; color = "#34d399"; }
+              if (idx === q.correct) { bg = "rgba(10,26,46,0.4)"; border = "rgba(0,240,255,0.5)"; color = "#00f0ff"; }
               else if (idx === picked) { bg = "rgba(127,29,29,0.3)"; border = "rgba(239,68,68,0.5)"; color = "#fca5a5"; }
             }
             return (
@@ -120,7 +120,7 @@ export function QuizTab() {
 
       {picked !== null && (
         <button onClick={next} className="px-6 py-2.5 rounded-xl text-[14px] font-bold cursor-pointer"
-          style={{ background: "linear-gradient(135deg,#065f46,#10b981)", color: "#fff" }}>
+          style={{ background: "linear-gradient(135deg,#0e3a4d,#00b8d4)", color: "#fff" }}>
           {i + 1 >= QUESTIONS.length ? "Ergebnis anzeigen →" : "Nächste Frage →"}
         </button>
       )}

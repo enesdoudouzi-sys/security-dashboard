@@ -87,7 +87,7 @@ export function NetToolsTab() {
         <input value={cidr} onChange={(e) => setCidr(e.target.value)}
           placeholder="z. B. 192.168.1.0/24"
           className="w-full px-3 py-2.5 rounded-xl text-[14px] font-mono outline-none"
-          style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#10b981" }} />
+          style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#00b8d4" }} />
         {cidr.trim() && (info
           ? <div className="mt-3 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(30,41,59,0.6)" }}>
               <Row k="Netzadresse" v={info.network} />
@@ -107,12 +107,12 @@ export function NetToolsTab() {
         <input value={hash} onChange={(e) => setHash(e.target.value)}
           placeholder="Hash einfügen…"
           className="w-full px-3 py-2.5 rounded-xl text-[13px] font-mono outline-none break-all"
-          style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#10b981" }} />
+          style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#00b8d4" }} />
         {hash.trim() && (hashRes.length
           ? <div className="mt-3 space-y-2">
               {hashRes.map((r, i) => (
-                <div key={i} className="rounded-lg px-4 py-2.5" style={{ background: "#020817", border: "1px solid rgba(16,185,129,0.25)" }}>
-                  <span className="text-[14px] font-bold" style={{ color: "#34d399" }}>{r.name}</span>
+                <div key={i} className="rounded-lg px-4 py-2.5" style={{ background: "#07010f", border: "1px solid rgba(0,240,255,0.25)" }}>
+                  <span className="text-[14px] font-bold" style={{ color: "#00f0ff" }}>{r.name}</span>
                   <span className="text-[12px] ml-2" style={{ color: "#64748b" }}>{r.note}</span>
                 </div>
               ))}

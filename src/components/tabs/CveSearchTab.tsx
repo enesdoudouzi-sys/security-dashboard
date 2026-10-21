@@ -80,10 +80,10 @@ export function CveSearchTab() {
         <input value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && search()}
           placeholder="Stichwort oder CVE-ID…"
           className="flex-1 px-3 py-2.5 rounded-xl text-[15px] outline-none"
-          style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#10b981" }} />
+          style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#00b8d4" }} />
         <button onClick={search} disabled={!q.trim() || state === "loading"}
           className="px-5 py-2.5 rounded-xl text-[15px] font-bold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-          style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>
+          style={{ background: "rgba(0,240,255,0.15)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff" }}>
           {state === "loading" ? "Suche…" : "Suchen"}
         </button>
       </div>

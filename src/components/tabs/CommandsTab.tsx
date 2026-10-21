@@ -82,7 +82,7 @@ export function CommandsTab() {
                 <div className="text-[16px] font-bold" style={{ color: "#e2e8f0" }}>{g.phase}</div>
                 <div className="text-[13px] mt-0.5" style={{ color: "#64748b" }}>{g.desc}</div>
               </div>
-              <span style={{ color: "#34d399" }}>{open === i ? "▾" : "▸"}</span>
+              <span style={{ color: "#00f0ff" }}>{open === i ? "▾" : "▸"}</span>
             </button>
             {open === i && (
               <div className="px-5 pb-5 space-y-2">

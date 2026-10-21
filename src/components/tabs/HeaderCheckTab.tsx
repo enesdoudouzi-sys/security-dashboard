@@ -13,7 +13,7 @@ type Test = { key: string; pass: boolean; desc: string; modifier: number };
 type Scan = { grade: string; score: number; passed: number; failed: number; tests: Test[] };
 
 const GRADE_COLOR: Record<string, string> = {
-  "A+": "#34d399", A: "#34d399", "A-": "#4ade80",
+  "A+": "#00f0ff", A: "#00f0ff", "A-": "#22d3ee",
   "B+": "#60a5fa", B: "#60a5fa", "B-": "#60a5fa",
   "C+": "#fbbf24", C: "#fbbf24", "C-": "#fbbf24",
   "D+": "#fb923c", D: "#fb923c", "D-": "#fb923c",
@@ -100,10 +100,10 @@ export function HeaderCheckTab() {
         <input value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && run()}
           placeholder="z. B. github.com  oder  deine-seite.de"
           className="flex-1 px-3 py-2.5 rounded-xl text-[15px] outline-none font-mono"
-          style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#10b981" }} />
+          style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#00b8d4" }} />
         <button onClick={run} disabled={!q.trim() || state === "loading"}
           className="px-5 py-2.5 rounded-xl text-[15px] font-bold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-          style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>
+          style={{ background: "rgba(0,240,255,0.15)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff" }}>
           {state === "loading" ? "Prüfe…" : "Prüfen"}
         </button>
       </div>
@@ -133,17 +133,17 @@ export function HeaderCheckTab() {
         <div className="mt-5 space-y-4">
           {/* Noten-Karte */}
           <div className="rounded-2xl p-5 flex items-center gap-5"
-               style={{ background: "linear-gradient(145deg,#061a12,#082418)", border: "1px solid rgba(16,185,129,0.3)" }}>
+               style={{ background: "linear-gradient(145deg,#070f1f,#0a1326)", border: "1px solid rgba(0,240,255,0.3)" }}>
             <div className="w-24 h-24 rounded-2xl flex items-center justify-center flex-shrink-0"
-                 style={{ background: "rgba(2,8,23,0.6)", border: `2px solid ${GRADE_COLOR[scan.grade] || "#94a3b8"}` }}>
+                 style={{ background: "rgba(7,1,15,0.6)", border: `2px solid ${GRADE_COLOR[scan.grade] || "#94a3b8"}` }}>
               <span className="text-5xl font-bold" style={{ color: GRADE_COLOR[scan.grade] || "#94a3b8" }}>{scan.grade}</span>
             </div>
             <div className="flex-1">
               <div className="text-[13px] uppercase tracking-wider" style={{ color: "#64748b" }}>Gesamtnote für</div>
               <div className="text-xl font-bold font-mono" style={{ color: "#e2e8f0" }}>{host}</div>
               <div className="text-[14px] mt-1" style={{ color: "#94a3b8" }}>
-                Score: <b style={{ color: "#34d399" }}>{scan.score}</b> ·
-                <span style={{ color: "#86efac" }}> {scan.passed} bestanden</span> ·
+                Score: <b style={{ color: "#00f0ff" }}>{scan.score}</b> ·
+                <span style={{ color: "#7df9ff" }}> {scan.passed} bestanden</span> ·
                 <span style={{ color: "#fca5a5" }}> {scan.failed} offen</span>
               </div>
               <a href={reportLink} target="_blank" rel="noreferrer"
@@ -155,15 +155,15 @@ export function HeaderCheckTab() {
           <div className="space-y-2">
             {scan.tests.map((t) => (
               <div key={t.key} className="rounded-xl p-3.5 flex items-start gap-3"
-                   style={{ background: "rgba(15,23,42,0.6)", border: `1px solid ${t.pass ? "rgba(16,185,129,0.2)" : "rgba(239,68,68,0.25)"}` }}>
-                <span className="text-[16px] mt-0.5" style={{ color: t.pass ? "#34d399" : "#f87171" }}>{t.pass ? "✓" : "✗"}</span>
+                   style={{ background: "rgba(15,23,42,0.6)", border: `1px solid ${t.pass ? "rgba(0,240,255,0.2)" : "rgba(239,68,68,0.25)"}` }}>
+                <span className="text-[16px] mt-0.5" style={{ color: t.pass ? "#00f0ff" : "#f87171" }}>{t.pass ? "✓" : "✗"}</span>
                 <div className="flex-1 min-w-0">
                   <div className="text-[14px] font-semibold" style={{ color: "#e2e8f0" }}>{NICE[t.key] || t.key}</div>
                   <div className="text-[13px] mt-0.5 leading-relaxed" style={{ color: "#94a3b8" }}>{t.desc}</div>
                 </div>
                 {t.modifier !== 0 && (
                   <span className="text-[12px] font-bold font-mono flex-shrink-0"
-                        style={{ color: t.modifier < 0 ? "#f87171" : "#34d399" }}>
+                        style={{ color: t.modifier < 0 ? "#f87171" : "#00f0ff" }}>
                     {t.modifier > 0 ? "+" : ""}{t.modifier}
                   </span>
                 )}
