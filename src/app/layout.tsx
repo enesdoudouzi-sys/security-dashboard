@@ -24,7 +24,7 @@ const CSP = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",
-  "connect-src 'self' https://services.nvd.nist.gov https://internetdb.shodan.io https://crt.sh https://dns.google https://security-dashboard-irl5.onrender.com http://localhost:8000",
+  "connect-src 'self' https://services.nvd.nist.gov https://internetdb.shodan.io https://crt.sh https://dns.google https://observatory-api.mdn.mozilla.net https://security-dashboard-irl5.onrender.com http://localhost:8000",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

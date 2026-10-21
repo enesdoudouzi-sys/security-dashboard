@@ -29,6 +29,7 @@ import { SecurityCheckTab } from "@/components/tabs/SecurityCheckTab";
 import { ProgressTab } from "@/components/tabs/ProgressTab";
 import { ChallengesTab } from "@/components/tabs/ChallengesTab";
 import { ExposureTab } from "@/components/tabs/ExposureTab";
+import { HeaderCheckTab } from "@/components/tabs/HeaderCheckTab";
 import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
@@ -63,6 +64,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "tools"           && <ToolsTab />}
         {active === "journal"         && <JournalTab />}
         {active === "exposure"        && <ExposureTab />}
+        {active === "headercheck"     && <HeaderCheckTab />}
         {active === "vulnscan"        && <VulnScanTab />}
         {active === "cve"             && <CveSearchTab />}
         {active === "attack"          && <AttackTab />}
