@@ -51,7 +51,7 @@ export function exportPDF(vulns: Vulnerability[]) {
         v.severity === "medium"   ? "#ca8a04" : "#2563eb";
       const stColor =
         v.status === "open"          ? "#dc2626" :
-        v.status === "investigating" ? "#ca8a04" : "#16a34a";
+        v.status === "investigating" ? "#ca8a04" : "#0e7490";
       return `
         <tr>
           <td style="color:#dc2626;font-weight:700;font-family:monospace">${v.id}</td>
@@ -74,23 +74,23 @@ export function exportPDF(vulns: Vulnerability[]) {
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; color: #1a1a1a; padding: 32px; }
-    .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #10b981; }
-    .title { font-size: 22px; font-weight: 800; color: #064e3b; letter-spacing: -0.5px; }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #00b8d4; }
+    .title { font-size: 22px; font-weight: 800; color: #0a2838; letter-spacing: -0.5px; }
     .subtitle { font-size: 11px; color: #666; margin-top: 2px; }
     .meta { text-align: right; font-size: 10px; color: #888; }
     .kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 24px; }
     .kpi { padding: 12px 16px; border-radius: 8px; }
     .kpi.red    { background: #fef2f2; border-left: 4px solid #dc2626; }
     .kpi.yellow { background: #fefce8; border-left: 4px solid #ca8a04; }
-    .kpi.green  { background: #f0fdf4; border-left: 4px solid #16a34a; }
+    .kpi.green  { background: #ecfeff; border-left: 4px solid #0e7490; }
     .kpi.blue   { background: #eff6ff; border-left: 4px solid #2563eb; }
     .kpi-num { font-size: 26px; font-weight: 800; }
     .kpi-lbl { font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-top: 2px; }
     table { width: 100%; border-collapse: collapse; }
-    thead tr { background: #064e3b; color: #fff; }
+    thead tr { background: #0a2838; color: #fff; }
     thead th { padding: 8px 10px; text-align: left; font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; }
     tbody tr:nth-child(even) { background: #f8fafc; }
-    tbody tr:hover { background: #f0fdf4; }
+    tbody tr:hover { background: #ecfeff; }
     tbody td { padding: 7px 10px; border-bottom: 1px solid #e2e8f0; vertical-align: middle; }
     .footer { margin-top: 20px; padding-top: 12px; border-top: 1px solid #e2e8f0; font-size: 9px; color: #aaa; display: flex; justify-content: space-between; }
     @media print {
@@ -115,7 +115,7 @@ export function exportPDF(vulns: Vulnerability[]) {
   <div class="kpis">
     <div class="kpi red">   <div class="kpi-num" style="color:#dc2626">${critical}</div><div class="kpi-lbl">Kritisch</div></div>
     <div class="kpi yellow"><div class="kpi-num" style="color:#ca8a04">${open}</div><div class="kpi-lbl">Offen</div></div>
-    <div class="kpi green"> <div class="kpi-num" style="color:#16a34a">${patched}</div><div class="kpi-lbl">Gepatcht</div></div>
+    <div class="kpi green"> <div class="kpi-num" style="color:#0e7490">${patched}</div><div class="kpi-lbl">Gepatcht</div></div>
     <div class="kpi blue">  <div class="kpi-num" style="color:#2563eb">${vulns.length - open - patched}</div><div class="kpi-lbl">In Bearbeitung</div></div>
   </div>
 

@@ -8,7 +8,7 @@ const SEV: Record<string, { color: string; bg: string; label: string }> = {
   high:     { color: "#fb923c", bg: "rgba(124,45,18,0.4)", label: "HOCH" },
   medium:   { color: "#fbbf24", bg: "rgba(120,53,15,0.4)", label: "MITTEL" },
   low:      { color: "#60a5fa", bg: "rgba(30,58,138,0.4)", label: "NIEDRIG" },
-  info:     { color: "#34d399", bg: "rgba(6,78,59,0.4)",  label: "INFO" },
+  info:     { color: "#00f0ff", bg: "rgba(10,26,46,0.4)",  label: "INFO" },
 };
 
 interface Finding { severity: string; title: string; host: string; port: number; service: string; version: string; recommendation: string; }
@@ -42,7 +42,7 @@ export function VulnScanTab() {
     }
   }
 
-  const riskColor = (r: number) => r >= 50 ? "#f87171" : r >= 25 ? "#fbbf24" : "#34d399";
+  const riskColor = (r: number) => r >= 50 ? "#f87171" : r >= 25 ? "#fbbf24" : "#00f0ff";
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
@@ -59,10 +59,10 @@ export function VulnScanTab() {
           <input value={target} onChange={(e) => setTarget(e.target.value)}
             placeholder="Freigegebenes Ziel, z. B. scanme.nmap.org"
             className="flex-1 min-w-[220px] rounded-lg px-3 py-2 text-[15px] font-mono outline-none"
-            style={{ background: "#020817", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" }} />
+            style={{ background: "#07010f", border: "1px solid rgba(51,65,85,0.6)", color: "#e2e8f0" }} />
           <button onClick={run} disabled={busy}
             className="px-4 py-2 rounded-lg text-[14px] font-bold uppercase tracking-wider cursor-pointer"
-            style={{ color: "#34d399", background: "rgba(6,78,59,0.4)", border: "1px solid rgba(16,185,129,0.4)", opacity: busy ? 0.6 : 1 }}>
+            style={{ color: "#00f0ff", background: "rgba(10,26,46,0.4)", border: "1px solid rgba(0,240,255,0.4)", opacity: busy ? 0.6 : 1 }}>
             {busy ? "Scannt…" : "▶ Scan starten"}
           </button>
         </div>

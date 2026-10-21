@@ -59,17 +59,17 @@ export function ProgressTab({ onNavigate }: { onNavigate?: (tab: string) => void
 
       {/* Level-Karte */}
       <div className="rounded-2xl p-5 mb-6 flex items-center gap-5"
-           style={{ background: "linear-gradient(145deg,#061a12,#082418)", border: "1px solid rgba(16,185,129,0.3)" }}>
+           style={{ background: "linear-gradient(145deg,#070f1f,#0a1326)", border: "1px solid rgba(0,240,255,0.3)" }}>
         <div className="w-20 h-20 rounded-2xl flex flex-col items-center justify-center flex-shrink-0"
-             style={{ background: "linear-gradient(135deg,#065f46,#10b981)", color: "#fff" }}>
+             style={{ background: "linear-gradient(135deg,#0e3a4d,#00b8d4)", color: "#fff" }}>
           <span className="text-[10px] uppercase tracking-wider opacity-80">Level</span>
           <span className="text-3xl font-bold leading-none">{level}</span>
         </div>
         <div className="flex-1">
-          <div className="text-xl font-bold" style={{ color: "#34d399" }}>{title}</div>
+          <div className="text-xl font-bold" style={{ color: "#00f0ff" }}>{title}</div>
           <div className="text-[12px] mb-2" style={{ color: "#64748b" }}>{total} Punkte gesamt · noch {10 - inLevel} bis Level {level + 1}</div>
           <div className="w-full rounded-full h-2" style={{ background: "rgba(30,41,59,0.8)" }}>
-            <div className="h-2 rounded-full transition-all" style={{ width: `${inLevel * 10}%`, background: "linear-gradient(90deg,#10b981,#34d399)" }} />
+            <div className="h-2 rounded-full transition-all" style={{ width: `${inLevel * 10}%`, background: "linear-gradient(90deg,#00b8d4,#00f0ff)" }} />
           </div>
         </div>
       </div>
@@ -86,13 +86,13 @@ export function ProgressTab({ onNavigate }: { onNavigate?: (tab: string) => void
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline justify-between gap-2">
                   <span className="text-[14px] font-semibold" style={{ color: "#e2e8f0" }}>{r.label}</span>
-                  <span className="text-[13px] font-bold" style={{ color: "#34d399" }}>
+                  <span className="text-[13px] font-bold" style={{ color: "#00f0ff" }}>
                     {r.value}{r.max ? ` / ${r.max}` : ""}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 mt-1.5">
                   <div className="flex-1 rounded-full h-1.5" style={{ background: "rgba(30,41,59,0.8)" }}>
-                    <div className="h-1.5 rounded-full transition-all" style={{ width: `${pct}%`, background: r.value > 0 ? "linear-gradient(90deg,#10b981,#34d399)" : "transparent" }} />
+                    <div className="h-1.5 rounded-full transition-all" style={{ width: `${pct}%`, background: r.value > 0 ? "linear-gradient(90deg,#00b8d4,#00f0ff)" : "transparent" }} />
                   </div>
                   <span className="text-[10px]" style={{ color: "#64748b" }}>{r.hint}</span>
                 </div>

@@ -41,7 +41,7 @@ export function SecurityStatusTab() {
   }, []);
 
   const okCount = checks.filter((c) => c.state === "ok").length;
-  const COLOR = { ok: "#34d399", info: "#60a5fa", warn: "#fbbf24" };
+  const COLOR = { ok: "#00f0ff", info: "#60a5fa", warn: "#fbbf24" };
   const ICON = { ok: "✓", info: "i", warn: "!" };
 
   return (
@@ -61,8 +61,8 @@ export function SecurityStatusTab() {
       </LearnNote></div>
 
       <div className="rounded-xl p-4 mb-4 flex items-center gap-4"
-           style={{ background: "rgba(6,78,59,0.2)", border: "1px solid rgba(16,185,129,0.3)" }}>
-        <div className="text-3xl font-bold" style={{ color: "#34d399" }}>{okCount}</div>
+           style={{ background: "rgba(10,26,46,0.2)", border: "1px solid rgba(0,240,255,0.3)" }}>
+        <div className="text-3xl font-bold" style={{ color: "#00f0ff" }}>{okCount}</div>
         <div>
           <div className="text-[14px] font-bold" style={{ color: "#e2e8f0" }}>aktive Schutzmaßnahmen</div>
           <div className="text-[12px]" style={{ color: "#64748b" }}>Live in deinem Browser geprüft &amp; dokumentiert</div>

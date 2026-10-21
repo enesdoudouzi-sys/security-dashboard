@@ -93,7 +93,7 @@ const TACTICS: Tactic[] = [
   },
 ];
 
-const SEV = "#34d399";
+const SEV = "#00f0ff";
 
 export function AttackTab() {
   const [sel, setSel] = useState<{ tactic: Tactic; tech: Technique } | null>(null);
@@ -121,7 +121,7 @@ export function AttackTab() {
           {TACTICS.map((t) => (
             <div key={t.id} className="flex-shrink-0" style={{ width: 160 }}>
               <div className="rounded-lg px-2.5 py-2 mb-2"
-                   style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.2)" }}>
+                   style={{ background: "rgba(0,240,255,0.1)", border: "1px solid rgba(0,240,255,0.2)" }}>
                 <div className="text-[13px] font-bold leading-tight" style={{ color: "#e2e8f0" }}>{t.name}</div>
                 <div className="text-[10px] mt-0.5" style={{ color: "#64748b" }}>{t.goal}</div>
               </div>
@@ -132,8 +132,8 @@ export function AttackTab() {
                     <button key={tech.id} onClick={() => setSel({ tactic: t, tech })}
                       className="w-full text-left rounded-lg px-2.5 py-2 cursor-pointer transition-all"
                       style={{
-                        background: active ? "rgba(16,185,129,0.18)" : "rgba(15,23,42,0.6)",
-                        border: `1px solid ${active ? "rgba(52,211,153,0.5)" : "rgba(30,41,59,0.6)"}`,
+                        background: active ? "rgba(0,240,255,0.18)" : "rgba(15,23,42,0.6)",
+                        border: `1px solid ${active ? "rgba(0,240,255,0.5)" : "rgba(30,41,59,0.6)"}`,
                       }}>
                       <div className="text-[12px] font-mono" style={{ color: SEV }}>{tech.id}</div>
                       <div className="text-[13px] leading-tight mt-0.5" style={{ color: "#cbd5e1" }}>{tech.name}</div>
@@ -148,12 +148,12 @@ export function AttackTab() {
 
       {sel && (
         <div className="mt-5 rounded-xl p-5"
-             style={{ background: "rgba(15,23,42,0.8)", border: "1px solid rgba(52,211,153,0.3)" }}>
+             style={{ background: "rgba(15,23,42,0.8)", border: "1px solid rgba(0,240,255,0.3)" }}>
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[13px] font-mono px-2 py-0.5 rounded"
-                      style={{ background: "rgba(16,185,129,0.15)", color: SEV }}>{sel.tech.id}</span>
+                      style={{ background: "rgba(0,240,255,0.15)", color: SEV }}>{sel.tech.id}</span>
                 <span className="text-[17px] font-bold" style={{ color: "#f1f5f9" }}>{sel.tech.name}</span>
               </div>
               <div className="text-[13px] mt-1" style={{ color: "#64748b" }}>
@@ -163,13 +163,13 @@ export function AttackTab() {
             <button onClick={() => setSel(null)} className="text-[20px] cursor-pointer" style={{ color: "#475569" }}>×</button>
           </div>
           <div className="mt-4 grid md:grid-cols-2 gap-4">
-            <div className="rounded-lg p-3" style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.6)" }}>
+            <div className="rounded-lg p-3" style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.6)" }}>
               <div className="text-[12px] uppercase tracking-wider font-bold mb-1" style={{ color: "#94a3b8" }}>Was macht der Angreifer?</div>
               <p className="text-[14px]" style={{ color: "#cbd5e1" }}>{sel.tech.desc}</p>
             </div>
-            <div className="rounded-lg p-3" style={{ background: "#020817", border: "1px solid rgba(16,185,129,0.25)" }}>
+            <div className="rounded-lg p-3" style={{ background: "#07010f", border: "1px solid rgba(0,240,255,0.25)" }}>
               <div className="text-[12px] uppercase tracking-wider font-bold mb-1" style={{ color: SEV }}>🔍 So erkennst du es</div>
-              <p className="text-[14px]" style={{ color: "#a7f3d0" }}>{sel.tech.detect}</p>
+              <p className="text-[14px]" style={{ color: "#a5f3ff" }}>{sel.tech.detect}</p>
             </div>
           </div>
           <a href={`https://attack.mitre.org/techniques/${sel.tech.id}/`} target="_blank" rel="noreferrer"

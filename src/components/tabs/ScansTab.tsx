@@ -18,7 +18,7 @@ interface LiveJob {
 
 function StatusBadge({ status }: { status: string }) {
   const cfg: Record<string, { color: string; bg: string; border: string; label: string }> = {
-    completed: { color: "#34d399", bg: "rgba(6,78,59,0.4)",   border: "rgba(16,185,129,0.3)", label: "ABGESCHLOSSEN" },
+    completed: { color: "#00f0ff", bg: "rgba(10,26,46,0.4)",   border: "rgba(0,240,255,0.3)", label: "ABGESCHLOSSEN" },
     running:   { color: "#fbbf24", bg: "rgba(120,53,15,0.4)", border: "rgba(245,158,11,0.3)", label: "LÄUFT" },
     scheduled: { color: "#60a5fa", bg: "rgba(30,58,138,0.4)", border: "rgba(59,130,246,0.3)", label: "GEPLANT" },
     failed:    { color: "#f87171", bg: "rgba(127,29,29,0.4)", border: "rgba(239,68,68,0.3)",  label: "FEHLER" },
@@ -158,9 +158,9 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
       {/* Toast */}
       {toast && (
         <div className="fixed top-16 right-5 z-50 flex items-center gap-3 px-4 py-3 rounded-xl shadow-2xl animate-fade-in text-sm font-medium"
-             style={{ background: toast.ok ? "rgba(6,78,59,0.95)" : "rgba(127,29,29,0.95)",
-                      border: `1px solid ${toast.ok ? "rgba(16,185,129,0.5)" : "rgba(239,68,68,0.5)"}`,
-                      color: toast.ok ? "#34d399" : "#f87171", backdropFilter: "blur(12px)" }}>
+             style={{ background: toast.ok ? "rgba(10,26,46,0.95)" : "rgba(127,29,29,0.95)",
+                      border: `1px solid ${toast.ok ? "rgba(0,240,255,0.5)" : "rgba(239,68,68,0.5)"}`,
+                      color: toast.ok ? "#00f0ff" : "#f87171", backdropFilter: "blur(12px)" }}>
           <span>{toast.ok ? "✓" : "✗"}</span>
           {toast.msg}
         </div>
@@ -168,21 +168,21 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
 
       {/* ── SCAN STARTEN ── */}
       <div className="rounded-xl overflow-hidden"
-           style={{ background: "linear-gradient(135deg, #0f172a, #0d1b2a)", border: "1px solid rgba(16,185,129,0.25)" }}>
+           style={{ background: "linear-gradient(135deg, #0f172a, #0d1b2a)", border: "1px solid rgba(0,240,255,0.25)" }}>
         {/* Header */}
         <div className="px-5 py-3 flex items-center gap-3"
-             style={{ borderBottom: "1px solid rgba(16,185,129,0.15)", background: "rgba(16,185,129,0.04)" }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
+             style={{ borderBottom: "1px solid rgba(0,240,255,0.15)", background: "rgba(0,240,255,0.04)" }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00b8d4" strokeWidth="2">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
           </svg>
-          <span className="text-[13px] uppercase tracking-[0.2em] font-semibold" style={{ color: "#34d399" }}>
+          <span className="text-[13px] uppercase tracking-[0.2em] font-semibold" style={{ color: "#00f0ff" }}>
             Nmap-Scan starten
           </span>
           {/* Backend indicator */}
           <div className="ml-auto flex items-center gap-1.5 text-[12px]"
-               style={{ color: backendOk ? "#34d399" : backendOk === false ? "#f87171" : "#4b5563" }}>
+               style={{ color: backendOk ? "#00f0ff" : backendOk === false ? "#f87171" : "#4b5563" }}>
             <span className="w-1.5 h-1.5 rounded-full inline-block"
-                  style={{ background: backendOk ? "#34d399" : backendOk === false ? "#f87171" : "#4b5563" }} />
+                  style={{ background: backendOk ? "#00f0ff" : backendOk === false ? "#f87171" : "#4b5563" }} />
             {backendOk ? "Backend bereit" : backendOk === false ? "Backend offline" : "Prüfe Backend…"}
           </div>
         </div>
@@ -192,7 +192,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
           <div className="flex gap-3">
             <div className="relative flex-1">
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                <span style={{ color: "#10b981" }}>⊕</span>
+                <span style={{ color: "#00b8d4" }}>⊕</span>
               </div>
               <input
                 type="text"
@@ -206,9 +206,9 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
                   background: "rgba(15,23,42,0.8)",
                   border: "1px solid rgba(30,41,59,0.8)",
                   color: "#e2e8f0",
-                  caretColor: "#10b981",
+                  caretColor: "#00b8d4",
                 }}
-                onFocus={(e) => (e.target.style.borderColor = "rgba(16,185,129,0.5)")}
+                onFocus={(e) => (e.target.style.borderColor = "rgba(0,240,255,0.5)")}
                 onBlur={(e)  => (e.target.style.borderColor = "rgba(30,41,59,0.8)")}
               />
             </div>
@@ -218,10 +218,10 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
               disabled={scanning || !target.trim() || backendOk === false}
               className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
               style={{
-                background: scanning ? "rgba(6,78,59,0.5)" : "linear-gradient(135deg, #065f46, #10b981)",
+                background: scanning ? "rgba(10,26,46,0.5)" : "linear-gradient(135deg, #0e3a4d, #00b8d4)",
                 color: "#fff",
-                boxShadow: scanning ? "none" : "0 0 20px rgba(16,185,129,0.3)",
-                border: "1px solid rgba(16,185,129,0.4)",
+                boxShadow: scanning ? "none" : "0 0 20px rgba(0,240,255,0.3)",
+                border: "1px solid rgba(0,240,255,0.4)",
               }}
             >
               {scanning ? (
@@ -246,7 +246,7 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
               <button key={p.value} onClick={() => setTarget(p.value)} disabled={scanning}
                       className="text-[12px] px-2.5 py-1 rounded-lg transition-colors cursor-pointer disabled:opacity-40"
                       style={{ background: "rgba(30,41,59,0.5)", color: "#64748b", border: "1px solid rgba(30,41,59,0.8)" }}
-                      onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "#34d399"; (e.target as HTMLElement).style.borderColor = "rgba(16,185,129,0.3)"; }}
+                      onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "#00f0ff"; (e.target as HTMLElement).style.borderColor = "rgba(0,240,255,0.3)"; }}
                       onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "#64748b"; (e.target as HTMLElement).style.borderColor = "rgba(30,41,59,0.8)"; }}>
                 {p.label}
               </button>
@@ -264,15 +264,15 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
           {/* Terminal */}
           {termLog.length > 0 && (
             <div ref={termRef} className="rounded-xl p-4 font-mono text-[13px] space-y-1 overflow-y-auto max-h-44"
-                 style={{ background: "#020817", border: "1px solid rgba(16,185,129,0.15)" }}>
+                 style={{ background: "#07010f", border: "1px solid rgba(0,240,255,0.15)" }}>
               {termLog.map((line, i) => (
                 <div key={i} className={`leading-relaxed ${line.startsWith("FEHLER") ? "" : ""}`}
-                     style={{ color: line.startsWith("FEHLER") ? "#f87171" : line.startsWith("Scan ") ? "#34d399" : "#64748b" }}>
-                  <span style={{ color: "#10b981", marginRight: 6 }}>▸</span>{line}
+                     style={{ color: line.startsWith("FEHLER") ? "#f87171" : line.startsWith("Scan ") ? "#00f0ff" : "#64748b" }}>
+                  <span style={{ color: "#00b8d4", marginRight: 6 }}>▸</span>{line}
                 </div>
               ))}
               {scanning && (
-                <div style={{ color: "#10b981" }}>
+                <div style={{ color: "#00b8d4" }}>
                   <span style={{ marginRight: 6 }}>▸</span>
                   Warte auf nmap-Ergebnisse<span className="animate-blink">█</span>
                 </div>
@@ -286,12 +286,12 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
       {liveJob && (
         <div className="rounded-xl overflow-hidden animate-fade-in"
              style={{ background: "linear-gradient(135deg, #0f172a, #0d1b2a)",
-                      border: `1px solid ${liveJob.status === "completed" ? "rgba(16,185,129,0.3)" : "rgba(245,158,11,0.3)"}` }}>
+                      border: `1px solid ${liveJob.status === "completed" ? "rgba(0,240,255,0.3)" : "rgba(245,158,11,0.3)"}` }}>
           <div className="px-5 py-3 flex items-center gap-4"
                style={{ borderBottom: "1px solid rgba(30,41,59,0.6)", background: "rgba(15,23,42,0.5)" }}>
             <div className="flex-1">
               <div className="text-sm font-bold" style={{ color: "#e2e8f0" }}>
-                Live-Scan: <span style={{ color: "#34d399" }}>{liveJob.target}</span>
+                Live-Scan: <span style={{ color: "#00f0ff" }}>{liveJob.target}</span>
               </div>
               <div className="text-[12px] mt-0.5" style={{ color: "#4b5563" }}>
                 {liveJob.host_count} Hosts · {liveJob.port_count} offene Ports
@@ -315,14 +315,14 @@ export function ScansTab({ scans }: { scans: Scan[] }) {
                   {liveJob.results.map((r, i) => (
                     <tr key={i} className="transition-colors"
                         style={{ borderBottom: "1px solid rgba(15,23,42,0.8)" }}
-                        onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(16,185,129,0.03)")}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(0,240,255,0.03)")}
                         onMouseLeave={(e) => (e.currentTarget.style.background = "")}>
                       <td className="px-5 py-3 font-mono" style={{ color: "#fb923c" }}>{r.host}</td>
-                      <td className="px-5 py-3 font-bold" style={{ color: "#34d399" }}>{r.port}</td>
+                      <td className="px-5 py-3 font-bold" style={{ color: "#00f0ff" }}>{r.port}</td>
                       <td className="px-5 py-3" style={{ color: "#cbd5e1" }}>{r.service}</td>
                       <td className="px-5 py-3">
                         <span className="px-2 py-0.5 rounded text-[10px] font-bold"
-                              style={{ background: "rgba(6,78,59,0.4)", color: "#34d399", border: "1px solid rgba(16,185,129,0.25)" }}>
+                              style={{ background: "rgba(10,26,46,0.4)", color: "#00f0ff", border: "1px solid rgba(0,240,255,0.25)" }}>
                           {r.state.toUpperCase()}
                         </span>
                       </td>

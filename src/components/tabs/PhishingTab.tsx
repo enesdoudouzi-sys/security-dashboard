@@ -18,7 +18,7 @@ Received: from unknown (185.220.101.45) by mx.example.com`;
 
 type Check = { label: string; value: string; verdict: "pass" | "fail" | "warn" | "info"; hint: string };
 
-const V_COLOR: Record<string, string> = { pass: "#34d399", fail: "#f87171", warn: "#fbbf24", info: "#94a3b8" };
+const V_COLOR: Record<string, string> = { pass: "#00f0ff", fail: "#f87171", warn: "#fbbf24", info: "#94a3b8" };
 const V_ICON: Record<string, string> = { pass: "✓", fail: "✗", warn: "!", info: "·" };
 
 function header(text: string, name: string): string {
@@ -91,7 +91,7 @@ function analyze(text: string) {
   if (fails >= 2) score = { label: "SEHR WAHRSCHEINLICH PHISHING", color: "#f87171", text: "Mehrere Authentifizierungen fehlgeschlagen. Nicht klicken, nicht antworten, an die IT/Abuse melden." };
   else if (fails === 1) score = { label: "VERDÄCHTIG", color: "#fbbf24", text: "Mindestens eine Prüfung fehlgeschlagen. Genau prüfen, im Zweifel melden." };
   else if (warns >= 2) score = { label: "UNKLAR", color: "#fbbf24", text: "Wichtige Prüfungen fehlen im Header. Mit Vorsicht behandeln." };
-  else score = { label: "UNAUFFÄLLIG", color: "#34d399", text: "Keine klaren Fälschungs-Indikatoren. Trotzdem Inhalt & Links kritisch prüfen." };
+  else score = { label: "UNAUFFÄLLIG", color: "#00f0ff", text: "Keine klaren Fälschungs-Indikatoren. Trotzdem Inhalt & Links kritisch prüfen." };
 
   return { checks, score };
 }
@@ -119,12 +119,12 @@ export function PhishingTab() {
       <textarea value={text} onChange={(e) => setText(e.target.value)} rows={9}
         placeholder="E-Mail-Header hier einfügen…"
         className="w-full px-3 py-3 rounded-xl text-[14px] font-mono outline-none resize-y"
-        style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#cbd5e1", caretColor: "#10b981" }} />
+        style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.8)", color: "#cbd5e1", caretColor: "#00b8d4" }} />
 
       <div className="flex gap-2 mt-3">
         <button onClick={() => setRes(analyze(text))} disabled={!text.trim()}
           className="px-4 py-2 rounded-xl text-[14px] font-bold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-          style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>
+          style={{ background: "rgba(0,240,255,0.15)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff" }}>
           Prüfen
         </button>
         <button onClick={() => { setText(SAMPLE); setRes(analyze(SAMPLE)); }}

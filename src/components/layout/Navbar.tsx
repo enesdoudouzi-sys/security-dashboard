@@ -91,15 +91,15 @@ export function Navbar({ active, setActive }: { active: string; setActive: (id: 
 
   return (
     <nav ref={navRef} className="sticky top-0 z-50"
-         style={{ background: "rgba(2,8,23,0.95)", borderBottom: "1px solid rgba(16,185,129,0.15)", backdropFilter: "blur(20px)" }}>
-      <div style={{ height: 2, background: "linear-gradient(90deg, transparent, #10b981, #34d399, #10b981, transparent)" }} />
+         style={{ background: "rgba(7,1,15,0.95)", borderBottom: "1px solid rgba(0,240,255,0.15)", backdropFilter: "blur(20px)" }}>
+      <div style={{ height: 2, background: "linear-gradient(90deg, transparent, #00f0ff, #ff2bd6, #00f0ff, transparent)", boxShadow: "0 0 12px rgba(0,240,255,0.6)" }} />
 
       <div className="flex flex-wrap items-center px-3 sm:px-5 gap-x-0 gap-y-1 py-1.5 lg:py-0 lg:flex-nowrap lg:h-14">
         {/* Logo */}
         <div className="flex items-center gap-3 pr-5 mr-2" style={{ borderRight: "1px solid rgba(30,41,59,0.8)" }}>
           <div className="w-9 h-9 rounded-xl flex items-center justify-center animate-pulse-ring flex-shrink-0"
-               style={{ background: "linear-gradient(135deg, #064e3b 0%, #065f46 100%)", border: "1px solid rgba(16,185,129,0.5)" }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+               style={{ background: "linear-gradient(135deg, #0a2838 0%, #0e3a4d 100%)", border: "1px solid rgba(0,240,255,0.5)" }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
           </div>
@@ -112,9 +112,9 @@ export function Navbar({ active, setActive }: { active: string; setActive: (id: 
         {/* Übersicht (direkt) */}
         <button onClick={() => pick(OVERVIEW.id)}
           className="relative flex items-center h-11 lg:h-14 px-3 sm:px-3.5 text-[12px] sm:text-[13px] uppercase tracking-[0.1em] font-medium cursor-pointer whitespace-nowrap transition-all"
-          style={active === OVERVIEW.id ? { color: "#34d399", textShadow: "0 0 15px rgba(52,211,153,0.6)" } : { color: "#64748b" }}>
+          style={active === OVERVIEW.id ? { color: "#00f0ff", textShadow: "0 0 15px rgba(0,240,255,0.6)" } : { color: "#64748b" }}>
           {OVERVIEW.label}
-          {active === OVERVIEW.id && <span className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(90deg, transparent, #34d399, transparent)" }} />}
+          {active === OVERVIEW.id && <span className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(90deg, transparent, #00f0ff, transparent)" }} />}
         </button>
 
         {/* Gruppen als Dropdowns */}
@@ -125,19 +125,19 @@ export function Navbar({ active, setActive }: { active: string; setActive: (id: 
             <div key={g.group} className="relative h-11 lg:h-14">
               <button onClick={() => setOpen(isOpen ? null : g.group)}
                 className="relative flex items-center gap-1 h-11 lg:h-14 px-3 sm:px-3.5 text-[12px] sm:text-[13px] uppercase tracking-[0.1em] font-medium cursor-pointer whitespace-nowrap transition-all"
-                style={hasActive || isOpen ? { color: "#34d399", textShadow: hasActive ? "0 0 15px rgba(52,211,153,0.6)" : "none" } : { color: "#64748b" }}>
+                style={hasActive || isOpen ? { color: "#00f0ff", textShadow: hasActive ? "0 0 15px rgba(0,240,255,0.6)" : "none" } : { color: "#64748b" }}>
                 {g.group}
                 <span className="text-[9px]" style={{ transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .15s" }}>▼</span>
-                {hasActive && <span className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(90deg, transparent, #34d399, transparent)" }} />}
+                {hasActive && <span className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(90deg, transparent, #00f0ff, transparent)" }} />}
               </button>
               {isOpen && (
                 <div className="absolute top-full left-0 rounded-xl overflow-hidden py-1 animate-fade-in z-50"
-                     style={{ minWidth: 200, background: "rgba(2,8,23,0.98)", border: "1px solid rgba(16,185,129,0.25)", boxShadow: "0 12px 40px rgba(0,0,0,0.6)", backdropFilter: "blur(20px)" }}>
+                     style={{ minWidth: 200, background: "rgba(7,1,15,0.98)", border: "1px solid rgba(0,240,255,0.25)", boxShadow: "0 12px 40px rgba(0,0,0,0.6)", backdropFilter: "blur(20px)" }}>
                   {g.tabs.map((t) => (
                     <button key={t.id} onClick={() => pick(t.id)}
                       className="w-full flex items-center gap-2.5 px-4 py-2.5 text-[14px] text-left cursor-pointer transition-all"
                       style={active === t.id
-                        ? { background: "rgba(16,185,129,0.15)", color: "#34d399" }
+                        ? { background: "rgba(0,240,255,0.15)", color: "#00f0ff" }
                         : { color: "#94a3b8" }}
                       onMouseEnter={(e) => { if (active !== t.id) e.currentTarget.style.background = "rgba(30,41,59,0.5)"; }}
                       onMouseLeave={(e) => { if (active !== t.id) e.currentTarget.style.background = "transparent"; }}>
@@ -160,16 +160,16 @@ export function Navbar({ active, setActive }: { active: string; setActive: (id: 
                title={backendOk
                  ? "Scanner-Backend verbunden – Live-Nmap-Scans sind möglich."
                  : "Scanner-Backend ist optional. Alle Analyse-Tabs laufen ohne Backend im Browser. Für Live-Scans Backend lokal starten oder auf Render deployen."}
-               style={{ color: backendOk ? "#34d399" : "#64748b" }}>
-            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: backendOk ? "#34d399" : "#475569" }} />
+               style={{ color: backendOk ? "#00f0ff" : "#64748b" }}>
+            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: backendOk ? "#00f0ff" : "#475569" }} />
             <span className="hidden md:inline">{backendOk ? "SCANNER VERBUNDEN" : backendOk === false ? "SCANNER OPTIONAL" : "..."}</span>
           </div>
 
           <div style={{ width: 1, height: 20, background: "rgba(30,41,59,0.8)" }} className="hidden md:block" />
 
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-[12px] font-bold"
-               style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)", color: "#34d399" }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
+               style={{ background: "rgba(255,43,214,0.12)", border: "1px solid rgba(255,43,214,0.45)", color: "#ff2bd6", boxShadow: "0 0 14px rgba(255,43,214,0.35)" }}>
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse inline-block" style={{ background: "#ff2bd6" }} />
             LIVE
           </div>
 

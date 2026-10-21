@@ -115,17 +115,17 @@ export function ExposureTab() {
         <input value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && run()}
           placeholder="z. B. 80.151.244.109  oder  example.com"
           className="flex-1 px-3 py-2.5 rounded-xl text-[15px] outline-none font-mono"
-          style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#10b981" }} />
+          style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.8)", color: "#e2e8f0", caretColor: "#00b8d4" }} />
         <button onClick={run} disabled={!q.trim() || state === "loading"}
           className="px-5 py-2.5 rounded-xl text-[15px] font-bold cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-          style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399" }}>
+          style={{ background: "rgba(0,240,255,0.15)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff" }}>
           {state === "loading" ? "Prüfe…" : "Prüfen"}
         </button>
       </div>
       <div className="flex gap-2 mt-2 flex-wrap items-center">
         <button onClick={lookupMyIp}
           className="text-[13px] px-2.5 py-1 rounded-lg cursor-pointer"
-          style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.3)", color: "#34d399" }}>
+          style={{ background: "rgba(0,240,255,0.1)", border: "1px solid rgba(0,240,255,0.3)", color: "#00f0ff" }}>
           📍 Meine öffentliche IP ermitteln
         </button>
         {myIp && <span className="text-[13px] font-mono" style={{ color: "#67e8f9" }}>{myIp}</span>}
@@ -138,7 +138,7 @@ export function ExposureTab() {
 
       {state === "empty" && (
         <div className="mt-5 rounded-xl p-4 text-[14px]"
-             style={{ background: "rgba(6,78,59,0.18)", border: "1px solid rgba(16,185,129,0.3)", color: "#86efac" }}>
+             style={{ background: "rgba(10,26,46,0.18)", border: "1px solid rgba(0,240,255,0.3)", color: "#7df9ff" }}>
           ✓ Gute Nachricht: Für <b className="font-mono">{q.trim()}</b> sind in den öffentlichen Scan-Daten
           {mode === "ip" ? " keine offenen Ports oder Schwachstellen" : " keine Subdomains"} bekannt.
           Das heißt: nach außen nichts Auffälliges sichtbar.
@@ -183,11 +183,11 @@ export function ExposureTab() {
                 Offene Ports ({ip.ports.length})
               </div>
               {ip.ports.length === 0
-                ? <p className="text-[14px]" style={{ color: "#86efac" }}>Keine offenen Ports bekannt ✓</p>
+                ? <p className="text-[14px]" style={{ color: "#7df9ff" }}>Keine offenen Ports bekannt ✓</p>
                 : <div className="flex flex-wrap gap-2">
                     {ip.ports.map((p) => (
                       <span key={p} className="text-[13px] px-2 py-1 rounded font-mono font-bold"
-                            style={{ background: "rgba(16,185,129,0.12)", border: "1px solid rgba(16,185,129,0.25)", color: "#34d399" }}>{p}</span>
+                            style={{ background: "rgba(0,240,255,0.12)", border: "1px solid rgba(0,240,255,0.25)", color: "#00f0ff" }}>{p}</span>
                     ))}
                   </div>}
             </div>
@@ -197,7 +197,7 @@ export function ExposureTab() {
                 Bekannte Schwachstellen ({ip.vulns.length})
               </div>
               {ip.vulns.length === 0
-                ? <p className="text-[14px]" style={{ color: "#86efac" }}>Keine bekannten CVEs ✓</p>
+                ? <p className="text-[14px]" style={{ color: "#7df9ff" }}>Keine bekannten CVEs ✓</p>
                 : <div className="flex flex-wrap gap-2">
                     {ip.vulns.map((v) => (
                       <a key={v} href={`https://nvd.nist.gov/vuln/detail/${v}`} target="_blank" rel="noreferrer"

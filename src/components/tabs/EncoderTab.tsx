@@ -55,14 +55,14 @@ function JwtDecoder() {
       <textarea value={tok} onChange={(e) => setTok(e.target.value)} rows={3}
         placeholder="eyJhbGci... . eyJzdWIi... . signature"
         className="w-full px-3 py-2 rounded-lg text-[13px] font-mono outline-none resize-y break-all"
-        style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#cbd5e1" }} />
+        style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.8)", color: "#cbd5e1" }} />
       {err && <p className="text-[13px] mt-2" style={{ color: "#f87171" }}>{err}</p>}
       {header && (
         <div className="grid md:grid-cols-2 gap-3 mt-3">
           <div><div className="text-[12px] uppercase tracking-wider mb-1" style={{ color: "#94a3b8" }}>Header</div>
-            <pre className="text-[13px] p-2 rounded-lg overflow-auto" style={{ background: "#020817", color: "#67e8f9" }}>{header}</pre></div>
+            <pre className="text-[13px] p-2 rounded-lg overflow-auto" style={{ background: "#07010f", color: "#67e8f9" }}>{header}</pre></div>
           <div><div className="text-[12px] uppercase tracking-wider mb-1" style={{ color: "#94a3b8" }}>Payload</div>
-            <pre className="text-[13px] p-2 rounded-lg overflow-auto" style={{ background: "#020817", color: "#a7f3d0" }}>{payload}</pre></div>
+            <pre className="text-[13px] p-2 rounded-lg overflow-auto" style={{ background: "#07010f", color: "#a5f3ff" }}>{payload}</pre></div>
         </div>
       )}
     </div>
@@ -101,7 +101,7 @@ export function EncoderTab() {
           <button key={o.id} onClick={() => setOp(o)}
             className="px-3.5 py-1.5 rounded-lg text-[14px] font-semibold cursor-pointer transition-all"
             style={op.id === o.id
-              ? { background: "rgba(16,185,129,0.18)", border: "1px solid rgba(52,211,153,0.5)", color: "#34d399" }
+              ? { background: "rgba(0,240,255,0.18)", border: "1px solid rgba(0,240,255,0.5)", color: "#00f0ff" }
               : { background: "rgba(30,41,59,0.5)", border: "1px solid rgba(51,65,85,0.6)", color: "#94a3b8" }}>
             {o.label}
           </button>
@@ -110,7 +110,7 @@ export function EncoderTab() {
           {(["enc", "dec"] as const).map((m) => (
             <button key={m} onClick={() => setMode(m)}
               className="px-3 py-1.5 text-[13px] font-bold uppercase tracking-wider cursor-pointer"
-              style={mode === m ? { background: "rgba(16,185,129,0.2)", color: "#34d399" } : { color: "#64748b" }}>
+              style={mode === m ? { background: "rgba(0,240,255,0.2)", color: "#00f0ff" } : { color: "#64748b" }}>
               {m === "enc" ? "Kodieren" : "Dekodieren"}
             </button>
           ))}
@@ -120,7 +120,7 @@ export function EncoderTab() {
       <textarea value={input} onChange={(e) => setInput(e.target.value)} rows={5}
         placeholder="Text / Payload hier eingeben…"
         className="w-full px-3 py-3 rounded-xl text-[14px] font-mono outline-none resize-y"
-        style={{ background: "#020817", border: "1px solid rgba(30,41,59,0.8)", color: "#cbd5e1", caretColor: "#10b981" }} />
+        style={{ background: "#07010f", border: "1px solid rgba(30,41,59,0.8)", color: "#cbd5e1", caretColor: "#00b8d4" }} />
 
       <div className="mt-3 rounded-xl p-4" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
         <div className="flex items-center justify-between mb-2">

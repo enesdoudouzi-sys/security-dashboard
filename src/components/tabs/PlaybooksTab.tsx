@@ -160,7 +160,7 @@ export function PlaybooksTab() {
           <button key={p.id} onClick={() => setActive(p.id)}
             className="px-3.5 py-2 rounded-lg text-[14px] font-semibold cursor-pointer transition-all flex items-center gap-1.5"
             style={active === p.id
-              ? { background: "rgba(16,185,129,0.18)", border: "1px solid rgba(52,211,153,0.5)", color: "#34d399" }
+              ? { background: "rgba(0,240,255,0.18)", border: "1px solid rgba(0,240,255,0.5)", color: "#00f0ff" }
               : { background: "rgba(30,41,59,0.5)", border: "1px solid rgba(51,65,85,0.6)", color: "#94a3b8" }}>
             <span>{p.icon}</span>{p.title}
           </button>
@@ -170,18 +170,18 @@ export function PlaybooksTab() {
       <div className="rounded-xl p-4 mb-4" style={{ background: "rgba(15,23,42,0.6)", border: "1px solid rgba(30,41,59,0.6)" }}>
         <div className="flex items-center justify-between mb-2">
           <span className="text-[15px] font-bold" style={{ color: "#e2e8f0" }}>{pb.icon} {pb.title}</span>
-          <span className="text-[13px] font-bold" style={{ color: pct === 100 ? "#34d399" : "#94a3b8" }}>{doneCount}/{allItems.length} · {pct}%</span>
+          <span className="text-[13px] font-bold" style={{ color: pct === 100 ? "#00f0ff" : "#94a3b8" }}>{doneCount}/{allItems.length} · {pct}%</span>
         </div>
         <p className="text-[13px] mb-3" style={{ color: "#64748b" }}>{pb.intro}</p>
         <div className="w-full rounded-full h-1.5" style={{ background: "rgba(30,41,59,0.8)" }}>
-          <div className="h-1.5 rounded-full transition-all" style={{ width: `${pct}%`, background: "linear-gradient(90deg,#10b981,#34d399)" }} />
+          <div className="h-1.5 rounded-full transition-all" style={{ width: `${pct}%`, background: "linear-gradient(90deg,#00b8d4,#00f0ff)" }} />
         </div>
       </div>
 
       <div className="space-y-4">
         {pb.steps.map((s, si) => (
           <div key={si}>
-            <div className="text-[14px] font-bold uppercase tracking-wider mb-2" style={{ color: "#34d399" }}>{s.phase}</div>
+            <div className="text-[14px] font-bold uppercase tracking-wider mb-2" style={{ color: "#00f0ff" }}>{s.phase}</div>
             <div className="space-y-1.5">
               {s.items.map((item, ii) => {
                 const key = `${pb.id}-${si}-${ii}`;
@@ -189,9 +189,9 @@ export function PlaybooksTab() {
                 return (
                   <button key={ii} onClick={() => toggle(key)}
                     className="w-full flex items-start gap-3 text-left rounded-lg px-3.5 py-2.5 cursor-pointer transition-all"
-                    style={{ background: checked ? "rgba(6,78,59,0.25)" : "rgba(15,23,42,0.5)", border: `1px solid ${checked ? "rgba(16,185,129,0.3)" : "rgba(30,41,59,0.6)"}` }}>
+                    style={{ background: checked ? "rgba(10,26,46,0.25)" : "rgba(15,23,42,0.5)", border: `1px solid ${checked ? "rgba(0,240,255,0.3)" : "rgba(30,41,59,0.6)"}` }}>
                     <span className="w-5 h-5 rounded flex items-center justify-center text-[13px] font-bold flex-shrink-0 mt-0.5"
-                          style={{ background: checked ? "#10b981" : "transparent", border: `1px solid ${checked ? "#10b981" : "#475569"}`, color: "#020817" }}>
+                          style={{ background: checked ? "#00b8d4" : "transparent", border: `1px solid ${checked ? "#00b8d4" : "#475569"}`, color: "#07010f" }}>
                       {checked ? "✓" : ""}
                     </span>
                     <span className="text-[14.5px]" style={{ color: checked ? "#64748b" : "#cbd5e1", textDecoration: checked ? "line-through" : "none" }}>{item}</span>

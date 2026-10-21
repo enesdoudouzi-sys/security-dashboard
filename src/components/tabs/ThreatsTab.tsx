@@ -6,7 +6,7 @@ import type { Threat } from "@/types";
 const STATUS_CFG: Record<string, { color: string; bg: string; border: string; label: string }> = {
   active:        { color: "#f87171", bg: "rgba(127,29,29,0.4)",  border: "rgba(239,68,68,0.3)",   label: "AKTIV"        },
   monitoring:    { color: "#fbbf24", bg: "rgba(120,53,15,0.4)",  border: "rgba(245,158,11,0.3)",  label: "BEOBACHTUNG"  },
-  blocked:       { color: "#34d399", bg: "rgba(6,78,59,0.4)",    border: "rgba(16,185,129,0.3)",  label: "BLOCKIERT"    },
+  blocked:       { color: "#00f0ff", bg: "rgba(10,26,46,0.4)",    border: "rgba(0,240,255,0.3)",  label: "BLOCKIERT"    },
   investigating: { color: "#fb923c", bg: "rgba(124,45,18,0.4)",  border: "rgba(249,115,22,0.3)",  label: "UNTERSUCHT"   },
 };
 
@@ -36,7 +36,7 @@ export function ThreatsTab({ threats }: { threats: Threat[] }) {
     <div className="p-5 space-y-5 max-w-screen-2xl mx-auto">
       {toast && (
         <div className="fixed top-16 right-5 z-50 px-4 py-3 rounded-xl text-[14px] font-medium animate-fade-in"
-             style={{ background: "rgba(6,78,59,0.9)", border: "1px solid rgba(16,185,129,0.4)", color: "#34d399", backdropFilter: "blur(12px)" }}>
+             style={{ background: "rgba(10,26,46,0.9)", border: "1px solid rgba(0,240,255,0.4)", color: "#00f0ff", backdropFilter: "blur(12px)" }}>
           ✓ {toast}
         </div>
       )}
@@ -46,7 +46,7 @@ export function ThreatsTab({ threats }: { threats: Threat[] }) {
         {[
           { label: "Aktiv",        value: active,  color: "#f87171" },
           { label: "Untersucht",   value: invst,   color: "#fb923c" },
-          { label: "Blockiert",    value: blocked, color: "#34d399" },
+          { label: "Blockiert",    value: blocked, color: "#00f0ff" },
         ].map(({ label, value, color }) => (
           <div key={label} className="rounded-xl p-4 flex items-center gap-4"
                style={{ background: "linear-gradient(135deg, #0f172a, #0d1b2a)", border: "1px solid rgba(30,41,59,0.8)" }}>
@@ -97,7 +97,7 @@ export function ThreatsTab({ threats }: { threats: Threat[] }) {
                   </div>
                   <div className="flex justify-between py-1.5" style={{ borderBottom: "1px solid rgba(30,41,59,0.5)" }}>
                     <span style={{ color: "#374151" }}>Betroffene Systeme</span>
-                    <span className="font-bold" style={{ color: t.affectedSystems > 0 ? "#fb923c" : "#34d399" }}>
+                    <span className="font-bold" style={{ color: t.affectedSystems > 0 ? "#fb923c" : "#00f0ff" }}>
                       {t.affectedSystems}
                     </span>
                   </div>
@@ -129,7 +129,7 @@ export function ThreatsTab({ threats }: { threats: Threat[] }) {
                 <ActionBtn
                   label="Gelöst"
                   active={status === "monitoring"}
-                  color="#34d399"
+                  color="#00f0ff"
                   onClick={() => update(t.id, "monitoring", `${t.name} als gelöst markiert`)}
                 />
               </div>

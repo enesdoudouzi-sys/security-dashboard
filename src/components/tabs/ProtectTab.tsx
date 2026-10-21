@@ -136,7 +136,7 @@ export function ProtectTab() {
           <button key={key} onClick={() => setOs(key)}
             className="px-3.5 py-1.5 rounded-lg text-[13px] font-bold uppercase tracking-wider cursor-pointer"
             style={os === key
-              ? { color: "#34d399", background: "rgba(6,78,59,0.4)", border: "1px solid rgba(16,185,129,0.4)" }
+              ? { color: "#00f0ff", background: "rgba(10,26,46,0.4)", border: "1px solid rgba(0,240,255,0.4)" }
               : { color: "#64748b", background: "rgba(30,41,59,0.4)", border: "1px solid rgba(51,65,85,0.5)" }}>
             {SECTIONS[key].title}
           </button>
