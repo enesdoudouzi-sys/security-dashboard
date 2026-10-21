@@ -19,6 +19,7 @@ const GROUPS: { group: string; tabs: Tab[] }[] = [
     { id: "commands", label: "Befehle",             icon: "⌨" },
   ]},
   { group: "Analyse", tabs: [
+    { id: "headercheck", label: "Header-Check (echt)", icon: "🔐" },
     { id: "attack",      label: "ATT&CK",       icon: "🎯" },
     { id: "loganalyzer", label: "Log-Analyse",  icon: "📑" },
     { id: "phishing",    label: "Phishing",     icon: "🎣" },
