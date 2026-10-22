@@ -30,6 +30,7 @@ import { ProgressTab } from "@/components/tabs/ProgressTab";
 import { ChallengesTab } from "@/components/tabs/ChallengesTab";
 import { ExposureTab } from "@/components/tabs/ExposureTab";
 import { HeaderCheckTab } from "@/components/tabs/HeaderCheckTab";
+import { DnsReconTab } from "@/components/tabs/DnsReconTab";
 import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
@@ -65,6 +66,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "journal"         && <JournalTab />}
         {active === "exposure"        && <ExposureTab />}
         {active === "headercheck"     && <HeaderCheckTab />}
+        {active === "dnsrecon"        && <DnsReconTab />}
         {active === "vulnscan"        && <VulnScanTab />}
         {active === "cve"             && <CveSearchTab />}
         {active === "attack"          && <AttackTab />}
