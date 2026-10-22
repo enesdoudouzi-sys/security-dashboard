@@ -7,6 +7,7 @@ type Tab = { id: string; label: string; icon: string };
 const OVERVIEW: Tab = { id: "overview", label: "Übersicht", icon: "▣" };
 const GROUPS: { group: string; tabs: Tab[] }[] = [
   { group: "Monitoring", tabs: [
+    { id: "radar",           label: "Bedrohungsradar", icon: "📡" },
     { id: "vulnerabilities", label: "Schwachstellen", icon: "◈" },
     { id: "threats",         label: "Bedrohungen",    icon: "☣" },
     { id: "network",         label: "Netzwerk",       icon: "⬡" },
@@ -33,6 +34,7 @@ const GROUPS: { group: string; tabs: Tab[] }[] = [
     { id: "hardening", label: "Härtung",     icon: "⚙" },
     { id: "seccheck",  label: "Security-Check", icon: "📊" },
     { id: "password",  label: "Passwörter",  icon: "🔑" },
+    { id: "breach",    label: "Breach-Check (echt)", icon: "🔓" },
     { id: "tools",     label: "Werkzeuge",   icon: "🧰" },
     { id: "security",  label: "Sicherheits-Status", icon: "✅" },
   ]},

@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { MatrixRain } from "@/components/layout/MatrixRain";
+import { CursorGlow } from "@/components/layout/CursorGlow";
+import { BootSequence } from "@/components/layout/BootSequence";
 import { OverviewTab } from "@/components/tabs/OverviewTab";
 import { VulnerabilitiesTab } from "@/components/tabs/VulnerabilitiesTab";
 import { ThreatsTab } from "@/components/tabs/ThreatsTab";
@@ -28,6 +30,8 @@ import { NetToolsTab } from "@/components/tabs/NetToolsTab";
 import { SecurityCheckTab } from "@/components/tabs/SecurityCheckTab";
 import { ProgressTab } from "@/components/tabs/ProgressTab";
 import { ChallengesTab } from "@/components/tabs/ChallengesTab";
+import { BreachCheckTab } from "@/components/tabs/BreachCheckTab";
+import { ThreatRadarTab } from "@/components/tabs/ThreatRadarTab";
 import { ExposureTab } from "@/components/tabs/ExposureTab";
 import { HeaderCheckTab } from "@/components/tabs/HeaderCheckTab";
 import { DnsReconTab } from "@/components/tabs/DnsReconTab";
@@ -51,7 +55,9 @@ export function Dashboard({ data }: { data: DashboardData }) {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <BootSequence />
       <MatrixRain />
+      <CursorGlow />
       <div className="scan-beam" aria-hidden="true" />
       <Navbar active={active} setActive={setActive} />
       <main className="flex-1 overflow-auto">
@@ -67,6 +73,8 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "exposure"        && <ExposureTab />}
         {active === "headercheck"     && <HeaderCheckTab />}
         {active === "dnsrecon"        && <DnsReconTab />}
+        {active === "breach"          && <BreachCheckTab />}
+        {active === "radar"           && <ThreatRadarTab />}
         {active === "vulnscan"        && <VulnScanTab />}
         {active === "cve"             && <CveSearchTab />}
         {active === "attack"          && <AttackTab />}
