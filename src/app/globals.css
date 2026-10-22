@@ -23,21 +23,23 @@ body {
   isolation: isolate;
 }
 
-/* Layer 1: grelle Neon-Aurora (Cyan + Magenta) */
+/* Layer 1: HOLOGRAFISCHE Regenbogen-Aurora, die langsam durch alle Farben schimmert */
 body::before {
   content: "";
   position: fixed;
   inset: -25%;
   z-index: -2;
   background:
-    radial-gradient(42% 46% at 12% 8%,  rgba(0,240,255,0.42) 0%, transparent 60%),
-    radial-gradient(40% 42% at 90% 14%, rgba(255,43,214,0.40) 0%, transparent 60%),
-    radial-gradient(50% 50% at 82% 90%, rgba(0,240,255,0.36) 0%, transparent 60%),
-    radial-gradient(38% 42% at 18% 86%, rgba(255,43,214,0.34) 0%, transparent 60%),
-    radial-gradient(32% 36% at 50% 50%, rgba(124,58,237,0.26) 0%, transparent 65%);
-  filter: blur(14px);
-  animation: aurora 18s ease-in-out infinite alternate;
+    radial-gradient(42% 46% at 12% 8%,  rgba(0,240,255,0.40) 0%, transparent 60%),
+    radial-gradient(40% 42% at 90% 14%, rgba(255,43,214,0.38) 0%, transparent 60%),
+    radial-gradient(50% 50% at 82% 90%, rgba(124,58,237,0.38) 0%, transparent 60%),
+    radial-gradient(38% 42% at 18% 86%, rgba(255,196,0,0.30)  0%, transparent 60%),
+    radial-gradient(44% 46% at 60% 35%, rgba(0,255,163,0.30)  0%, transparent 62%),
+    radial-gradient(32% 36% at 50% 50%, rgba(255,43,214,0.26) 0%, transparent 65%);
+  filter: blur(16px);
+  animation: aurora 18s ease-in-out infinite alternate, hue 14s linear infinite;
 }
+@keyframes hue { to { filter: blur(16px) hue-rotate(360deg); } }
 
 /* Layer 2: Neon-Gitter */
 body::after {
@@ -144,18 +146,47 @@ button, a, input, textarea { transition: color .15s ease, background-color .15s 
   border: 1px solid rgba(0,240,255,0.18);
 }
 
-/* ── Gradient-Überschriften: Cyan → Magenta mit kräftigem Neon-Glühen ── */
-/* (Klassenname bleibt, damit alle Tabs ihn automatisch übernehmen) */
+/* ── HOLOGRAFISCHE Glitch-Überschriften: irisierender Verlauf, der durch alle ──
+   ── Farben wandert, plus RGB-Verschiebung wie ein gehacktes Display ── */
 .text-gradient-green {
-  background: linear-gradient(100deg, #00f0ff 0%, #5eead4 35%, #ff2bd6 100%);
+  position: relative;
+  background: linear-gradient(100deg, #00f0ff, #7c3aed, #ff2bd6, #ffc400, #00ffa3, #00f0ff);
+  background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 10px rgba(0,240,255,0.55)) drop-shadow(0 0 22px rgba(255,43,214,0.35));
+  filter: drop-shadow(0 0 10px rgba(0,240,255,0.5)) drop-shadow(0 0 20px rgba(255,43,214,0.35));
   letter-spacing: -0.01em;
   font-weight: 800;
+  animation: holo-shift 6s linear infinite, glitch 3.2s steps(1) infinite;
+}
+@keyframes holo-shift { to { background-position: 300% 0; } }
+@keyframes glitch {
+  0%, 92%, 100% { text-shadow: none; transform: translate(0,0); }
+  93% { text-shadow: -2px 0 #ff2bd6, 2px 0 #00f0ff; transform: translate(1px,-1px); }
+  95% { text-shadow:  2px 0 #ff2bd6, -2px 0 #00f0ff; transform: translate(-1px,1px); }
+  97% { text-shadow: -1px 0 #ffc400, 1px 0 #00ffa3; transform: translate(1px,0); }
 }
 
-/* ── Karten bekommen beim Hover ein leichtes Anheben + Neon-Rand ── */
-[class*="rounded-2xl"], [class*="rounded-xl"] { transition: transform .18s ease, box-shadow .25s ease, border-color .2s ease; }
-[class*="rounded-2xl"]:hover, [class*="rounded-xl"]:hover { box-shadow: 0 0 0 1px rgba(0,240,255,0.25), 0 8px 30px rgba(0,240,255,0.08); }
+/* ── HOLOGRAFISCHE Milchglas-Karten mit schimmerndem Regenbogen-Rand ── */
+[class*="rounded-2xl"], [class*="rounded-xl"] {
+  transition: transform .18s ease, box-shadow .25s ease, border-color .2s ease;
+  position: relative;
+  backdrop-filter: blur(8px);
+}
+[class*="rounded-2xl"]::after, [class*="rounded-xl"]::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(130deg, rgba(0,240,255,0.5), rgba(124,58,237,0.4), rgba(255,43,214,0.5), rgba(255,196,0,0.35), rgba(0,255,163,0.45));
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0.55;
+  pointer-events: none;
+  animation: holo-shift 8s linear infinite;
+}
+[class*="rounded-2xl"]:hover, [class*="rounded-xl"]:hover { box-shadow: 0 0 22px rgba(0,240,255,0.18), 0 0 40px rgba(255,43,214,0.12); }
+[class*="rounded-2xl"]:hover::after, [class*="rounded-xl"]:hover::after { opacity: 1; }
