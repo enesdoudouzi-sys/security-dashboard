@@ -154,6 +154,22 @@ def all_results(db: Session = Depends(get_db)):
         for r in results
     ]
 
+# ── Port-Analyzer (lokaler Scan) ──────────────────────────────
+# Nimmt die Ausgabe von `netstat -ano` / `Get-NetTCPConnection` entgegen
+# und bewertet die offenen Ports nach Risiko. Reine Textanalyse, kein nmap.
+class PortsRequest(BaseModel):
+    text: str
+
+@app.post("/api/analyze-ports")
+def analyze_ports_endpoint(req: PortsRequest):
+    text = (req.text or "").strip()
+    if not text:
+        raise HTTPException(400, "Keine Eingabe. Bitte netstat-/Get-NetTCPConnection-Ausgabe einfügen.")
+    if len(text) > 50000:
+        raise HTTPException(413, "Eingabe zu groß.")
+    from hostanalyze import analyze_ports
+    return analyze_ports(text)
+
 # ── Health ────────────────────────────────────────────────────
 @app.get("/api/health")
 def health():
