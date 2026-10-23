@@ -2,7 +2,7 @@
 
 # 🛡️ CyberShield — SOC Dashboard
 
-**Eine selbst entwickelte Security-Operations-Plattform mit 20+ Werkzeugen für Schwachstellen-Analyse, Threat Intelligence, Incident Response — plus Lern-Inhalte für den Einstieg in die IT-Sicherheit.**
+**Eine selbst entwickelte Security-Operations-Plattform mit 30+ Werkzeugen — darunter 4 Tools mit *echten Live-Daten* (Shodan, DNS, Mozilla Observatory, Have I Been Pwned) — für Schwachstellen-Analyse, Threat Intelligence & Incident Response, plus Lern-Inhalte für den Einstieg in die IT-Sicherheit.**
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-10b981?style=for-the-badge&logo=github)](https://enesdoudouzi-sys.github.io/security-dashboard/)
 &nbsp;
@@ -14,21 +14,35 @@
 
 </div>
 
-![Übersicht](docs/screenshots/01-overview.png)
+![Übersicht](docs/screenshots/overview.png)
 
 ---
 
-## ✨ Was kann das Dashboard?
+## ⭐ Highlights: Tools mit *echten* Live-Daten (kein Demo)
 
-Ein modernes SOC-Dashboard im dunklen „Leitstand"-Look — läuft auf **Desktop & Handy**, komplett im Browser (kein Login, keine Datenbank, nichts wird gesendet). Jedes Werkzeug hat einen **„Was heißt das im Job?"**-Lernkasten.
+Diese Werkzeuge fragen echte öffentliche Quellen live ab — passiv & legal, direkt im Browser:
+
+| Tool | Was es macht | Echte Quelle |
+|---|---|---|
+| 🛰 **Exposure-Check** | echte offene Ports, bekannte CVEs, Hostnamen & Subdomains einer IP/Domain | Shodan InternetDB · crt.sh |
+| 🌐 **DNS-Recon** | echte DNS-Einträge + E-Mail-Schutz-Bewertung (SPF/DMARC/DNSSEC) | Google Public DNS |
+| 🔐 **Header-Check** | echte Sicherheits-Note (A+…F) für die HTTP-Header einer Website | Mozilla HTTP Observatory |
+| 🔑 **Breach-Check** | prüft Passwörter gegen echte Datenlecks — per k-Anonymity (Passwort verlässt nie den Browser) | Have I Been Pwned |
+| 💻 **Lokaler Scan** | wertet `netstat`/`Get-NetTCPConnection`-Ausgaben aus und bewertet offene Ports nach Risiko | eigenes Python-Backend |
+
+---
+
+## ✨ Alle Bereiche
+
+Ein modernes SOC-Dashboard im **Cyberpunk-Neon-Look** (animierte Aurora, Glitch-Effekte) — läuft auf **Desktop & Handy**, komplett im Browser (kein Login, keine Datenbank). Jedes Werkzeug hat einen **„Was heißt das im Job?"**-Lernkasten.
 
 | Bereich | Werkzeuge |
 |---|---|
-| **🖥️ Monitoring** | Übersicht mit Risk-Score & KPIs · Schwachstellen · Bedrohungen · Netzwerk-Events · Scans |
-| **🔍 Scannen** | Schwachstellen-Scan (Nmap-Backend) · CVE-Live-Suche (NVD) · Befehls-Cheatsheet |
-| **🧪 Analyse** | MITRE ATT&CK Matrix · Log-Analyse & IOC-Extractor · Phishing-/E-Mail-Header-Analyse · Encoder/Decoder (Base64/Hex/JWT) · Netz- & Hash-Tools |
-| **🚨 Reaktion & Schutz** | Incident-Response-Playbooks · PC-Schutz · System-Härtung · Passwort-Generator · Sicherheits-Status |
-| **🎓 Lernen** | Lern-Roadmap zum ersten Security-Job · Security-Quiz · Logbuch · Projekt-Übersicht |
+| **🖥️ Monitoring** | Übersicht mit Risk-Score & KPIs · **Live-Bedrohungsradar** · Schwachstellen · Bedrohungen · Netzwerk-Events |
+| **🔍 Scannen** | **Exposure-Check** · **DNS-Recon** · **Lokaler Scan** · Schwachstellen-Scan (Nmap-Backend) · CVE-Live-Suche (NVD) |
+| **🧪 Analyse** | **Header-Check** · MITRE ATT&CK Matrix · Log-Analyse & IOC-Extractor · Phishing-/E-Mail-Header-Analyse · Encoder/Decoder (Base64/Hex/JWT) |
+| **🚨 Reaktion & Schutz** | **Breach-Check** · Incident-Response-Playbooks · PC-Schutz · System-Härtung · Passwort-Generator |
+| **🎓 Lernen** | Lern-Roadmap zum ersten Security-Job · Challenges · Security-Quiz · Fortschritts-Tracker · Logbuch |
 
 ---
 
@@ -36,16 +50,16 @@ Ein modernes SOC-Dashboard im dunklen „Leitstand"-Look — läuft auf **Deskto
 
 <table>
   <tr>
-    <td width="50%"><b>MITRE ATT&CK Matrix</b><br><img src="docs/screenshots/03-attack.png" /></td>
-    <td width="50%"><b>Log-Analyse & IOC-Extractor</b><br><img src="docs/screenshots/04-loganalyse.png" /></td>
+    <td width="50%"><b>🛰 Exposure-Check (Shodan + crt.sh)</b><br><img src="docs/screenshots/exposure.png" /></td>
+    <td width="50%"><b>🔐 Header-Check (Mozilla Observatory)</b><br><img src="docs/screenshots/header-check.png" /></td>
   </tr>
   <tr>
-    <td><b>Security-Quiz</b><br><img src="docs/screenshots/05-quiz.png" /></td>
-    <td><b>Passwort-Generator</b><br><img src="docs/screenshots/06-password.png" /></td>
+    <td><b>📡 Live-Bedrohungsradar</b><br><img src="docs/screenshots/radar.png" /></td>
+    <td><b>🔑 Breach-Check (Have I Been Pwned)</b><br><img src="docs/screenshots/breach.png" /></td>
   </tr>
   <tr>
-    <td><b>Projekt-Übersicht</b><br><img src="docs/screenshots/02-about.png" /></td>
-    <td valign="top"><b>Mobil-optimiert</b><br><img src="docs/screenshots/07-mobile.png" width="240" /></td>
+    <td><b>🌐 DNS-Recon (SPF/DMARC/DNSSEC)</b><br><img src="docs/screenshots/dns-recon.png" /></td>
+    <td valign="top"><b>🖥️ Übersicht (SOC-Startseite)</b><br><img src="docs/screenshots/overview.png" /></td>
   </tr>
 </table>
 
