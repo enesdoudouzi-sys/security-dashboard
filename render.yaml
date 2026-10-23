@@ -1,8 +1,8 @@
 # Render Blueprint für die Scanner-API (Backend).
-# In Render: New + → Blueprint → dieses Repo wählen.
+# In Render:  New +  →  Blueprint  →  dieses Repo wählen  →  Apply.
 services:
   - type: web
-    name: security-dashboard-api
+    name: cybershield-scanner-enes
     runtime: docker
     rootDir: backend
     dockerfilePath: ./Dockerfile
@@ -13,12 +13,8 @@ services:
       # Nur diese Ziele dürfen gescannt werden (Komma-getrennt).
       - key: ALLOWED_TARGETS
         value: "scanme.nmap.org,127.0.0.1,localhost,::1"
-      # Schlüssel für Scans. In Render auf einen eigenen Wert setzen!
-      - key: SCAN_API_KEY
-        sync: false
       # Eigenes Übungsnetz (10./172.16./192.168.) erlauben: auf "1" setzen.
       - key: ALLOW_PRIVATE_RANGES
         value: "0"
-      # Website-Adressen, die das Backend aufrufen dürfen (Komma-getrennt).
-      - key: EXTRA_ORIGINS
-        sync: false
+      # Kein API-Schlüssel nötig (Schutz übernimmt die Ziel-Freigabeliste oben).
+      # Später absichern: hier SCAN_API_KEY ergänzen und im Dashboard eintragen.
