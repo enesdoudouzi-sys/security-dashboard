@@ -35,6 +35,7 @@ import { ThreatRadarTab } from "@/components/tabs/ThreatRadarTab";
 import { ExposureTab } from "@/components/tabs/ExposureTab";
 import { HeaderCheckTab } from "@/components/tabs/HeaderCheckTab";
 import { DnsReconTab } from "@/components/tabs/DnsReconTab";
+import { LocalScanTab } from "@/components/tabs/LocalScanTab";
 import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
@@ -73,6 +74,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "exposure"        && <ExposureTab />}
         {active === "headercheck"     && <HeaderCheckTab />}
         {active === "dnsrecon"        && <DnsReconTab />}
+        {active === "localscan"       && <LocalScanTab />}
         {active === "breach"          && <BreachCheckTab />}
         {active === "radar"           && <ThreatRadarTab />}
         {active === "vulnscan"        && <VulnScanTab />}
