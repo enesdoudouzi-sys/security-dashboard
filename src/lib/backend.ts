@@ -6,7 +6,7 @@
 export const BACKEND =
   typeof window !== "undefined" && window.location.hostname === "localhost"
     ? "http://localhost:8000"
-    : "https://security-dashboard-irl5.onrender.com";
+    : "https://cybershield-scanner-enes.onrender.com";
 
 // Das Backend ist nur für LIVE-Nmap-Scans nötig (Scans / Schwachstellen-Scan).
 export const BACKEND_IS_OPTIONAL = true;
