@@ -17,6 +17,7 @@ const GROUPS: { group: string; tabs: Tab[] }[] = [
     { id: "exposure", label: "Exposure-Check (echt)", icon: "🛰" },
     { id: "localscan", label: "Lokaler Scan (dein PC)", icon: "💻" },
     { id: "dnsrecon", label: "DNS-Recon (echt)", icon: "🌐" },
+    { id: "ipgeo", label: "IP-Geolocation (echt)", icon: "📍" },
     { id: "vulnscan", label: "Schwachstellen-Scan", icon: "◎" },
     { id: "cve",      label: "CVE-Suche",           icon: "🔎" },
     { id: "commands", label: "Befehle",             icon: "⌨" },
