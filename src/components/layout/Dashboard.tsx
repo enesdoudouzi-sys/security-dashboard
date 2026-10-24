@@ -37,6 +37,7 @@ import { HeaderCheckTab } from "@/components/tabs/HeaderCheckTab";
 import { DnsReconTab } from "@/components/tabs/DnsReconTab";
 import { LocalScanTab } from "@/components/tabs/LocalScanTab";
 import { IpGeoTab } from "@/components/tabs/IpGeoTab";
+import { CertCheckTab } from "@/components/tabs/CertCheckTab";
 import type { DashboardData } from "@/types";
 
 export function Dashboard({ data }: { data: DashboardData }) {
@@ -77,6 +78,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
         {active === "dnsrecon"        && <DnsReconTab />}
         {active === "localscan"       && <LocalScanTab />}
         {active === "ipgeo"           && <IpGeoTab />}
+        {active === "certcheck"       && <CertCheckTab />}
         {active === "breach"          && <BreachCheckTab />}
         {active === "radar"           && <ThreatRadarTab />}
         {active === "vulnscan"        && <VulnScanTab />}

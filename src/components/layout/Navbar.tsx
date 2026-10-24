@@ -24,6 +24,7 @@ const GROUPS: { group: string; tabs: Tab[] }[] = [
   ]},
   { group: "Analyse", tabs: [
     { id: "headercheck", label: "Header-Check (echt)", icon: "🔐" },
+    { id: "certcheck",   label: "SSL-Zertifikat (echt)", icon: "📜" },
     { id: "attack",      label: "ATT&CK",       icon: "🎯" },
     { id: "loganalyzer", label: "Log-Analyse",  icon: "📑" },
     { id: "phishing",    label: "Phishing",     icon: "🎣" },
